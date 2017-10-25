@@ -1,0 +1,52 @@
+.App {
+  text-align: center;
+}
+
+.title {
+  flex: 1;
+}
+
+.posts-flex-item-1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  background-color: #222;
+  height: 70px;
+  padding: 20px;
+  color: white;
+  display: flex;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.posts-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.post-list-content {
+  text-align: center;
+}
+
+.posts-list {
+  width: 100%;
+  margin-top: 10px;
+  padding: 0;
+}
+
+.posts-sub-title-text {
+  text-align: center;
+  max-width: 1000px;
+  margin-top: -5px;
+  font-weight: 300;
+}
+
+.posts-title-text {
+  margin: 15px;
+  font-weight: 400;
+}

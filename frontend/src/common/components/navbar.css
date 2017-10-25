@@ -1,0 +1,68 @@
+.dropdown-menu-item {
+  text-align: left;
+}
+
+.dropdown-menu > li > a {
+  color: #006e78 !important;
+  font-size: 1.1em !important;
+  letter-spacing: 0.8px;
+}
+
+.hr-navbar {
+  border-color: #dcdee0;
+  width: 90%;
+  margin: 0;
+}
+
+.navbar {
+  background-color: #006e78;
+  border-radius: 0px;
+  border-color: #006e78;
+  height: 100px;
+}
+
+.navbar-nav > li > a {
+  line-height: 55px;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.dropdown-navbar {
+  font-size: 18px;
+  color: #ffffff !important;
+  background-color: #006e78 !important;
+  border-color: #006e78 !important;
+  box-shadow: none !important;
+  border-radius: 0px;
+}
+#hejsan {
+  line-height: 60px;
+  color: #ffffff !important;
+}
+
+.test {
+  color: white;
+}
+
+.dropdown-keys {
+  font-size: 18px;
+  color: #58595b;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 1px 1px 2px #58595b;
+  border-radius: 0px;
+  text-align: center;
+}
+
+.dropdown-menu {
+  border-radius: 0px;
+}
+
+#logo {
+  height: 60px;
+}
+
+.fa {
+  vertical-align: middle;
+  font-size: 35px;
+}

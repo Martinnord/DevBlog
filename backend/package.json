@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=development nodemon index.js",
+    "dev": "NODE_ENV=dev nodemon index.js",
+    "local": "NODE_ENV=test nodemon index.js"
+  },
+  "author": "Martin Nordström",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "express-validation": "^1.0.2",
+    "helmet": "^3.8.1",
+    "joi": "^10.6.0",
+    "jsonwebtoken": "^8.0.0",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.11.9",
+    "morgan": "^1.8.2",
+    "passport": "^0.4.0",
+    "passport-facebook-token": "^3.3.0",
+    "passport-google-plus-token": "^2.1.0",
+    "passport-jwt": "^3.0.0",
+    "passport-local": "^1.0.0",
+    "validator": "^8.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "dotenv": "^4.0.0",
+    "nodemon": "^1.11.0"
+  }
+}
