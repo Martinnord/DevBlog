@@ -13,13 +13,14 @@ const prodConfig = {
 const defaultConfig = {
   PORT: process.env.PORT || 3001,
   JTW_SECRET: process.env.JTW_SECRET,
+  GRAPHQL_PATH: process.env.GRAPHQL_PATH,
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret,
-	
-	facebook: {
-		clientID: process.env.FBclientID,
-		clientSecret: process.env.FBclientSecret
-	}
+
+  facebook: {
+    clientID: process.env.FBclientID,
+    clientSecret: process.env.FBclientSecret
+  }
 }
 
 function envConfig(env) {

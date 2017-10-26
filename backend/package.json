@@ -12,12 +12,15 @@
   "author": "Martin Nordström",
   "license": "ISC",
   "dependencies": {
+    "apollo-server-express": "^1.2.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "express": "^4.15.4",
     "express-validation": "^1.0.2",
+    "graphql": "^0.11.7",
+    "graphql-tools": "^2.6.1",
     "helmet": "^3.8.1",
     "joi": "^10.6.0",
     "jsonwebtoken": "^8.0.0",
@@ -33,7 +36,9 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "dotenv": "^4.0.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.12.1"
   }
 }
