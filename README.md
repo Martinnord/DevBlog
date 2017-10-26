@@ -1,11 +1,4 @@
-# My personal blog
+# DevBlog
 
-## Stuff I've used (so far)
-* NodeJS
-* Express
-* MongoDB
-* Postman (to check API)
-* React
-
-## Why?
-School stuff
+## About Devblog
+Devblog will become a community for developers. Almost like Medium, but only about programming.
