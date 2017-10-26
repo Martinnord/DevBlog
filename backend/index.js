@@ -35,10 +35,10 @@ const graphQLServer = createServer(app)
 
 graphQLServer.listen(constants.PORT, err => {
   if (err) {
-    console.log('Cannot run')
+    console.log(`Error: ${err}`)
   } else {
     console.log(`
-      Good to ggggo 😄
+      Good to go 😄
       App listening on: ${constants.PORT}
       Env: ${process.env.NODE_ENV} 💫
     `)

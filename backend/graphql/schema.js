@@ -1,11 +1,12 @@
 var typeDefs = `
   type Post {
-    _id: String
-    title: String
-    content: String
+    _id: ID!
+    title: String!
+    content: String!
   }
 
   type Query {
+    getPost(_id: ID!): Post
     getPosts: [Post]
   }
 
@@ -14,3 +15,4 @@ var typeDefs = `
   }
 `
 module.exports = typeDefs
+
