@@ -31,6 +31,7 @@ const signup = async (req, res, next) => {
 
     const foundUser = await User.findOne({ 'local.username': username })
     if (foundUser) {
+      console.log(foundUser)
       return res.status(403).json({ error: 'Username already in use' })
     }
 

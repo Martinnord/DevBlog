@@ -38,7 +38,7 @@ graphQLServer.listen(constants.PORT, err => {
     console.log(`Error: ${err}`)
   } else {
     console.log(`
-      Good to go 😄
+      Good to go 😄 🍕
       App listening on: ${constants.PORT}
       Env: ${process.env.NODE_ENV} 💫
     `)

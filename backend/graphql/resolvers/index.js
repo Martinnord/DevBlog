@@ -1,6 +1,7 @@
 const GraphQLDate = require("graphql-date")
 
 const PostResolvers = require("./post-resolver")
+const UserResolvers = require('./user-resolver')
 
 module.exports = {
   Date: GraphQLDate,
@@ -11,6 +12,7 @@ module.exports = {
   Mutation: {
     createPost: PostResolvers.createPost,
     updatePost: PostResolvers.updatePost,
-    deletePost: PostResolvers.deletePost
+    deletePost: PostResolvers.deletePost,
+    signup: UserResolvers.signup
   }
 }

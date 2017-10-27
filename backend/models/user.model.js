@@ -43,7 +43,7 @@ const UserSchema = new mongoose.Schema(
         lowercase: true
       }
     }
-  },
+  }, {password: String},
   {
     timestamps: true
   }

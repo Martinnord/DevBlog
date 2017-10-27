@@ -96,7 +96,9 @@ passport.use(
 
 // Local Strategy
 passport.use(
-  new LocalStrategy(async (username, password, done) => {
+  'local',
+  new LocalStrategy(async (username, password, done) => { 
+    console.log('i am inside of local')     
     try {
       // Find user by username
       const user = await User.findOne({ 'local.username': username })

@@ -13,6 +13,17 @@ var typeDefs = `
     createdAt: Date!
   }
 
+  type User {
+    _id: ID!
+    username: String
+    email: String!
+    firstName: String
+    lastnName: String
+    avatar: String
+    updatedAt: Date!
+    createdAt: Date!
+  }
+
   type Query {
     getPost(_id: ID!): Post
     getPosts: [Post]
@@ -22,6 +33,8 @@ var typeDefs = `
     createPost(title: String!, content: String!): Post
     updatePost(_id: ID!, title: String, content: String!): Post
     deletePost(_id: ID!): Status
+
+    signup(email: String!, name: String, password: String!, username: String): User
   }
 
   schema {
