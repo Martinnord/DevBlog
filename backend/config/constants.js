@@ -3,8 +3,8 @@ require('dotenv').config()
 const devConfig = {
   MONGO_URL: process.env.MONGO_URL_DEV
 }
-const testConfig = {
-  MONGO_URL: process.env.MONGO_URL_TEST
+const localConfig = {
+  MONGO_URL: process.env.MONGO_URL_LOCAL
 }
 const prodConfig = {
   MONGO_URL: process.env.MONGO_URL_PROD
@@ -25,10 +25,10 @@ const defaultConfig = {
 
 function envConfig(env) {
   switch (env) {
-    case 'development':
+    case 'dev':
       return devConfig
-    case 'test':
-      return testConfig
+    case 'local':
+      return localConfig
     default:
       return prodConfig
   }
