@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import CreatePostForm from './components/createPostForm'
 import { createPost } from './redux/createPostAction'
-import '../../index.css'
+import '../../styles/scss/index.scss'
 
 import './newPost.css'
 
