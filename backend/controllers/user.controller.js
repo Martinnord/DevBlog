@@ -27,7 +27,8 @@ signToken = user => {
 const signup = async (req, res, next) => {
   try {
     // Creates a new user
-    const { username, name, password } = req.body
+    const { username, name, password, email } = req.body
+    console.log('email', email)
 
     const foundUser = await User.findOne({ 'local.username': username })
     if (foundUser) {
@@ -38,9 +39,10 @@ const signup = async (req, res, next) => {
     const newUser = new User({
       method: 'local',
       local: {
-        username: username,
-        name: name,
-        password: password
+        email,
+        username,
+        name,
+        password
       }
     })
 
