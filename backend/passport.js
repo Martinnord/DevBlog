@@ -7,6 +7,10 @@ const FacebookTokenStrategy = require('passport-facebook-token')
 const constants = require('./config/constants')
 const User = require('./models/user.model')
 
+const localOpts = {
+  usernameField: 'email'
+}
+
 // JWT Strategy
 passport.use(
   new JwtStrategy(
@@ -97,11 +101,13 @@ passport.use(
 // Local Strategy
 passport.use(
   'local',
-  new LocalStrategy(async (username, password, done) => { 
-    console.log('i am inside of local')     
+  new LocalStrategy(localOpts, async (email, password, done) => { 
+    console.log(email, password)     
     try {
+      console.log('localhosttt')
       // Find user by username
-      const user = await User.findOne({ 'local.username': username })
+      const user = await User.findOne({ 'local.email': email })
+      console.log('user', user)
 
       // No user found
       if (!user) {

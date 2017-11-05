@@ -7,7 +7,7 @@ const constants = require('../config/constants')
 
 const userValidate = {
   signup: {
-    username: Joi.string().required(),
+    email: Joi.string().required(),
     name: Joi.string().required(),
     password: Joi.string().required()
   }
@@ -30,10 +30,10 @@ const signup = async (req, res, next) => {
     const { username, name, password, email } = req.body
     console.log('email', email)
 
-    const foundUser = await User.findOne({ 'local.username': username })
+    const foundUser = await User.findOne({ 'local.email': email })
     if (foundUser) {
       console.log(foundUser)
-      return res.status(403).json({ error: 'Username already in use' })
+      return res.status(403).json({ error: 'email already in use' })
     }
 
     const newUser = new User({
@@ -62,7 +62,9 @@ const signup = async (req, res, next) => {
 const login = async (req, res, next) => {
   // Generate token
   const token = signToken(req.user)
-  res.status(200).json({ token })
+  // res.status(200).json({ token })
+  res.status(200).json(req.user)
+
 
   console.log('successful login')
 }
