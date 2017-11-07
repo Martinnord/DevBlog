@@ -104,7 +104,6 @@ passport.use(
   new LocalStrategy(localOpts, async (email, password, done) => { 
     console.log(email, password)     
     try {
-      console.log('localhosttt')
       // Find user by username
       const user = await User.findOne({ 'local.email': email })
       console.log('user', user)
@@ -113,7 +112,6 @@ passport.use(
       if (!user) {
         return done(null, false)
       }
-      console.log('user', user) // Getting output
 
       // Check if password correct
       const isMatch = await user.isValidPassword(password)
