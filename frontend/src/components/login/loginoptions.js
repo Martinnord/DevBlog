@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import PropTypes from "prop-types"
 import { Button, Icon } from "semantic-ui-react"
 import "../../styles/css/auth.css"
 

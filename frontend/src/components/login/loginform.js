@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { Button, Form } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import "../../styles/css/auth.css"
 
 

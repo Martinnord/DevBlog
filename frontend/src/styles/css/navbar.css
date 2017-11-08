@@ -2,6 +2,14 @@
   text-align: left;
 }
 
+.whole-navbar {
+  background-color: #41D3BD !important;
+}
+
+.ui.secondary.pointing.menu {
+  border-bottom: none !important;
+}
+
 .dropdown-menu > li > a {
   color: #006e78 !important;
   font-size: 1.1em !important;

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import moment from 'moment'
 
-import '../postsLayout.css'
+import "../../../styles/css/postslayout.css"
 
 class PostList extends Component {
   render() {

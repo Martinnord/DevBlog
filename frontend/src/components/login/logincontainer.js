@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import { Container } from 'semantic-ui-react'
 import LoginForm from './loginform'
 import LoginOptions from './loginoptions'
+import { login } from './redux/loginaction'
 import '../../styles/css/auth.css'
 
 class LoginContainer extends Component {
@@ -18,6 +18,7 @@ class LoginContainer extends Component {
 	}
 
   submit(values) {
+		this.props.login(values)
 		console.log(values)
 	}
 
@@ -26,7 +27,10 @@ class LoginContainer extends Component {
 		if(show) {
 			return (
 				<Container className="login-container">
-					<LoginForm toggleLoginForm={this.toggleLoginForm.bind(this)}/>
+					<LoginForm 
+						onSubmit={this.submit.bind(this)} 
+						toggleLoginForm={this.toggleLoginForm.bind(this)}
+					/>
 				</Container>
 			)
 		} else {
@@ -39,4 +43,4 @@ class LoginContainer extends Component {
 	}
 }
 
-export default connect()(LoginContainer)
+export default connect(null, { login })(LoginContainer)

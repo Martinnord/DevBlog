@@ -1,46 +1,46 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Navbar, Nav, NavItem, MenuItem, DropdownButton } from 'react-bootstrap'
-import './navbar.css'
+import { Menu, Segment } from 'semantic-ui-react'
+import '../../styles/css/navbar.css'
 
-export default class MainNavbar extends Component {
+class MainNavbar extends Component {
+  state = { activeItem_: 'feed' }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
   render() {
+    const { activeItem } = this.state
+    const { user } = this.props
     return (
-      <Navbar inverse collapseOnSelect>
-        <Navbar.Collapse>
-          <Nav>
-            <NavItem eventKey={2} className="dropdown-navbar">
-              {/* <Link to="/createpost">Skapa Post</Link> */}
-              <p>FUCK OFF</p>
-            </NavItem>
-          </Nav>
-          <Nav pullRight>
-            <NavItem eventKey={2}>
-              <i
-                className="fa fa-user"
-                aria-hidden="true"
-                style={{ marginRight: '3px', color: '#fff' }}
-              />
-              <DropdownButton
-                style={{ backgroundColor: '#006E78' }}
-                className="dropdown-navbar"
-                title="Martin Nordström"
-                id="bg-nested-dropdown"
-              >
-                <MenuItem className="dropdown-menu-item" eventKey="1">
-                  <Link to="/profile" style={{ color: '#006e78' }}>
-                    Profil
-                  </Link>
-                </MenuItem>
-                <hr className="hr-navbar" />
-                <MenuItem className="dropdown-menu-item" eventKey="3">
-                  Logga ut
-                </MenuItem>
-              </DropdownButton>
-            </NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+      <Segment className="whole-navbar">
+        <Menu pointing secondary>
+          <Menu.Item name='feed' active={activeItem === 'feed'} onClick={this.handleItemClick}>
+            <Link to="/">
+               Feed
+            </Link>
+          </Menu.Item>
+          <Menu.Item name='profile' active={activeItem === 'profile'} onClick={this.handleItemClick}>
+            <Link to="/profile">
+             {user.name}
+            </Link>
+          </Menu.Item>
+          <Menu.Item name='create post' active={activeItem === 'create post'} onClick={this.handleItemClick}>
+            <Link to="/create">
+               Write
+            </Link>
+          </Menu.Item>
+        </Menu>
+      </Segment>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.setCurrentUser.user
+  }
+}
+
+
+export default connect(mapStateToProps)(MainNavbar)

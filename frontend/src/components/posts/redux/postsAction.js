@@ -23,7 +23,7 @@ const setPostsIsLoading = bool => {
 
 export const fetchPosts = () => async dispatch => {
   try {
-    const posts = await axios.get(`${settings.hostname}/api/posts`)
+    const posts = await axios.get(`${settings.hostname}/posts`)
     dispatch(setPostsIsLoading(false))
     dispatch(setPosts(posts.data))
   } catch (err) {
