@@ -12,7 +12,7 @@ const prodConfig = {
 
 const defaultConfig = {
   PORT: process.env.PORT || 3001,
-  JTW_SECRET: process.env.JTW_SECRET,
+  JWT_SECRET: process.env.JWT_SECRET,
   GRAPHQL_PATH: process.env.GRAPHQL_PATH,
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret,

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const constants = require('../config/constants')
+const jwt = require('jsonwebtoken')
 
 const UserSchema = new mongoose.Schema(
   {
@@ -86,6 +87,19 @@ UserSchema.methods = {
     }
   },
 
+  createToken() {
+    console.log('hello',constants)
+    return jwt.sign({ _id: this._id }, constants.JWT_SECRET)
+  },
+
+  toAuthJSON() {
+    return {
+      token: this.createToken(),
+      ...this.toJSON(),
+    }
+  },
+
+  // Not sending the password
   toJSON() {
     return {
       _id: this._id,
