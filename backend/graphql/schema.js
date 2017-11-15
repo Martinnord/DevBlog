@@ -1,4 +1,4 @@
-var typeDefs = `
+const typeDefs = `
   scalar Date
 
   type Status {
@@ -13,7 +13,30 @@ var typeDefs = `
     createdAt: Date!
   }
 
-  type User {
+  type Query {
+    getPost(id: ID!): Post
+    getPosts: [Post]
+  }
+
+  type Mutation {
+    createPost(title: String!, content: String!): Post
+    updatePost(_id: ID!, title: String, content: String!): Post
+    deletePost(_id: ID!): Status
+  }
+
+  schema {
+    query: Query
+    mutation: Mutation
+  }
+`
+module.exports = typeDefs
+
+/*
+    type Query {
+    getPost(_id: ID!): Post
+    getPosts: [Post]
+
+      type User {
     _id: ID!
     username: String
     email: String!
@@ -24,23 +47,7 @@ var typeDefs = `
     createdAt: Date!
   }
 
-  type Query {
-    getPost(_id: ID!): Post
-    getPosts: [Post]
-  }
-
-  type Mutation {
-    createPost(title: String!, content: String!): Post
-    updatePost(_id: ID!, title: String, content: String!): Post
-    deletePost(_id: ID!): Status
-
     signup(email: String!, name: String, password: String!, username: String): User
+  
   }
-
-  schema {
-    query: Query
-    mutation: Mutation
-  }
-`
-module.exports = typeDefs
-
+ */

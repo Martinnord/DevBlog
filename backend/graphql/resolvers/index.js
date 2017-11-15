@@ -9,10 +9,10 @@ module.exports = {
     getPost: PostResolvers.getPost,
     getPosts: PostResolvers.getPosts
   },
-  Mutation: {
+   Mutation: {
     createPost: PostResolvers.createPost,
-    updatePost: PostResolvers.updatePost,
-    deletePost: PostResolvers.deletePost,
-    signup: UserResolvers.signup
-  }
+  //   updatePost: PostResolvers.updatePost,
+  //   deletePost: PostResolvers.deletePost,
+  //   signup: UserResolvers.signup
+   }
 }

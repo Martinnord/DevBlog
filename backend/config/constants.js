@@ -4,7 +4,7 @@ const devConfig = {
   MONGO_URL: process.env.MONGO_URL_DEV
 }
 const localConfig = {
-  MONGO_URL: process.env.MONGO_URL_LOCAL
+  DATABASE_URL: process.env.DATABASE_URL_LOCAL
 }
 const prodConfig = {
   MONGO_URL: process.env.MONGO_URL_PROD
