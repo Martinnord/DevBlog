@@ -36,7 +36,7 @@ router.route('/').get(getAllPosts)
 //   })
 // })
 
-router.route('/secret').get(passportProtectedRoute, UsersController.secret)
+// router.route('/secret').get(passportProtectedRoute, UsersController.secret)
 
 router.route('/agerallt').post(createPost)
 

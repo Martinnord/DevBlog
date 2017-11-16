@@ -1,24 +1,25 @@
-const Model = require('objection').Model
+import { Model } from 'objection';
 
 class Post extends Model {
   static get tableName() {
-    return 'post'
+    return 'posts';
   }
 
-  $beforeInsert() {
-    this.created_at = new Date().toISOString();
-  }
+  static get jsonSchema() {
+    return {
+      type: "object",
+      required: ["title", "content"],
 
-  $beforeUpdate() {
-    this.updated_at = new Date().toISOString();
-  }
-
-  $beforeDelete() {
-    this.deleted_at = new Date().toISOString();
+      properties: {
+        id: { type: "integer" },
+        title: { type: "string", minLength: 1, maxLength: 255 },
+        content: { type: "string", minLength: 1, maxLength: 255 }
+      }
+    };
   }
 }
 
-module.exports = Post
+module.exports = Post;
 
 // const mongoose = require('mongoose')
 // const Schema = mongoose.Schema

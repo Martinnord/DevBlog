@@ -11,19 +11,23 @@ const { makeExecutableSchema } = require('graphql-tools')
 const { createServer } = require('http')
 const typeDefs = require('./graphql/schema')
 const resolvers = require('./graphql/resolvers')
-const knex = require('./config/database')
-const Model = require('objection').Model
+// const knex = require('./config/database')
 const app = express()
 const schema = makeExecutableSchema({ typeDefs, resolvers })
 
-middlewares(app)
+import Knex from 'knex';
+import { Model } from 'objection';
+import knexConfig from './knexfile';
+import Post from './models/Post.model';
+const knex = Knex(knexConfig.development);
+Model.knex(knex);
 
-Model.knex(knex)
+middlewares(app)
 
 app.use(
   '/graphql',
   graphiqlExpress({
-    endpointURL: config.GRAPHQL_PATH
+    endpointURL: config.GRAPHQL_PATH,
   })
 )
 
@@ -38,7 +42,7 @@ app.use('/api', routes)
 
 const graphQLServer = createServer(app)
 
-graphQLServer.listen(3001, err => {
+graphQLServer.listen(3010, err => {
   if (err) {
     console.log(`Error: ${err}`)
   } else {

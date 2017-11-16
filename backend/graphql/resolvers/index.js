@@ -6,11 +6,11 @@ const UserResolvers = require('./user-resolver')
 module.exports = {
   Date: GraphQLDate,
   Query: {
-    getPost: PostResolvers.getPost,
+    //getPost: PostResolvers.getPost,
     getPosts: PostResolvers.getPosts
   },
    Mutation: {
-    createPost: PostResolvers.createPost,
+    //createPost: PostResolvers.createPost,
   //   updatePost: PostResolvers.updatePost,
   //   deletePost: PostResolvers.deletePost,
   //   signup: UserResolvers.signup

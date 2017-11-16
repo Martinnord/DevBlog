@@ -18,9 +18,9 @@ const {
   facebookOAuth
 } = require('../controllers/user.controller')
 
-router.route('/signup', validate(userValidate.signup)).post(signup)
+// router.route('/signup', validate(userValidate.signup)).post(signup)
 
-router.route('/login').post(passportLogin, login)
+// router.route('/login').post(passportLogin, login)
 
 // router.route('/oauth/google').post(passportGoogle, googleOAuth)
 //

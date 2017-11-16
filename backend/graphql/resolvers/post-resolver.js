@@ -1,32 +1,12 @@
-const Post = require("../../models/Post.model")
-const {
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLString
-} = require('graphql')
-
-const posts = [{
-  id: 1,
-  title: 'soccer',
-}, {
-  id: 2,
-  title: 'baseball',
-}];
-
+const Post = require("../../models/Post.model.js")
 
 module.exports = {
     getPosts: () => {
-      return posts
-    },
-    getPost: () => {
-      console.log('post by id')
-    },
-    createPost: (root, args) => {
-      const newPost = { title: args.title, content: args.content }
-      posts.push(newPost)
-      return newPost
+      Post.query().then(posts => { console.log(posts) })
     }
 }
+
+
 
 // module.exports = {
 //   Query: {
