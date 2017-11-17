@@ -1,12 +1,13 @@
-const Post = require("../../models/Post.model.js")
+import Post from "../../models/Post.model.js"
 
-module.exports = {
-    getPosts: () => {
-      Post.query().then(posts => { console.log(posts) })
+export default {
+    async getPosts() {
+      return await Post.query(); 
+    },
+    async getPost(_, args) {
+      return await Post.query.findById(1);
     }
 }
-
-
 
 // module.exports = {
 //   Query: {

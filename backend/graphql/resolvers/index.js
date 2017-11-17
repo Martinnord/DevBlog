@@ -1,12 +1,12 @@
 const GraphQLDate = require("graphql-date")
 
-const PostResolvers = require("./post-resolver")
-const UserResolvers = require('./user-resolver')
+import PostResolvers from "./post"
+//const UserResolvers = require('./user-resolver')
 
 module.exports = {
   Date: GraphQLDate,
   Query: {
-    //getPost: PostResolvers.getPost,
+    getPost: PostResolvers.getPost,
     getPosts: PostResolvers.getPosts
   },
    Mutation: {

@@ -6,7 +6,7 @@ const typeDefs = `
   }
 
   type Post {
-    _id: ID!
+    id: ID!
     title: String!
     content: String!
     updatedAt: Date!
