@@ -10,7 +10,7 @@ module.exports = {
   },
   Mutation: {
     createPost: PostResolvers.createPost,
-    updatePost: PostResolvers.updatePost
-    //   deletePost: PostResolvers.deletePost,   signup: UserResolvers.signup
+    updatePost: PostResolvers.updatePost,
+    deletePost: PostResolvers.deletePost
   }
 };

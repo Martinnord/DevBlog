@@ -21,7 +21,7 @@ export default  `
   type Mutation {
     createPost(title: String!, content: String!): Post
     updatePost(id: ID!, title: String, content: String!): Post
-    deletePost(id: ID!): Status
+    deletePost(id: ID!): Post
   }
 
   schema {
