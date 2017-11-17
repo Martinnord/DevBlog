@@ -1,6 +1,6 @@
-const express = require('express')
-const middlewares = require('./config/middlewares')
-const constants = require('./config/constants')
+import express from 'express'
+import middlewares from './config/middlewares'
+import constants from './config/constants'
 const config = require('./config')
 const routes = require('./routes')
 const { 
@@ -47,11 +47,10 @@ graphQLServer.listen(3010, err => {
     console.log(`Error: ${err}`)
   } else {
     console.log(`
-      Good to go 😄 🍕
       App listening on 3001
-      Env: ${process.env.NODE_ENV} 💫
+      Env: ${process.env.NODE_ENV}
     `)
   }
 })
 
-module.exports = app
+export default app
