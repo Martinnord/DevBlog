@@ -9,7 +9,7 @@ const {
 } = require('apollo-server-express')
 const { makeExecutableSchema } = require('graphql-tools')
 const { createServer } = require('http')
-const typeDefs = require('./graphql/schema')
+import typeDefs from './graphql/schema'
 const resolvers = require('./graphql/resolvers')
 // const knex = require('./config/database')
 const app = express()
