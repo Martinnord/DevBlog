@@ -1,13 +1,13 @@
 import express from "express";
 import middlewares from "./config/middlewares";
 import constants from "./config/constants";
-const config = require("./config");
-const routes = require("./routes");
-const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
-const { makeExecutableSchema } = require("graphql-tools");
-const { createServer } = require("http");
+import config from "./config";
+import routes from "./routes";
+import { graphqlExpress, graphiqlExpress } from "apollo-server-express";
+import { makeExecutableSchema } from "graphql-tools";
+import { createServer } from "http";
 import typeDefs from "./graphql/schema";
-const resolvers = require("./graphql/resolvers");
+import resolvers from "./graphql/resolvers";
 // const knex = require('./config/database')
 const app = express();
 const schema = makeExecutableSchema({ typeDefs, resolvers });
@@ -23,7 +23,7 @@ Model.knex(knex);
 middlewares(app);
 
 app.use(
-  "/graphql",
+  "/graphiql",
   graphiqlExpress({
     endpointURL: config.GRAPHQL_PATH
   })
@@ -45,7 +45,7 @@ graphQLServer.listen(3010, err => {
     console.log(`Error: ${err}`);
   } else {
     console.log(`
-      App listening on 3001
+      App listening on 3010
       Env: ${process.env.NODE_ENV}
     `);
   }
