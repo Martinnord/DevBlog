@@ -1,4 +1,4 @@
-import Post from "../../models/Post.model.js";
+import Post from "../../models/post.model.js";
 
 export default {
   async getPosts() {

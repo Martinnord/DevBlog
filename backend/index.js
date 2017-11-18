@@ -18,7 +18,9 @@ const schema = makeExecutableSchema({ typeDefs, resolvers })
 import Knex from 'knex';
 import { Model } from 'objection';
 import knexConfig from './knexfile';
-import Post from './models/Post.model';
+import Post from './models/post.model';
+import User from './models/user.model';
+
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
 

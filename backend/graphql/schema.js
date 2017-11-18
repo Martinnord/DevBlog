@@ -1,4 +1,4 @@
-export default  `
+export default `
   scalar Date
 
   type Status {
@@ -13,9 +13,22 @@ export default  `
     createdAt: Date!
   }
 
+  type User {
+    id: ID!
+    username: String
+    email: String!
+    password: String!
+    firstName: String
+    lastnName: String
+    avatar: String
+    updatedAt: Date!
+    createdAt: Date!
+  }
+
   type Query {
-    getPost(id: ID!): Post
     getPosts: [Post]
+    getPost(id: ID!): Post
+    getUsers: [User]
   }
 
   type Mutation {
@@ -30,16 +43,6 @@ export default  `
   }
 `;
 /*
-  type User {
-    _id: ID!
-    username: String
-    email: String!
-    firstName: String
-    lastnName: String
-    avatar: String
-    updatedAt: Date!
-    createdAt: Date!
-  }
 
     signup(email: String!, name: String, password: String!, username: String): User
   
