@@ -21,7 +21,6 @@ exports.up = function(knex) {
         .defaultTo("");
       table
         .integer("user_id")
-        .notNullable()
         .references("id")
         .inTable("users")
         .onDelete("CASCADE");

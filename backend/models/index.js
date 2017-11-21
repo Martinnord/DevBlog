@@ -1,7 +1,7 @@
-import User from "./user.model";
-import Post from "./post.model";
+import User from "./user";
+import Post from "./post";
 
-module.exports = {
+export default {
   User,
   Post
 };

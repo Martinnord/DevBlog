@@ -1,23 +1,23 @@
 import express from "express";
+import path from 'path';
 import middlewares from "./config/middlewares";
 import constants from "./config/constants";
 import config from "./config";
-import routes from "./routes";
 import { graphqlExpress, graphiqlExpress } from "apollo-server-express";
+import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import { makeExecutableSchema } from "graphql-tools";
 import { createServer } from "http";
-import typeDefs from "./graphql/schema";
-import resolvers from "./graphql/resolvers";
-// const knex = require('./config/database')
-const app = express();
-const schema = makeExecutableSchema({ typeDefs, resolvers });
-
 import Knex from "knex";
 import { Model } from "objection";
 import knexConfig from "./knexfile";
 import { Post, User } from "./models";
 
+const app = express();
+const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schemas')));
+const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
+const schema = makeExecutableSchema({ typeDefs, resolvers });
 const knex = Knex(knexConfig.development);
+
 Model.knex(knex);
 
 middlewares(app);
@@ -35,8 +35,6 @@ app.use(
     schema
   })
 );
-
-app.use("/api", routes);
 
 const graphQLServer = createServer(app);
 

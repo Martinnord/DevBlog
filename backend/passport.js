@@ -5,7 +5,7 @@ const LocalStrategy = require('passport-local').Strategy
 const GooglePlusTokenStrategy = require('passport-google-plus-token')
 const FacebookTokenStrategy = require('passport-facebook-token')
 const constants = require('./config/constants')
-const User = require('./models/user.model')
+const User = require('./models/user')
 
 const localOpts = {
   usernameField: 'email'
