@@ -1,6 +1,6 @@
 import GraphQLDate from "graphql-date";
 import Post from "../models/post";
-// hej
+
 export default {
   Date: GraphQLDate,
   Query: {
