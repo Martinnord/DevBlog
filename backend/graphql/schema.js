@@ -29,6 +29,7 @@ export default `
     getPosts: [Post]
     getPost(id: ID!): Post
     getUsers: [User]
+    getUser(id: ID!): User
   }
 
   type Mutation {

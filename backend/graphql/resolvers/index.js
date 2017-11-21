@@ -7,7 +7,8 @@ module.exports = {
   Query: {
     getPosts: PostResolvers.getPosts,
     getPost: PostResolvers.getPost,
-    getUsers: UserResolvers.getUsers
+    getUsers: UserResolvers.getUsers,
+    getUser: UserResolvers.getUser
   },
   Mutation: {
     createPost: PostResolvers.createPost,

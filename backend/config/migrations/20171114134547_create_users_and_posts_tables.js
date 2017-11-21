@@ -1,28 +1,34 @@
 exports.up = function(knex) {
   return knex.schema
     .createTable("users", function(table) {
-      table.increments("uuid").primary();
+      table.increments("id").primary();
       table.string("username");
       table.string("firstname");
       table.string("lastname");
       table.string("email");
       table.string("password");
-      table.timestamp("created_at").defaultTo(knex.fn.now());
-      table.timestamp("updated_at").defaultTo(knex.fn.now());
+      table.timestamps(true, true)
     })
     .createTable("posts", function(table) {
       table.increments("id").primary();
-      table.timestamp("created_at").defaultTo(knex.fn.now());
-      table.timestamp("updated_at").defaultTo(knex.fn.now());
-      table.string("title");
-      table.string("content");
+      table
+        .string("title")
+        .notNullable()
+        .defaultTo("");
+      table
+        .string("content")
+        .notNullable()
+        .defaultTo("");
       table
         .integer("user_id")
-        .references("uuid")
-        .inTable("users");
+        .notNullable()
+        .references("id")
+        .inTable("users")
+        .onDelete("CASCADE");
+      table.timestamps(true, true)
     });
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists("posts").dropTableIfExists("users");
+  return knex.schema.dropTable("posts").dropTable("users");
 };

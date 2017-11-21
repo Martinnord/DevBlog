@@ -1,4 +1,5 @@
 import { Model } from "objection";
+import bcrypt from "bcryptjs";
 
 export default class User extends Model {
   static get tableName() {
@@ -18,6 +19,16 @@ export default class User extends Model {
         firstname: { type: "string", minLength: 1, maxLength: 50 }
       }
     };
+  }
+
+  set password(password) {
+    this.hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+    console.log("password", password);
+    console.log("salt", this.hash);
+  }
+
+  verifyPassword(password, callback) {
+    bcrypt.compare(password, this.hash, callback);
   }
 
   $beforeInsert() {
