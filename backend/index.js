@@ -23,7 +23,7 @@ Model.knex(knex);
 middlewares(app);
 
 app.use(
-  "/graphiql",
+  "/graphql",
   graphiqlExpress({
     endpointURL: config.GRAPHQL_PATH
   })
