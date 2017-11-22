@@ -15,18 +15,11 @@ export default class User extends Model {
         id: { type: "integer" },
         username: { type: "string", minLength: 1, maxLength: 16 },
         email: { type: "string", minLength: 1, maxLength: 62 },
-        password: { type: "string", minLength: 6, maxLength: 20 },
+        password: { type: "string", minLength: 6, maxLength: 60 },
         firstname: { type: "string", minLength: 1, maxLength: 50 }
       }
     };
   }
-
-  // set password(password) {
-  //   this.hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-  //   console.log("password", password);
-  //   console.log("salt", this.hash);
-  // }
-
   // verifyPassword(password, callback) {
   //   bcrypt.compare(password, this.hash, callback);
   // }
@@ -43,11 +36,6 @@ export default class User extends Model {
     this.deleted_at = new Date().toISOString();
   }
 }
-
-// const mongoose = require('mongoose')
-// const bcrypt = require('bcryptjs')
-// const constants = require('../config/constants')
-// const jwt = require('jsonwebtoken')
 
 // const UserSchema = new mongoose.Schema(
 //   {
