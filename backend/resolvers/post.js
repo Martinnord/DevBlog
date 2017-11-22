@@ -13,9 +13,6 @@ export default {
   },
   Mutation: {
     async createPost(_, args) {
-      console.log('args', args)
-
-      console.log('_', _)
       return await Post.query().insert(args);
     },
     async updatePost(_, { id, title, content }) {

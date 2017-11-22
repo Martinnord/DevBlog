@@ -9,7 +9,7 @@ export default class User extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["username", "email", "password", "firstname", "lastname"],
+      required: ["username", "email", "password"],
 
       properties: {
         id: { type: "integer" },
@@ -21,15 +21,15 @@ export default class User extends Model {
     };
   }
 
-  set password(password) {
-    this.hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-    console.log("password", password);
-    console.log("salt", this.hash);
-  }
+  // set password(password) {
+  //   this.hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+  //   console.log("password", password);
+  //   console.log("salt", this.hash);
+  // }
 
-  verifyPassword(password, callback) {
-    bcrypt.compare(password, this.hash, callback);
-  }
+  // verifyPassword(password, callback) {
+  //   bcrypt.compare(password, this.hash, callback);
+  // }
 
   $beforeInsert() {
     this.created_at = new Date().toISOString();

@@ -1,5 +1,5 @@
-import User from "../models/user";
 import GraphQLDate from "graphql-date";
+import User from "../models/user";
 
 export default {
   Date: GraphQLDate,
@@ -10,9 +10,10 @@ export default {
     async getUser(_, { id }) {
       return await User.query().findById(id);
     }
+  },
+  Mutation: {
+    async createUser(_, args) {
+      return await User.query().insert(args);
+    },
   }
-  // signup: (_, args) => {
-  //   console.log('args', args)
-  //   return User.create({ args })
-  // }
 };
