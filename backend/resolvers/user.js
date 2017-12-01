@@ -1,6 +1,9 @@
 import GraphQLDate from "graphql-date";
 import User from "../models/user";
 import bcrypt from "bcryptjs";
+const { promisify } = require("util");
+
+const hashSync = promisify(bcrypt.hash);
 
 export default {
   Date: GraphQLDate,
@@ -14,9 +17,14 @@ export default {
   },
   Mutation: {
     async createUser(_, { email, username, password }) {
-      const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-        return await User.query().insert({ email, username, password: passwordHash });
+      const hash = await hashSync(password, bcrypt.genSaltSync(10));
+			console.log(hash)
+      return await User.query().insert({ email, username, password: hash });
     }
+    // async createUser(_, { email, username, password }) {
+    //   const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+    //     return await User.query().insert({ email, username, password: passwordHash });
+    // }
   }
 };
 
