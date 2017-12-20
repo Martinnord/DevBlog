@@ -1,29 +1,31 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Container } from 'semantic-ui-react'
-import LoginForm from './loginform'
-import LoginOptions from './loginoptions'
-import { login } from './redux/loginaction'
-import '../../styles/css/auth.css'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Container } from 'semantic-ui-react';
+import LoginForm from './loginform';
+import LoginOptions from './loginoptions';
+import { login } from './redux/loginaction';
+import '../../styles/css/auth.css';
 
 class LoginContainer extends Component {
 	constructor(props) {
-		super(props)
-		this.state = { show: false }
+		super(props);
+		this.state = {
+			show: false
+		};
 	}
 
 	toggleLoginForm = () => {
-		const { show } = this.state
+		const { show } = this.state;
 		this.setState({ show: !show })
 	}
 
   submit(values) {
-		this.props.login(values)
-		console.log(values)
+		this.props.login(values);
+		console.log(values);
 	}
 
 	render() {
-		const { show } = this.state
+		const { show } = this.state;
 		if(show) {
 			return (
 				<Container className="login-container">
@@ -39,8 +41,8 @@ class LoginContainer extends Component {
 					<LoginOptions toggleLoginForm={this.toggleLoginForm.bind(this)}/>
 				</Container>
 			)
-		}
-	}
-}
+		};
+	};
+};
 
-export default connect(null, { login })(LoginContainer)
+export default connect(null, { login })(LoginContainer);

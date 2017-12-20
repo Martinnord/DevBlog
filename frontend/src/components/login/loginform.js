@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
-import { Button } from 'semantic-ui-react'
-import "../../styles/css/auth.css"
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
+import { Button } from 'semantic-ui-react';
+import '../../styles/css/auth.css';
 
 
 class LoginForm extends Component {
@@ -40,7 +40,7 @@ class LoginForm extends Component {
       </form>		
       <a onClick={this.props.toggleLoginForm}>Go back</a>		
       </div>
-    )
+    );
   }
 }
 

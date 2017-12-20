@@ -1,24 +1,24 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 
-import '../newPost.css'
+import '../newPost.css';
 
 class CreatePostForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       title: '',
       content: ''
-    }
+    };
   }
 
   submit() {
-    this.props.submit()
+    this.props.submit();
   }
 
   render() {
-    const { handleSubmit } = this.props
+    const { handleSubmit } = this.props;
     return (
       <form className="create-new-post-container" onSubmit={handleSubmit}>
         <div className="create-post-header">
@@ -45,10 +45,10 @@ class CreatePostForm extends Component {
           Submit
         </button>
       </form>
-    )
+    );
   }
 }
 
 export default reduxForm({
-  form: 'createPostForm'
-})(connect()(CreatePostForm))
+  form: 'createPostForm',
+})(connect()(CreatePostForm));

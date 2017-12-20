@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import CreatePostForm from './components/createPostForm'
-import { createPost } from './redux/createPostAction'
-import '../../styles/scss/index.scss'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import CreatePostForm from './components/createPostForm';
+import { createPost } from './redux/createPostAction';
+import '../../styles/scss/index.scss';
 
-import './newPost.css'
+import './newPost.css';
 
 class CreatePostLayout extends Component {
   submit(values) {
-    this.props.createPost(values)
-    alert('Tack din jävel.. Den är postad...')
+    this.props.createPost(values);
+    alert('Tack!');
   }
 
   render() {
@@ -24,11 +24,11 @@ class CreatePostLayout extends Component {
         </div>
         <div className="create-post-title">
           <h1>Skapa en ny post</h1>
-          <CreatePostForm onSubmit={this.submit.bind(this)} />
+          <CreatePostForm onSubmit={() => this.submit()} />
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default connect(null, { createPost })(CreatePostLayout)
+export default connect(null, { createPost })(CreatePostLayout);

@@ -1,13 +1,19 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
+import { client } from './client'
+import { ApolloProvider } from 'react-apollo'
 import Router from './routes/router'
 import store from './store'
 import './styles/css/index.css'
 
-render(
-  <Provider store={store}>
-    <Router />
-  </Provider>,
-  document.getElementById('root')
+const App = (
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <Router />
+    </Provider>
+  </ApolloProvider>
 )
+
+render(App, document.getElementById('root'))
