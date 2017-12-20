@@ -18,7 +18,7 @@ module.exports = app => {
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(passport.initialize())
   app.use(helmet())
-  app.use(cors())
+  app.use(cors('*'))
 
   // app.use(logger('dev'))
   if (isDev && !isTest) {

@@ -1,33 +1,33 @@
 exports.up = function(knex) {
   return knex.schema
-    .createTable("users", function(table) {
-      table.increments("id").primary();
-      table.string("username");
-      table.string("firstname");
-      table.string("lastname");
-      table.string("email");
-      table.string("password");
+    .createTable('users', function(table) {
+      table.increments('id').primary()
+      table.string('username')
+      table.string('firstname')
+      table.string('lastname')
+      table.string('email')
+      table.string('password')
       table.timestamps(true, true)
     })
-    .createTable("posts", function(table) {
-      table.increments("id").primary();
+    .createTable('posts', function(table) {
+      table.increments('id').primary()
       table
-        .string("title")
+        .string('title')
         .notNullable()
-        .defaultTo("");
+        .defaultTo('')
       table
-        .string("content")
+        .string('content')
         .notNullable()
-        .defaultTo("");
+        .defaultTo('')
       table
-        .integer("user_id")
-        .references("id")
-        .inTable("users")
-        .onDelete("CASCADE");
+        .integer('user_id')
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE')
       table.timestamps(true, true)
-    });
-};
+    })
+}
 
 exports.down = function(knex) {
-  return knex.schema.dropTable("posts").dropTable("users");
-};
+  return knex.schema.dropTable('posts').dropTable('users')
+}
