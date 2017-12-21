@@ -6,6 +6,7 @@ import { client } from './client'
 import { ApolloProvider } from 'react-apollo'
 import Router from './routes/router'
 import store from './store'
+import 'semantic-ui-css/semantic.min.css'
 import './styles/css/index.css'
 
 const App = (

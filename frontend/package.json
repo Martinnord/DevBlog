@@ -26,6 +26,7 @@
     "redux-persist": "^4.9.1",
     "redux-promise-middleware": "^4.0.0",
     "redux-thunk": "^2.2.0",
+    "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.75.1"
   },
   "scripts": {
