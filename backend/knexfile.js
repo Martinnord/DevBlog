@@ -1,22 +1,22 @@
-module.exports = {
+export default {
   development: {
     client: 'pg',
     connection: 'postgres://localhost/devblog',
     migrations: {
-      directory: __dirname + '/config/migrations',
+      directory: __dirname + '/config/migrations'
     },
     seeds: {
-      directory: __dirname + '/config/seeds',
-    },
+      directory: __dirname + '/config/seeds'
+    }
   },
   production: {
     client: 'pg',
     connection: '',
     migrations: {
-      directory: __dirname + '/config/migrations',
+      directory: __dirname + '/config/migrations'
     },
     seeds: {
-      directory: __dirname + '/config/seeds',
-    },
+      directory: __dirname + '/config/seeds'
+    }
   }
 }

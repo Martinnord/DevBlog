@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=dev nodemon --exec babel-node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "local": "NODE_ENV=local nodemon index.js"
+    "prod": "cross-env NODE_ENV=prod nodemon --exec babel-node index.js"
   },
   "author": "Martin Nordström",
   "license": "ISC",
@@ -37,7 +37,8 @@
     "passport-jwt": "^3.0.1",
     "passport-local": "^1.0.0",
     "pg": "^7.4.0",
-    "validator": "^8.2.0"
+    "validator": "^8.2.0",
+    "yup": "^0.23.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

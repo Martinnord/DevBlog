@@ -1,3 +1,3 @@
-import knexConfig from "../knexfile";
-const knex = require("knex")(knexConfig.development);
-export default knex(knexConfig[process.env.NODE_ENV || "local"]);
+import Knex from 'knex'
+import knexConfig from '../knexfile'
+export const knex = Knex(knexConfig[process.env.NODE_ENV || 'development'])

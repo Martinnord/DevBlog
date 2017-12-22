@@ -2,11 +2,17 @@ exports.up = function(knex) {
   return knex.schema
     .createTable('users', function(table) {
       table.increments('id').primary()
-      table.string('username')
+      table
+        .string('username')
+        .notNullable()
+        .unique()
       table.string('firstname')
       table.string('lastname')
-      table.string('email')
-      table.string('password')
+      table
+        .string('email')
+        .notNullable()
+        .unique()
+      table.string('password').notNullable()
       table.timestamps(true, true)
     })
     .createTable('posts', function(table) {

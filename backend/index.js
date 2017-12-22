@@ -4,15 +4,15 @@ import middlewares from './config/middlewares'
 import constants from './config/constants'
 import config from './config'
 import cors from 'cors'
+import bodyParser from 'body-parser'
+import { knex } from './config/database'
+import knexConfig from './knexfile'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas'
 import { makeExecutableSchema } from 'graphql-tools'
 import { createServer } from 'http'
-import Knex from 'knex'
 import { Model } from 'objection'
-import knexConfig from './knexfile'
 import { Post, User } from './models'
-const bodyParser = require('body-parser')
 
 const app = express()
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schemas')))
@@ -20,35 +20,11 @@ const resolvers = mergeResolvers(
   fileLoader(path.join(__dirname, './resolvers'))
 )
 const schema = makeExecutableSchema({ typeDefs, resolvers })
-const knex = Knex(knexConfig.development)
 
 Model.knex(knex)
 
+app.use(cors('*'))
 middlewares(app)
-
-// app.use(cors('*'));
-//
-// const graphqlEndpoint = '/graphql';
-//
-// app.use(
-//   graphqlEndpoint,
-//   bodyParser.json(),
-//   graphqlExpress({
-//     schema,
-//     context: {
-//       models,
-//       user: {
-//         id: 1,
-//       },
-//       SECRET,
-//       SECRET2,
-//     },
-//   }),
-// );
-//
-// app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
-
-// const graphqlEndpoint = '/gra'
 
 app.use(
   constants.GRAPHQL_PATH,
