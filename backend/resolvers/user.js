@@ -27,15 +27,21 @@ export default {
             password,
             bcrypt.genSaltSync(10)
           )
-          await User.query().insert({
+          const user = await User.query().insert({
             email,
             username,
             password: hashedPassword
           })
-          return true
+          return {
+            ok: true,
+            user
+          }
         } else {
           console.log('user already exists')
-          return false
+          return {
+            ok: false,
+            error: formatErrors()
+          }
         }
       } catch (err) {
         return false
