@@ -16,7 +16,13 @@ export default `
     getUser(id: ID!): User
   }
 
-  type Mutation {
-    createUser(username: String!, email: String!, password: String!): User
+  type registerResponse {
+    ok: Boolean!
+    user: User
+    errors: [Error!]
   }
-`;
+
+  type Mutation {
+    register(username: String!, email: String!, password: String!): Boolean!
+  }
+`
