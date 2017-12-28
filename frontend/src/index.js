@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { client } from './client'
@@ -10,9 +9,9 @@ import './styles/css/index.css'
 
 const App = (
   <ApolloProvider client={client}>
-    <Provider store={store}>
-      <Router />
-    </Provider>
+    {/* <Provider store={store}> */}
+    <Router />
+    {/* </Provider> */}
   </ApolloProvider>
 )
 

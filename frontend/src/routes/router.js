@@ -5,6 +5,7 @@ import CreatePostLayout from '../components/createPost/createPostLayout'
 import LoginContainer from '../components/login/logincontainer'
 
 import Home from '../components/home/homeLayout'
+import Register from '../components/Register'
 
 export default props => (
   <Router>
@@ -12,7 +13,8 @@ export default props => (
       <Route exact path="/" component={PostLayout} />
       <Route exact path="/home" component={Home} />
       <Route exact path="/agerallt" component={CreatePostLayout} />
-			<Route exact path="/login" component={LoginContainer} />
+      <Route exact path="/login" component={LoginContainer} />
+      <Route exact path="/register" component={Register} />
     </div>
   </Router>
 )
