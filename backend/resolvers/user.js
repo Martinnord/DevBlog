@@ -3,8 +3,22 @@ import User from '../models/user'
 import bcrypt from 'bcryptjs'
 import { promisify } from 'util'
 import { knex } from '../config/database'
+import yup from 'yup'
+import _ from 'lodash'
 
 const hashAsync = promisify(bcrypt.hash)
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email()
+    .required('Please enter an email address'),
+  username: yup.string().required('Please enter an username'),
+  password: yup
+    .string()
+    .required('Please enter a password')
+    .min(5)
+})
 
 export default {
   Date: GraphQLDate,
@@ -19,6 +33,8 @@ export default {
   Mutation: {
     register: async (_, { email, username, password }) => {
       try {
+        const a = await schema.validate({ email, username, password })
+        console.log('A', a)
         const x = await knex('users')
           .where('email', email)
           .select('id')
@@ -32,12 +48,19 @@ export default {
             username,
             password: hashedPassword
           })
-          return user
+          return {
+            ok: true,
+            user
+          }
         } else {
           console.log('user already exists')
         }
       } catch (err) {
-        return false
+        console.log('Error', err)
+        return {
+          ok: false,
+          errors: [err]
+        }
       }
     }
   }
