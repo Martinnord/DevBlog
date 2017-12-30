@@ -1,57 +1,97 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
+import yup from 'yup'
 import { graphql } from 'react-apollo'
 import { Container, Header, Input, Button } from 'semantic-ui-react'
+import { Formik, Form, Field } from 'formik'
 
 class Register extends Component {
-  state = {
-    username: '',
-    email: '',
-    password: ''
-  }
-
-  onSubmit = async () => {
-    const response = await this.props.mutate({
-      variables: this.state
-    })
-    console.log('hejsan', response)
-  }
-
-  onChange = e => {
-    const { name, value } = e.target
-    // name = "email"
-    this.setState({ [name]: value })
-  }
-
   render() {
-    const { username, email, password } = this.state
-
+    const schema = yup.object().shape({
+      email: yup
+        .string()
+        .email()
+        .required('Please enter an email address'),
+      username: yup.string().required('Please enter an username'),
+      password: yup
+        .string()
+        .min(5, 'Password needs to be at least 5 characters long')
+        .required('Please enter a password')
+    })
     return (
       <Container text>
-        <Header as="h2">Register</Header>
-        <Input
-          name="username"
-          onChange={this.onChange}
-          value={username}
-          placeholder="Username"
-          fluid
+        <Formik
+          validationSchema={schema}
+          initialValues={{
+            email: '',
+            username: '',
+            password: ''
+          }}
+          onSubmit={async (values, { setSubmitting, setErrors }, actions) => {
+            setSubmitting(true)
+            await this.props.mutate({
+              variables: {
+                username: values.username,
+                email: values.email,
+                password: values.password
+              }
+            })
+          }}
+          render={({
+            values,
+            touched,
+            errors,
+            dirty,
+            isSubmitting,
+            handleChange,
+            handleBlur,
+            handleSubmit
+          }) => (
+            <Form>
+              <div>
+                {touched.email && errors.email && <p>{errors.email}</p>}
+                <Field
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  type="text"
+                  name="email"
+                  label="email"
+                  placeholder="Email"
+                />
+              </div>
+              <div>
+                {touched.username &&
+                  errors.username && <p>{errors.username}</p>}
+                <Field
+                  value={values.username}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  type="text"
+                  name="username"
+                  label="username"
+                  placeholder="Username"
+                />
+              </div>
+              <div>
+                {touched.password &&
+                  errors.password && <p>{errors.password}</p>}
+                <Field
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  type="password"
+                  name="password"
+                  label="password"
+                  placeholder="Password"
+                />
+              </div>
+              <Button type="submit" disabled={isSubmitting || !dirty}>
+                Register
+              </Button>
+            </Form>
+          )}
         />
-        <Input
-          name="email"
-          onChange={this.onChange}
-          value={email}
-          placeholder="Email"
-          fluid
-        />
-        <Input
-          name="password"
-          onChange={this.onChange}
-          value={password}
-          type="password"
-          placeholder="Password"
-          fluid
-        />
-        <Button onClick={this.onSubmit}>Submit</Button>
       </Container>
     )
   }

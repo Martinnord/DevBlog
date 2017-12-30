@@ -9,9 +9,9 @@ import './styles/css/index.css'
 
 const App = (
   <ApolloProvider client={client}>
-    {/* <Provider store={store}> */}
-    <Router />
-    {/* </Provider> */}
+    <Provider store={store}>
+      <Router />
+    </Provider>
   </ApolloProvider>
 )
 
