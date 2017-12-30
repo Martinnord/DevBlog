@@ -12,7 +12,10 @@ class Register extends Component {
         .string()
         .email()
         .required('Please enter an email address'),
-      username: yup.string().required('Please enter an username'),
+      username: yup
+        .string()
+        .matches(/^[a-zA-Z0-9_]*$/, 'Please only alphanumeric is allowed')
+        .required('Please enter an username'),
       password: yup
         .string()
         .min(5, 'Password needs to be at least 5 characters long')
