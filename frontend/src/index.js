@@ -6,6 +6,7 @@ import { ApolloProvider } from 'react-apollo'
 import Router from './routes/router'
 import store from './store'
 import './styles/css/index.css'
+import 'antd/dist/antd.css'
 
 const App = (
   <ApolloProvider client={client}>

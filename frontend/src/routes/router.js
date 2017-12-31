@@ -5,7 +5,7 @@ import CreatePostLayout from '../components/createPost/createPostLayout'
 import LoginContainer from '../components/login/logincontainer'
 
 import Home from '../components/home/homeLayout'
-import Register from '../components/Register'
+import Register from './Register'
 
 export default props => (
   <Router>
