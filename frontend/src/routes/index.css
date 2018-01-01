@@ -1,0 +1,35 @@
+#root > div {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.login-form {
+  width: 400px;
+}
+
+.login-input {
+  margin: 20px 0 20px 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.ant-row {
+  margin: 0 20px 0 20px;
+}
+
+.error-message {
+  color: red;
+  margin: 0;
+}
+
+.ant-btn-primary {
+  width: 100%;
+}

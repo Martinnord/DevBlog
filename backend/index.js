@@ -1,6 +1,5 @@
 import express from 'express'
 import path from 'path'
-import middlewares from './config/middlewares'
 import constants from './config/constants'
 import config from './config'
 import cors from 'cors'
@@ -24,34 +23,12 @@ const knex = Knex(knexConfig.development)
 
 Model.knex(knex)
 
-middlewares(app)
+app.use(cors('*'))
 
-// app.use(cors('*'));
-//
-// const graphqlEndpoint = '/graphql';
-//
-// app.use(
-//   graphqlEndpoint,
-//   bodyParser.json(),
-//   graphqlExpress({
-//     schema,
-//     context: {
-//       models,
-//       user: {
-//         id: 1,
-//       },
-//       SECRET,
-//       SECRET2,
-//     },
-//   }),
-// );
-//
-// app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
-
-// const graphqlEndpoint = '/gra'
+const graphqlEndpoint = '/graphql'
 
 app.use(
-  constants.GRAPHQL_PATH,
+  graphqlEndpoint,
   bodyParser.json(),
   graphqlExpress({
     schema
@@ -61,7 +38,7 @@ app.use(
 app.use(
   '/graphiql',
   graphiqlExpress({
-    endpointURL: config.GRAPHQL_PATH
+    endpointURL: graphqlEndpoint
   })
 )
 

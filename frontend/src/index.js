@@ -1,13 +1,12 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { client } from './client'
 import { ApolloProvider } from 'react-apollo'
 import Router from './routes/router'
 import store from './store'
-import 'semantic-ui-css/semantic.min.css'
 import './styles/css/index.css'
+import 'antd/dist/antd.css'
 
 const App = (
   <ApolloProvider client={client}>
