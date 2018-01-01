@@ -2,10 +2,6 @@ import GraphQLDate from 'graphql-date'
 import User from '../models/user'
 import bcrypt from 'bcryptjs'
 import { promisify } from 'util'
-<<<<<<< HEAD
-
-const hashSync = promisify(bcrypt.hash)
-=======
 import { knex } from '../config/database'
 import yup from 'yup'
 import _ from 'lodash'
@@ -23,7 +19,6 @@ const schema = yup.object().shape({
     .required('Please enter a password')
     .min(5)
 })
->>>>>>> master
 
 export default {
   Date: GraphQLDate,
@@ -38,13 +33,6 @@ export default {
   Mutation: {
     register: async (_, { email, username, password }) => {
       try {
-<<<<<<< HEAD
-        const hashedPassword = await hashSync(password, bcrypt.genSaltSync(10))
-        await User.query().insert({ email, username, password: hashedPassword })
-        return true
-      } catch (err) {
-        return false
-=======
         const a = await schema.validate({ email, username, password })
         console.log('A', a)
         const x = await knex('users')
@@ -73,7 +61,6 @@ export default {
           ok: false,
           errors: [err]
         }
->>>>>>> master
       }
     }
   }
