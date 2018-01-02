@@ -4,8 +4,9 @@ export default `
     username: String
     email: String!
     password: String!
+    jwt: String
     firstName: String
-    lastnName: String
+    lastName: String
     avatar: String
     updatedAt: Date!
     createdAt: Date!
@@ -24,5 +25,6 @@ export default `
 
   type Mutation {
     register(username: String!, email: String!, password: String!): registerResponse!
+    login(email: String!, password: String!): User
   }
 `

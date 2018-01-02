@@ -23,7 +23,6 @@
     "graphql-date": "^1.0.3",
     "graphql-tools": "^2.7.2",
     "helmet": "^3.9.0",
-    "joi": "^10.6.0",
     "jsonwebtoken": "^8.1.0",
     "knex": "^0.14.0",
     "lodash": "^4.17.4",
