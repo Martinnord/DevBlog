@@ -23,12 +23,14 @@ class Login extends Component {
         }}
         onSubmit={async (values, { setSubmitting, setErrors }, actions) => {
           setSubmitting(true)
-          await this.props.mutate({
+          const response = await this.props.mutate({
             variables: {
               email: values.email,
               password: values.password
             }
           })
+          const token = response.data.login.jwt
+          localStorage.setItem('token', token)
         }}
         render={({
           values,
@@ -107,7 +109,7 @@ class Login extends Component {
               </div>
               <Row>
                 <Col span={12} offset={6}>
-                  Don't have an account? <a href="/login">Register here!</a>
+                  Don't have an account? <a href="/register">Register here!</a>
                 </Col>
               </Row>
             </Form>
@@ -119,13 +121,10 @@ class Login extends Component {
 }
 
 const loginMutation = gql`
-  mutation($username: String!, $email: String!, $password: String!) {
-    register(username: $username, email: $email, password: $password) {
-      ok
-      errors {
-        path
-        message
-      }
+  mutation($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      username
+      jwt
     }
   }
 `
