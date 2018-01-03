@@ -29,6 +29,7 @@ class Login extends Component {
               password: values.password
             }
           })
+          console.log(response)
           const token = response.data.login.jwt
           localStorage.setItem('token', token)
         }}
