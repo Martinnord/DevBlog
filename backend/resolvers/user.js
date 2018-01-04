@@ -39,13 +39,13 @@ export default {
         .first()
 
       if (!user) {
-        throw new Error('No user with this email')
+        throw new Error('Invalid email/password')
       }
 
       const validPassword = await bcrypt.compare(password, user.password)
 
       if (!validPassword) {
-        throw new Error('Wrong password!')
+        throw new Error('Invalid email/password')
       }
 
       // Adding a jwt token to the user
