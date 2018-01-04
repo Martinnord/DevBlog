@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import yup from 'yup'
 import { Formik, Form } from 'formik'
-import { Col, Row, Input, Icon, Button } from 'antd'
+import { Col, Row, Input, Icon, Button, Alert } from 'antd'
 import './index.css'
 
 class Login extends Component {
@@ -12,36 +12,40 @@ class Login extends Component {
       email: yup
         .string()
         .email()
-        .required('please enter an email address')
+        .required('please enter an email address'),
     })
     return (
       <Formik
         validationSchema={schema}
         initialValues={{
           email: '',
-          password: ''
+          password: '',
         }}
-        onSubmit={async (values, { setSubmitting, setErrors }, actions) => {
+        onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)
-          const response = await this.props.mutate({
-            variables: {
-              email: values.email,
-              password: values.password
-            }
-          })
-          console.log(response)
-          const token = response.data.login.jwt
-          localStorage.setItem('token', token)
+          try {
+            const response = await this.props.mutate({
+              variables: {
+                email: values.email,
+                password: values.password,
+              },
+            })
+            const token = response.data.login.jwt
+            localStorage.setItem('token', token)
+          } catch (err) {
+            const graphqlError = err.graphQLErrors[0].message
+            setStatus(graphqlError)
+            setSubmitting(false)
+          }
         }}
         render={({
           values,
           touched,
           errors,
-          dirty,
           isSubmitting,
           handleChange,
           handleBlur,
-          handleSubmit
+          status,
         }) => (
           <div className="container">
             <Form className="login-form">
@@ -50,6 +54,7 @@ class Login extends Component {
                   <h1>Login</h1>
                 </Col>
               </Row>
+              {status && <Alert type="error" message={status} showIcon />}
               <div className="login-input">
                 <Row>
                   <Col span={12} offset={6}>
@@ -62,6 +67,7 @@ class Login extends Component {
                       label="email"
                       placeholder="Email"
                     />
+                  
                     {touched.email &&
                       errors.email && (
                         <p className="error-message">{errors.email}</p>
@@ -87,10 +93,6 @@ class Login extends Component {
                       label="password"
                       placeholder="Password"
                     />
-                    {touched.password &&
-                      errors.password && (
-                        <p className="error-message">{errors.password}</p>
-                      )}
                   </Col>
                 </Row>
               </div>
