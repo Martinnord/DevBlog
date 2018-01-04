@@ -16,20 +16,10 @@
     "moment": "^2.18.1",
     "react": "^15.6.1",
     "react-apollo": "^2.0.4",
-    "react-bootstrap": "^0.31.2",
     "react-dom": "^15.6.1",
-    "react-redux": "^5.0.6",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.12",
     "recompose": "^0.26.0",
-    "redux": "^3.7.2",
-    "redux-form": "^7.0.1",
-    "redux-logger": "^3.0.6",
-    "redux-persist": "^4.9.1",
-    "redux-promise-middleware": "^4.0.0",
-    "redux-thunk": "^2.2.0",
-    "semantic-ui-css": "^2.2.12",
-    "semantic-ui-react": "^0.75.1",
     "yup": "^0.23.0"
   },
   "scripts": {
@@ -40,8 +30,7 @@
     "lint": "eslint src",
     "sass": "sass --watch src/styles/scss:src/styles/css"
   },
-  "description":
-    "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "index.js",
   "devDependencies": {
     "eslint": "^4.13.1",
