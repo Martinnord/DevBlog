@@ -34,65 +34,49 @@ export default {
   },
   Mutation: {
     login: async (_, { email, password }) => {
-      const user = await knex('users')
+      const users = await knex('users')
         .where('email', email)
         .first()
 
-      if (!user) {
+      if (!users) {
         throw new Error('Invalid email/password')
       }
 
-      const validPassword = await bcrypt.compare(password, user.password)
+      const validPassword = await bcrypt.compare(password, users.password)
 
       if (!validPassword) {
         throw new Error('Invalid email/password')
       }
 
       // Adding a jwt token to the user
-      user.jwt = jwt.sign({ id: user.id }, constants.JWT_SECRET)
+      users.jwt = jwt.sign({ id: users.id }, constants.JWT_SECRET)
 
       return user
     },
     register: async (_, { email, username, password }) => {
-      try {
-        const a = await schema.validate({ email, username, password })
-        const users = await knex('users')
-          .where('email', email)
-          .select('id')
+      const a = await schema.validate({ email, username, password })
+      const users = await knex('users')
+        .where('email', email)
 
-        if (users.length === 0) {
-          const hashedPassword = await hashAsync(
-            password,
-            bcrypt.genSaltSync(10)
-          )
-
-          const user = await User.query().insert({
-            email,
-            username,
-            password: hashedPassword
-          })
-
-          // Adding a jwt token to the user
-          user.jwt = jwt.sign({ id: user.id }, constants.JWT_SECRET)
-
-          return {
-            ok: true,
-            user
-          }
-        } else {
-          console.log('user already exists')
-          return {
-            ok: false,
-            error: formatErrors()
-          }
-        }
-      } catch (err) {
-        console.log('Error', err)
-        return {
-          ok: false,
-          errors: [err]
-        }
+      if (users) {
+        throw new Error('Email/username already in use')                  
       }
+
+      if (users.length === 0) {
+        const hashedPassword = await hashAsync(password, bcrypt.genSaltSync(10))
+
+        const user = await User.query().insert({
+          email,
+          username,
+          password: hashedPassword
+        })
+
+        // Adding a jwt token to the user
+        user.jwt = jwt.sign({ id: user.id }, constants.JWT_SECRET)
+
+        return user
+
+      } 
     }
   }
 }
