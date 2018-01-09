@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Home from '../components/home/homeLayout'
+import Home from './Home'
 import Register from './Register'
 import Login from './Login'
 

@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import yup from 'yup'
 import { Formik, Form } from 'formik'
-import { Col, Row, Input, Icon, Button } from 'antd'
+import { Col, Row, Input, Icon, Button, Alert } from 'antd'
 import './index.css'
 
 class Register extends Component {
@@ -30,15 +30,23 @@ class Register extends Component {
           username: '',
           password: ''
         }}
-        onSubmit={async (values, { setSubmitting, setErrors }, actions) => {
+        onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)
-          await this.props.mutate({
+          try {
+            const response = await this.props.mutate({
             variables: {
               username: values.username,
               email: values.email,
-              password: values.password
-            }
+              password: values.password,
+            },
           })
+          const token = response.data.register.jwt
+          localStorage.setItem('token', token)
+          } catch (err) {
+              const graphqlError = err.graphQLErrors[0].message
+              setStatus(graphqlError)
+              setSubmitting(false)
+          }
         }}
         render={({
           values,
@@ -48,7 +56,7 @@ class Register extends Component {
           isSubmitting,
           handleChange,
           handleBlur,
-          handleSubmit
+          status,
         }) => (
           <div className="container">
             <Form className="login-form">
@@ -57,6 +65,7 @@ class Register extends Component {
                   <h1>Register</h1>
                 </Col>
               </Row>
+              {status && <Alert type="error" message={status} showIcon />}
               <div className="login-input">
                 <Row>
                   <Col span={12} offset={6}>
