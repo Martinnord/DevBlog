@@ -6,6 +6,7 @@ module.exports = {
     "react/prefer-stateless-function": 0,
     "react/prop-types": 0,
     "react/no-unescaped-entities": 0,
+    "jsx-a11y/anchor-is-valid": 0,
     semi: [2, "never"]
   }
 }
