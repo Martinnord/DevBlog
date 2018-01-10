@@ -30,7 +30,9 @@ exports.up = function(knex) {
         .references('id')
         .inTable('users')
         .onDelete('CASCADE')
-      table.timestamps(true, true)
+      table
+        .timestamp('createdAt')
+        .defaultTo(knex.fn.now())
     })
 }
 
