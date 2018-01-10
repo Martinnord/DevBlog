@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   development: {
     client: 'pg',
     connection: 'postgres://localhost/devblog',
