@@ -34,35 +34,35 @@ export default {
   },
   Mutation: {
     login: async (_, { email, password }) => {
-      const users = await knex('users')
+      const user = await knex('users')
         .where('email', email)
         .first()
+      console.log(user)
 
-      if (!users) {
+      if (!user) {
         throw new Error('Invalid email/password')
       }
 
-      const validPassword = await bcrypt.compare(password, users.password)
+      const validPassword = await bcrypt.compare(password, user.password)
 
       if (!validPassword) {
         throw new Error('Invalid email/password')
       }
 
       // Adding a jwt token to the user
-      users.jwt = jwt.sign({ id: users.id }, constants.JWT_SECRET)
+      user.jwt = jwt.sign({ id: user.id }, constants.JWT_SECRET)
 
       return user
     },
     register: async (_, { email, username, password }) => {
-      const a = await schema.validate({ email, username, password })
-      const users = await knex('users')
-        .where('email', email)
+      await schema.validate({ email, username, password })
+      const users = await knex('users').where('email', email)
 
-      if (users) {
-        throw new Error('Email/username already in use')                  
-      }
+      const userExists = (await knex('users').where({ email })).orWhere({ username }).length === 1
 
-      if (users.length === 0) {
+      if (userExists) {
+        throw new Error('Email/username already in use')
+      } else {
         const hashedPassword = await hashAsync(password, bcrypt.genSaltSync(10))
 
         const user = await User.query().insert({
@@ -75,8 +75,7 @@ export default {
         user.jwt = jwt.sign({ id: user.id }, constants.JWT_SECRET)
 
         return user
-
-      } 
+      }
     }
   }
 }
