@@ -3,19 +3,14 @@ import { graphql } from 'react-apollo'
 import React, { Component } from 'react'
 import { Layout, Card, Col, Row } from 'antd'
 import moment from 'moment'
-import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
 
 const { Content } = Layout
 const { Meta } = Card
 
-class Home extends Component {
+class NewArticle extends Component {
   render() {
-    const { data: { loading, error, getPosts = [] } } = this.props
-
-    if (loading) {
-      console.log('loading...')
-    }
+    // const { data: { loading, error, getPosts = [] } } = this.props
 
     return (
       <Layout style={{ background: '#ECECEC' }}>
@@ -25,9 +20,7 @@ class Home extends Component {
             gutter={16}
             style={{ display: 'flex', justifyContent: 'center' }}
           >
-            <Col span={8}>
-              <PostCard posts={getPosts} />
-            </Col>
+            <Col span={8}><h1>Hejsan</h1></Col>
           </Row>
         </Content>
       </Layout>
@@ -35,15 +28,4 @@ class Home extends Component {
   }
 }
 
-const getPostsQuery = gql`
-  query getPostsQuery {
-    getPosts {
-      id
-      title
-      content
-      createdAt
-    }
-  }
-`
-
-export default graphql(getPostsQuery)(Home)
+export default NewArticle
