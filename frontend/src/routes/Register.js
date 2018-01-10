@@ -34,14 +34,14 @@ class Register extends Component {
           setSubmitting(true)
           try {
             const response = await this.props.mutate({
-            variables: {
-              username: values.username,
-              email: values.email,
-              password: values.password,
-            },
-          })
-          const token = response.data.register.jwt
-          localStorage.setItem('token', token)
+              variables: {
+                username: values.username,
+                email: values.email,
+                password: values.password
+              }
+            })
+            const token = response.data.register.jwt
+            localStorage.setItem('token', token)
           } catch (err) {
             const graphqlError = err.graphQLErrors[0].message
             setStatus(graphqlError)
@@ -56,7 +56,7 @@ class Register extends Component {
           isSubmitting,
           handleChange,
           handleBlur,
-          status,
+          status
         }) => (
           <div className="container">
             <Form className="login-form">
@@ -73,15 +73,21 @@ class Register extends Component {
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
+                      prefix={
+                        <Icon
+                          type="mail"
+                          style={{ color: 'rgba(0,0,0,.25)' }}
+                        />
+                      }
                       type="text"
                       name="email"
                       label="email"
                       placeholder="Email"
                     />
                     {touched.email &&
-                      errors.email && (
-                        <p className="error-message">{errors.email}</p>
-                      )}
+                    errors.email && (
+                      <p className="error-message">{errors.email}</p>
+                    )}
                   </Col>
                 </Row>
               </div>
@@ -104,9 +110,9 @@ class Register extends Component {
                       placeholder="Username"
                     />
                     {touched.username &&
-                      errors.username && (
-                        <p className="error-message">{errors.username}</p>
-                      )}
+                    errors.username && (
+                      <p className="error-message">{errors.username}</p>
+                    )}
                   </Col>
                 </Row>
               </div>
@@ -129,9 +135,9 @@ class Register extends Component {
                       placeholder="Password"
                     />
                     {touched.password &&
-                      errors.password && (
-                        <p className="error-message">{errors.password}</p>
-                      )}
+                    errors.password && (
+                      <p className="error-message">{errors.password}</p>
+                    )}
                   </Col>
                 </Row>
               </div>

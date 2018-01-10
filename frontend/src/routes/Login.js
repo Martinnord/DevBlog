@@ -12,14 +12,14 @@ class Login extends Component {
       email: yup
         .string()
         .email()
-        .required('please enter an email address'),
+        .required('please enter an email address')
     })
     return (
       <Formik
         validationSchema={schema}
         initialValues={{
           email: '',
-          password: '',
+          password: ''
         }}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)
@@ -27,8 +27,8 @@ class Login extends Component {
             const response = await this.props.mutate({
               variables: {
                 email: values.email,
-                password: values.password,
-              },
+                password: values.password
+              }
             })
             const token = response.data.login.jwt
             localStorage.setItem('token', token)
@@ -45,7 +45,7 @@ class Login extends Component {
           isSubmitting,
           handleChange,
           handleBlur,
-          status,
+          status
         }) => (
           <div className="container">
             <Form className="login-form">
@@ -62,16 +62,22 @@ class Login extends Component {
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
+                      prefix={
+                        <Icon
+                          type="mail"
+                          style={{ color: 'rgba(0,0,0,.25)' }}
+                        />
+                      }
                       type="text"
                       name="email"
                       label="email"
                       placeholder="Email"
                     />
-                  
+
                     {touched.email &&
-                      errors.email && (
-                        <p className="error-message">{errors.email}</p>
-                      )}
+                    errors.email && (
+                      <p className="error-message">{errors.email}</p>
+                    )}
                   </Col>
                 </Row>
               </div>
