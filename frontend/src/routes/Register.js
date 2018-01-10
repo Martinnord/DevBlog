@@ -43,9 +43,9 @@ class Register extends Component {
           const token = response.data.register.jwt
           localStorage.setItem('token', token)
           } catch (err) {
-              const graphqlError = err.graphQLErrors[0].message
-              setStatus(graphqlError)
-              setSubmitting(false)
+            const graphqlError = err.graphQLErrors[0].message
+            setStatus(graphqlError)
+            setSubmitting(false)
           }
         }}
         render={({
@@ -165,11 +165,9 @@ class Register extends Component {
 const registerMutation = gql`
   mutation($username: String!, $email: String!, $password: String!) {
     register(username: $username, email: $email, password: $password) {
-      ok
-      errors {
-        path
-        message
-      }
+      email
+      username
+      jwt
     }
   }
 `
