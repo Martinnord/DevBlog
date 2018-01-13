@@ -7,6 +7,7 @@ module.exports = {
     "react/prop-types": 0,
     "react/no-unescaped-entities": 0,
     "jsx-a11y/anchor-is-valid": 0,
+    "arrow-parens": 0,
     semi: [2, "never"]
   }
 }
