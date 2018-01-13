@@ -42,6 +42,7 @@ class Register extends Component {
             })
             const token = response.data.register.jwt
             localStorage.setItem('token', token)
+            this.props.history.push('/home')
           } catch (err) {
             const graphqlError = err.graphQLErrors[0].message
             setStatus(graphqlError)

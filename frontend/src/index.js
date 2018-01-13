@@ -1,4 +1,5 @@
 import React from 'react'
+import App from './routes'
 import { render } from 'react-dom'
 import { ApolloProvider } from 'react-apollo'
 import 'antd/dist/antd.css'
@@ -7,10 +8,10 @@ import Router from './routes'
 import './styles/css/index.css'
 
 
-const App = (
+const Application = (
   <ApolloProvider client={client}>
-    <Router />
+    <App />
   </ApolloProvider>
 )
 
-render(App, document.getElementById('root'))
+render(Application, document.getElementById('root'))

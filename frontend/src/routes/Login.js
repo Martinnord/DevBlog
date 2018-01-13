@@ -19,7 +19,7 @@ class Login extends Component {
         validationSchema={schema}
         initialValues={{
           email: '',
-          password: ''
+          password: '',
         }}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)
@@ -27,11 +27,13 @@ class Login extends Component {
             const response = await this.props.mutate({
               variables: {
                 email: values.email,
-                password: values.password
-              }
+                password: values.password,
+              },
             })
+            console.log(response)
             const token = response.data.login.jwt
             localStorage.setItem('token', token)
+            this.props.history.push('/home')
           } catch (err) {
             const graphqlError = err.graphQLErrors[0].message
             setStatus(graphqlError)

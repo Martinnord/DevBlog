@@ -19,7 +19,7 @@ class Home extends Component {
 
     return (
       <Layout style={{ background: '#ECECEC' }}>
-        <Navbar />
+        <Navbar currentUser={this.props.currentUser} />
         <Content>
           <Row
             gutter={16}
