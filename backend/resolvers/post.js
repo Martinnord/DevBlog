@@ -5,7 +5,7 @@ export default {
   Date: GraphQLDate,
   Query: {
     async getPosts() {
-      return await Post.query()
+      return await Post.query().orderBy('createdAt', 'desc')
     },
     async getPost(_, { id }) {
       return await Post.query().findById(id)
@@ -13,7 +13,6 @@ export default {
   },
   Mutation: {
     async createPost(_, args) {
-      console.log(args)
       return await Post.query().insert(args)
     },
     async updatePost(_, { id, title, content }) {

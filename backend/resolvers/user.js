@@ -22,9 +22,22 @@ const schema = yup.object().shape({
     .min(5)
 })
 
+export async function context(headers, constants) {
+  console.log('calling context') // This never prints, so it's not being called.
+  const user = await getUser(headers['authorization'])
+  return {
+    headers,
+    user
+  }
+}
+
 export default {
   Date: GraphQLDate,
   Query: {
+    currentUser: (root, args, { user }) => {
+      console.log('context', user)
+      return user
+    },
     getUsers: async () => {
       return await User.query()
     },
@@ -33,7 +46,8 @@ export default {
     }
   },
   Mutation: {
-    login: async (_, { email, password }) => {
+    login: async (_, { email, password }, context) => {
+      console.log('context', context)
       const user = await knex('users')
         .where('email', email)
         .first()
@@ -58,7 +72,7 @@ export default {
       await schema.validate({ email, username, password })
       const users = await knex('users').where('email', email)
 
-      const userExists = (await knex('users').where({ email })).orWhere({ username }).length === 1
+      const userExists = (await knex('users').where({ email })).length === 1
 
       if (userExists) {
         throw new Error('Email/username already in use')

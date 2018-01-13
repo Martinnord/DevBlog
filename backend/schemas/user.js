@@ -15,6 +15,7 @@ export default `
   type Query {
     getUsers: [User]
     getUser(id: ID!): User
+    currentUser: User
   }
 
   type registerResponse {

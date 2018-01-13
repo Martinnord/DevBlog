@@ -12,6 +12,7 @@ import { makeExecutableSchema } from 'graphql-tools'
 import { createServer } from 'http'
 import { Model } from 'objection'
 import { Post, User } from './models'
+import jwt from 'express-jwt'
 
 const app = express()
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schemas')))
@@ -26,11 +27,21 @@ app.use(cors('*'))
 
 const graphqlEndpoint = '/graphql'
 
+app.use(jwt({secret: constants.JWT_SECRET}))
+
 app.use(
   graphqlEndpoint,
   bodyParser.json(),
-  graphqlExpress({
-    schema
+  graphqlExpress(async req => {
+    let user = null
+    if (req.user) {
+      user = await knex('users').where('id', req.user.id).first()
+      console.log(user)
+    }
+    return {
+      schema,
+      context: {user}
+    }
   })
 )
 
