@@ -6,15 +6,15 @@ import yup from 'yup'
 export default {
   Date: GraphQLDate,
   Query: {
-    async getAllPosts() {
+    getAllPosts: async () => {
       return await Post.query().orderBy('createdAt', 'desc')
     },
-    async getPost(_, { id }) {
+    getPost: async (_, { id }) => {
       return await Post.query().findById(id)
     }
   },
   Mutation: {
-    async createPost(_, { title, content }) {
+    createPost: async (_, { title, content }) => {
       try {
         const post = await Post.query().insert({ title, content })
         return post
@@ -23,10 +23,10 @@ export default {
         return false
       }
     },
-    async updatePost(_, { id, title, content }) {
+    updatePost: async (_, { id, title, content }) => {
       return await Post.query().patchAndFetchById(id, { title, content })
     },
-    async deletePost(_, { id }) {
+    deletePost: async (_, { id }) => {
       return await Post.query().deleteById(id)
     }
   }
