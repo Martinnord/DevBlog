@@ -12,7 +12,7 @@ import { makeExecutableSchema } from 'graphql-tools'
 import { createServer } from 'http'
 import { Model } from 'objection'
 import { Post, User } from './models'
-import jwt from 'express-jwt'
+import jwt from 'jsonwebtoken'
 
 const app = express()
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schemas')))
@@ -23,32 +23,40 @@ const schema = makeExecutableSchema({ typeDefs, resolvers })
 
 Model.knex(knex)
 
+const SECRET = constants.JWT_SECRET
+
+const addUser = async req => {
+  const token = req.headers.authorization
+  console.log(token)
+  try {
+    const user = await jwt.verify(token, SECRET)
+    console.log(user)
+    req.user = user
+  } catch (err) {
+    console.log(err)
+  }
+  req.next()
+}
+
 app.use(cors('*'))
-
-const graphqlEndpoint = '/graphql'
-
-app.use(jwt({secret: constants.JWT_SECRET}))
+app.use(addUser)
 
 app.use(
-  graphqlEndpoint,
+  '/graphql',
   bodyParser.json(),
-  graphqlExpress(async req => {
-    let user = null
-    if (req.user) {
-      user = await knex('users').where('id', req.user.id).first()
-      console.log(user)
-    }
-    return {
-      schema,
-      context: {user}
+  graphqlExpress(req => ({
+    schema,
+    context: {
+      user: req.user,
+      SECRET,
     }
   })
-)
+))
 
 app.use(
   '/graphiql',
   graphiqlExpress({
-    endpointURL: graphqlEndpoint
+    endpointURL: '/graphql'
   })
 )
 
