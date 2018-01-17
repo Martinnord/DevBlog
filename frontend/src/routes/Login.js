@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import yup from 'yup'
 import { Formik, Form } from 'formik'
 import { Col, Row, Input, Icon, Button, Alert } from 'antd'
-import { loginMutation } from '../graphql/login'
+import { meQuery } from '../graphql/login'
 import './index.css'
 
 class Login extends Component {
@@ -28,6 +29,12 @@ class Login extends Component {
               variables: {
                 email: values.email,
                 password: values.password,
+              },
+              update: (store, { data: { login } }) => {
+                const data = store.readQuery({ query: meQuery })
+                console.log('data', data)
+                data.currentUser.push(login)
+                store.writeQuery({ query: meQuery, data })
               },
             })
             const token = response.data.login.jwt
@@ -129,5 +136,14 @@ class Login extends Component {
     )
   }
 }
+
+export const loginMutation = gql`
+  mutation($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      username
+      jwt
+    }
+  }
+`
 
 export default graphql(loginMutation)(Login)

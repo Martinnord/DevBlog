@@ -12,7 +12,7 @@ class Home extends Component {
     const { data: { loading, error, getAllPosts = [] } } = this.props
 
     if (loading) {
-      return <h1>Loading...</h1>
+      return null
     }
 
     if (error) {

@@ -7,11 +7,21 @@ const MenuItemGroup = Menu.ItemGroup
 
 class Navbar extends Component {
   render() {
+    if (this.props.loading) {
+      return null
+    }
+
     const { username } = this.props.currentUser || {}
-    // console.log(this.props.currentUser.username)
+
+    const onClick = ({ key }) => {
+      if (key === '5') {
+        localStorage.removeItem('token')
+        window.location.reload()
+      }
+    }
 
     return (
-      <Menu mode="horizontal" style={{ display: 'flex' }}>
+      <Menu mode="horizontal" style={{ display: 'flex' }} onClick={onClick}>
         <Menu.Item style={{ alignSelf: 'flex-start' }}>
           <Link to="/">DEVBLOG</Link>
         </Menu.Item>
@@ -26,13 +36,13 @@ class Navbar extends Component {
             }
           >
             <MenuItemGroup>
-              <Menu.Item key="setting:1">
+              <Menu.Item key="1">
                 <Link to="/new-article">Write new article</Link>
               </Menu.Item>
-              <Menu.Item key="setting:2">Profile</Menu.Item>
-              <Menu.Item key="setting:3">Settings</Menu.Item>
-              <Menu.Item key="setting:4">Help</Menu.Item>
-              <Menu.Item key="setting:5">Sign Out</Menu.Item>
+              <Menu.Item key="2">Profile</Menu.Item>
+              <Menu.Item key="3">Settings</Menu.Item>
+              <Menu.Item key="4">Help</Menu.Item>
+              <Menu.Item key="5">Sign Out</Menu.Item>
             </MenuItemGroup>
           </SubMenu>
         ) : (
