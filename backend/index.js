@@ -27,10 +27,8 @@ const SECRET = constants.JWT_SECRET
 
 const addUser = async req => {
   const token = req.headers.authorization
-  console.log(token)
   try {
     const user = await jwt.verify(token, SECRET)
-    console.log(user)
     req.user = user
   } catch (err) {
     console.log(err)
