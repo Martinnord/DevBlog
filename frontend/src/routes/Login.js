@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
 import yup from 'yup'
 import { Formik, Form } from 'formik'
 import { Col, Row, Input, Icon, Button, Alert } from 'antd'
+import { loginMutation } from '../graphql/login'
 import './index.css'
 
 class Login extends Component {
@@ -12,7 +12,7 @@ class Login extends Component {
       email: yup
         .string()
         .email()
-        .required('please enter an email address'),
+        .required('please enter an email address')
     })
     return (
       <Formik
@@ -21,7 +21,7 @@ class Login extends Component {
           email: '',
           password: '',
         }}
-        onSubmit={async (values, { setSubmitting, setStatus }) => {
+        onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(true)
           try {
             const response = await this.props.mutate({
@@ -30,7 +30,6 @@ class Login extends Component {
                 password: values.password,
               },
             })
-            console.log(response)
             const token = response.data.login.jwt
             localStorage.setItem('token', token)
             this.props.history.push('/')
@@ -77,9 +76,9 @@ class Login extends Component {
                     />
 
                     {touched.email &&
-                    errors.email && (
-                      <p className="error-message">{errors.email}</p>
-                    )}
+                      errors.email && (
+                        <p className="error-message">{errors.email}</p>
+                      )}
                   </Col>
                 </Row>
               </div>
@@ -130,14 +129,5 @@ class Login extends Component {
     )
   }
 }
-
-const loginMutation = gql`
-  mutation($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      username
-      jwt
-    }
-  }
-`
 
 export default graphql(loginMutation)(Login)

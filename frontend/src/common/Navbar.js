@@ -13,7 +13,7 @@ class Navbar extends Component {
     return (
       <Menu mode="horizontal" style={{ display: 'flex' }}>
         <Menu.Item style={{ alignSelf: 'flex-start' }}>
-          <Link to="/home">DEVBLOG</Link>
+          <Link to="/">DEVBLOG</Link>
         </Menu.Item>
         {username ? (
           <SubMenu
@@ -29,7 +29,7 @@ class Navbar extends Component {
               <Menu.Item key="setting:1">
                 <Link to="/new-article">Write new article</Link>
               </Menu.Item>
-              <Menu.Item key="s$etting:2">Profile</Menu.Item>
+              <Menu.Item key="setting:2">Profile</Menu.Item>
               <Menu.Item key="setting:3">Settings</Menu.Item>
               <Menu.Item key="setting:4">Help</Menu.Item>
               <Menu.Item key="setting:5">Sign Out</Menu.Item>
@@ -37,8 +37,16 @@ class Navbar extends Component {
           </SubMenu>
         ) : (
           <MenuItemGroup>
-            <Menu.Item><Button>Login!</Button></Menu.Item>
-            <Menu.Item><Button>Sign up!</Button></Menu.Item>
+            <Menu.Item>
+              <Button>
+                <Link to="/login">Login!</Link>
+              </Button>
+            </Menu.Item>
+            <Menu.Item>
+              <Button>
+                <Link to="/register">Sign up!</Link>
+              </Button>
+            </Menu.Item>
           </MenuItemGroup>
         )}
       </Menu>

@@ -9,10 +9,10 @@ const { Content } = Layout
 
 class Home extends Component {
   render() {
-    const { data: { loading, error, getPosts = [] } } = this.props
+    const { data: { loading, error, getAllPosts = [] } } = this.props
 
     if (loading) {
-      console.log('loading...')
+      return <h1>Loading...</h1>
     }
 
     if (error) {
@@ -28,7 +28,7 @@ class Home extends Component {
             style={{ display: 'flex', justifyContent: 'center' }}
           >
             <Col span={9}>
-              <PostCard posts={getPosts} />
+              <PostCard posts={getAllPosts} />
             </Col>
           </Row>
         </Content>
@@ -37,9 +37,9 @@ class Home extends Component {
   }
 }
 
-const getPostsQuery = gql`
-  query getPostsQuery {
-    getPosts {
+const getAllPostsQuery = gql`
+  query getAllPostsQuery {
+    getAllPosts {
       id
       title
       content
@@ -48,4 +48,4 @@ const getPostsQuery = gql`
   }
 `
 
-export default graphql(getPostsQuery)(Home)
+export default graphql(getAllPostsQuery)(Home)
