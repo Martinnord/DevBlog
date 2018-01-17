@@ -22,21 +22,14 @@ const schema = yup.object().shape({
     .min(5)
 })
 
-export async function context(headers, constants) {
-  console.log('calling context') // This never prints, so it's not being called.
-  const user = await getUser(headers['authorization'])
-  return {
-    headers,
-    user
-  }
-}
-
 export default {
   Date: GraphQLDate,
   Query: {
-    currentUser: (root, args, { user }) => {
-      console.log('context', user)
-      return user
+    currentUser: (parent, args, { user }) => {
+      if (user) {
+        return User.query().findById(user.id)
+      }
+      return null
     },
     getUsers: async () => {
       return await User.query()
@@ -46,12 +39,10 @@ export default {
     }
   },
   Mutation: {
-    login: async (_, { email, password }, context) => {
-      console.log('context', context)
+    login: async (_, { email, password }, { SECRET }) => {
       const user = await knex('users')
         .where('email', email)
         .first()
-      console.log(user)
 
       if (!user) {
         throw new Error('Invalid email/password')
@@ -64,7 +55,9 @@ export default {
       }
 
       // Adding a jwt token to the user
-      user.jwt = jwt.sign({ id: user.id }, constants.JWT_SECRET)
+      user.jwt = jwt.sign({ id: user.id }, SECRET)
+      // user.jwt = jwt.sign({ user: _.pick(user, ['id', 'username'])}, SECRET )
+      console.log('user', user)
 
       return user
     },
@@ -86,7 +79,7 @@ export default {
         })
 
         // Adding a jwt token to the user
-        user.jwt = jwt.sign({ id: user.id }, constants.JWT_SECRET)
+        user.jwt = jwt.sign({ user: _.pick(user, ['id', 'username']) }, SECRET)
 
         return user
       }
