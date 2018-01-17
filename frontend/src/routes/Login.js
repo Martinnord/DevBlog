@@ -12,7 +12,7 @@ class Login extends Component {
       email: yup
         .string()
         .email()
-        .required('please enter an email address')
+        .required('please enter an email address'),
     })
     return (
       <Formik
@@ -33,10 +33,10 @@ class Login extends Component {
             console.log(response)
             const token = response.data.login.jwt
             localStorage.setItem('token', token)
-            this.props.history.push('/home')
+            this.props.history.push('/')
           } catch (err) {
-            const graphqlError = err.graphQLErrors[0].message
-            setStatus(graphqlError)
+            // const graphqlError = err.graphQLErrors[0].message
+            // setStatus(graphqlError)
             setSubmitting(false)
           }
         }}
@@ -47,7 +47,7 @@ class Login extends Component {
           isSubmitting,
           handleChange,
           handleBlur,
-          status
+          status,
         }) => (
           <div className="container">
             <Form className="login-form">

@@ -1,13 +1,11 @@
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import React, { Component } from 'react'
-import { Layout, Card, Col, Row } from 'antd'
-import moment from 'moment'
+import { Layout, Col, Row } from 'antd'
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
 
 const { Content } = Layout
-const { Meta } = Card
 
 class Home extends Component {
   render() {
@@ -15,6 +13,10 @@ class Home extends Component {
 
     if (loading) {
       console.log('loading...')
+    }
+
+    if (error) {
+      return <h1>Shit just hit the fan!</h1>
     }
 
     return (
@@ -25,7 +27,7 @@ class Home extends Component {
             gutter={16}
             style={{ display: 'flex', justifyContent: 'center' }}
           >
-            <Col span={8}>
+            <Col span={9}>
               <PostCard posts={getPosts} />
             </Col>
           </Row>

@@ -1,43 +1,14 @@
+import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import React, { Component } from 'react'
-import Navbar from '../common/Navbar'
 import { Layout, Card, Col, Row, Input, Button, Alert } from 'antd'
+import Navbar from '../common/Navbar'
 import { Formik, Form } from 'formik'
 
 const { TextArea } = Input
 
 const { Content } = Layout
 const { Meta } = Card
-
-/* 
-  import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
-import yup from 'yup'
-import { Formik, Form } from 'formik'
-import { Col, Row, Input, Icon, Button, Alert } from 'antd'
-import './index.css'
-
-class Login extends Component {
-  render() {
-    const schema = yup.object().shape({
-      email: yup
-        .string()
-        .email()
-        .required('please enter an email address')
-    })
-    return (
-      
-    )
-  }
-}
-
-`
-
-export default graphql(loginMutation)(Login)
-
-*/
 
 class NewArticle extends Component {
   render() {
