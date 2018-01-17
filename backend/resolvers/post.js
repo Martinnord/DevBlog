@@ -1,10 +1,12 @@
 import GraphQLDate from 'graphql-date'
 import Post from '../models/post'
+import yup from 'yup'
+
 
 export default {
   Date: GraphQLDate,
   Query: {
-    async getPosts() {
+    async getAllPosts() {
       return await Post.query().orderBy('createdAt', 'desc')
     },
     async getPost(_, { id }) {
@@ -12,8 +14,14 @@ export default {
     }
   },
   Mutation: {
-    async createPost(_, args) {
-      return await Post.query().insert(args)
+    async createPost(_, { title, content }) {
+      try {
+        const post = await Post.query().insert({ title, content })
+        return post
+      } catch (err) {
+        console.log(err)
+        return false
+      }
     },
     async updatePost(_, { id, title, content }) {
       return await Post.query().patchAndFetchById(id, { title, content })

@@ -5,12 +5,12 @@ export default `
     id: ID!
     title: String!
     content: String!
-    updatedAt: Date!
-    createdAt: Date!
+    updatedAt: String
+    createdAt: String
   }
 
   type Query {
-    getPosts: [Post]
+    getAllPosts: [Post]
     getPost(id: ID!): Post
   }
 
