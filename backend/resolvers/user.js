@@ -56,8 +56,6 @@ export default {
 
       // Adding a jwt token to the user
       user.jwt = jwt.sign({ id: user.id }, SECRET)
-      // user.jwt = jwt.sign({ user: _.pick(user, ['id', 'username'])}, SECRET )
-      console.log('user', user)
 
       return user
     },
@@ -79,7 +77,7 @@ export default {
         })
 
         // Adding a jwt token to the user
-        user.jwt = jwt.sign({ user: _.pick(user, ['id', 'username']) }, SECRET)
+        user.jwt = jwt.sign({ id: user.id }, SECRET)
 
         return user
       }
