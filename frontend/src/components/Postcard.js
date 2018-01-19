@@ -18,6 +18,7 @@ const PostCard = props => (
         }
       >
         <Meta title={u.title} description={u.content} />
+        <p>Skriven av {u.user.username}</p>
         <p>{moment(u.createdAt).format('HH:mm D/MM')}</p>
       </Card>
     ))}

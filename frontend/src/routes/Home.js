@@ -10,7 +10,7 @@ const { Content } = Layout
 class Home extends Component {
   render() {
     const { data: { loading, error, getAllPosts = [] } } = this.props
-
+    console.log(getAllPosts)
     if (loading) {
       return null
     }
@@ -44,6 +44,9 @@ const getAllPostsQuery = gql`
       title
       content
       createdAt
+      user {
+        username
+      }
     }
   }
 `

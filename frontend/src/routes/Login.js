@@ -5,6 +5,7 @@ import yup from 'yup'
 import { Formik, Form } from 'formik'
 import { Col, Row, Input, Icon, Button, Alert } from 'antd'
 import { meQuery } from '../graphql/login'
+import client from '../client'
 import './index.css'
 
 class Login extends Component {
@@ -22,7 +23,7 @@ class Login extends Component {
           email: '',
           password: '',
         }}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)
           try {
             const response = await this.props.mutate({
@@ -30,17 +31,29 @@ class Login extends Component {
                 email: values.email,
                 password: values.password,
               },
-              update: (store, { data: { login } }) => {
-                const data = store.readQuery({ query: meQuery })
-                console.log('data', data)
-                data.currentUser.push(login)
-                store.writeQuery({ query: meQuery, data })
-              },
+              // update: (store, { data: { login } }) => {
+              // //   console.log('login', login)
+              //   const data = client.query({ meQuery })
+
+              //   client.writeQuery({
+              //     meQuery,
+              //     data: {
+              //       meQuery: [...data.meQuery, login],
+              //     },
+              //   })
+              //   console.log('data', data)
+              //   // data.currentUser.push(login)
+              //   // store.writeQuery({ query: meQuery, data })
+              // },
             })
+            const test = await client.query({ query: meQuery })
+            console.log(test)
+            
             const token = response.data.login.jwt
             localStorage.setItem('token', token)
             this.props.history.push('/')
           } catch (err) {
+            console.log(err)
             // const graphqlError = err.graphQLErrors[0].message
             // setStatus(graphqlError)
             setSubmitting(false)
