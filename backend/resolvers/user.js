@@ -25,9 +25,9 @@ const schema = yup.object().shape({
 export default {
   Date: GraphQLDate,
   Query: {
-    currentUser: (parent, args, { user }) => {
+    currentUser: async (_, args, { user }) => {
       if (user) {
-        return User.query().findById(user.id)
+        return await User.query().findById(user.id)
       }
       return null
     },
@@ -59,11 +59,14 @@ export default {
 
       return user
     },
-    register: async (_, { email, username, password }) => {
+    register: async (_, { email, username, password }, { SECRET }) => {
       await schema.validate({ email, username, password })
       const users = await knex('users').where('email', email)
 
-      const userExists = (await knex('users').where({ email })).length === 1
+      const userExists =
+        (await knex('users')
+          .where({ email })
+          .orWhere({ username })).length === 1
 
       if (userExists) {
         throw new Error('Email/username already in use')
