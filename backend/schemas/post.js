@@ -5,6 +5,7 @@ export default `
     id: ID!
     title: String!
     content: String!
+    user: User!
     updatedAt: String
     createdAt: String
   }

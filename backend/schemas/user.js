@@ -8,6 +8,7 @@ export default `
     firstName: String
     lastName: String
     avatar: String
+    articles: [Post!]!
     updatedAt: Date!
     createdAt: Date!
   }
