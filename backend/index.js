@@ -26,10 +26,14 @@ Model.knex(knex)
 const SECRET = constants.JWT_SECRET
 
 const addUser = async req => {
-  const token = req.headers.authorization
   try {
-    const user = await jwt.verify(token, SECRET)
-    req.user = user
+    const token = req.headers.authorization
+    if (token != null) {
+      const user = await jwt.verify(token.split(' ')[1], SECRET)
+      req.user = user
+    } else {
+      req.user = null
+    }
   } catch (err) {
     console.log(err)
   }
@@ -46,10 +50,10 @@ app.use(
     schema,
     context: {
       user: req.user,
-      SECRET,
+      SECRET
     }
-  })
-))
+  }))
+)
 
 app.use(
   '/graphiql',
