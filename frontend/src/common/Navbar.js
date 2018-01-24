@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, Icon, Button } from 'antd'
+import { CurrentUser } from '../util/auth'
 
 const SubMenu = Menu.SubMenu
 const MenuItemGroup = Menu.ItemGroup
@@ -11,7 +12,7 @@ class Navbar extends Component {
       return null
     }
 
-    const { username } = this.props.currentUser || {}
+    const { username } = this.props.currentUser
 
     const onClick = ({ key }) => {
       if (key === '5') {
@@ -64,4 +65,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar
+export default CurrentUser(Navbar)

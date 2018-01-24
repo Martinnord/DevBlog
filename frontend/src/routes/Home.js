@@ -1,5 +1,5 @@
 import gql from 'graphql-tag'
-import { graphql } from 'react-apollo'
+import { graphql, compose } from 'react-apollo'
 import React, { Component } from 'react'
 import { Layout, Col, Row } from 'antd'
 import PostCard from '../components/Postcard'
@@ -10,9 +10,8 @@ const { Content } = Layout
 class Home extends Component {
   render() {
     const { data: { loading, error, getAllPosts = [] } } = this.props
-    console.log(getAllPosts)
     if (loading) {
-      return null
+      return <p>loading...</p>
     }
 
     if (error) {
@@ -21,7 +20,7 @@ class Home extends Component {
 
     return (
       <Layout style={{ background: '#ECECEC' }}>
-        <Navbar currentUser={this.props.currentUser} />
+        <Navbar />
         <Content>
           <Row
             gutter={16}
@@ -50,5 +49,4 @@ const getAllPostsQuery = gql`
     }
   }
 `
-
 export default graphql(getAllPostsQuery)(Home)

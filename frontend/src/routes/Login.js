@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import { compose } from 'react-apollo'
 import yup from 'yup'
 import { Formik, Form } from 'formik'
 import { Col, Row, Input, Icon, Button, Alert } from 'antd'
-import { meQuery } from '../graphql/login'
-import client from '../client'
 import './index.css'
+import { LoginMutation } from '../util/auth'
 
 class Login extends Component {
   render() {
@@ -16,46 +14,22 @@ class Login extends Component {
         .email()
         .required('please enter an email address')
     })
+
     return (
       <Formik
         validationSchema={schema}
         initialValues={{
-          email: '',
-          password: '',
+          email: 'martin.nordstrom99@gmail.com',
+          password: 'test123'
         }}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)
           try {
-            const response = await this.props.mutate({
-              variables: {
-                email: values.email,
-                password: values.password,
-              },
-              // update: (store, { data: { login } }) => {
-              // //   console.log('login', login)
-              //   const data = client.query({ meQuery })
-
-              //   client.writeQuery({
-              //     meQuery,
-              //     data: {
-              //       meQuery: [...data.meQuery, login],
-              //     },
-              //   })
-              //   console.log('data', data)
-              //   // data.currentUser.push(login)
-              //   // store.writeQuery({ query: meQuery, data })
-              // },
-            })
-            const test = await client.query({ query: meQuery })
-            console.log(test)
-            
-            const token = response.data.login.jwt
-            localStorage.setItem('token', token)
+            await this.props.login(values.email, values.password)
             this.props.history.push('/')
           } catch (err) {
-            console.log(err)
-            // const graphqlError = err.graphQLErrors[0].message
-            // setStatus(graphqlError)
+            const graphqlError = err.graphQLErrors[0].message
+            setStatus(graphqlError)
             setSubmitting(false)
           }
         }}
@@ -66,7 +40,7 @@ class Login extends Component {
           isSubmitting,
           handleChange,
           handleBlur,
-          status,
+          status
         }) => (
           <div className="container">
             <Form className="login-form">
@@ -150,13 +124,4 @@ class Login extends Component {
   }
 }
 
-export const loginMutation = gql`
-  mutation($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      username
-      jwt
-    }
-  }
-`
-
-export default graphql(loginMutation)(Login)
+export default compose(LoginMutation)(Login)
