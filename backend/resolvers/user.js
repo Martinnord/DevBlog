@@ -40,6 +40,7 @@ export default {
   },
   Mutation: {
     login: async (_, { email, password }, { SECRET }) => {
+      // Finding the user
       const user = await knex('users')
         .where('email', email)
         .first()
@@ -48,6 +49,7 @@ export default {
         throw new Error('Invalid email/password')
       }
 
+      // Validating the
       const validPassword = await bcrypt.compare(password, user.password)
 
       if (!validPassword) {
@@ -56,6 +58,7 @@ export default {
 
       // Adding a jwt token to the user
       user.jwt = jwt.sign({ id: user.id }, SECRET)
+      console.log(user)
 
       return user
     },
