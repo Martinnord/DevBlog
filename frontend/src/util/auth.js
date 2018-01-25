@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 
-const CurrentUser_QUERY = gql`
+const currentUserQUERY = gql`
   query currentUser {
     currentUser {
       id
@@ -12,22 +12,23 @@ const CurrentUser_QUERY = gql`
   }
 `
 
-export const CurrentUser = graphql(CurrentUser_QUERY, {
+export const CurrentUser = graphql(currentUserQUERY, {
   alias: 'CurrentUser',
   options: { fetchPolicy: 'cache-first' },
   props: ({ data: { currentUser, loading } }) => ({ currentUser, loading }),
 })
 
-const Login_MUTATION = gql`
+const LoginMUTATION = gql`
   mutation($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       jwt
       id
+      username
     }
   }
 `
 
-export const LoginMutation = graphql(Login_MUTATION, {
+export const LoginMutation = graphql(LoginMUTATION, {
   alias: 'Login',
   props: ({ mutate }) => ({
     login: (email, password) =>
@@ -35,17 +36,16 @@ export const LoginMutation = graphql(Login_MUTATION, {
         variables: { email, password },
         update: (proxy, { data: { login } }) => {
           // update the cache with the new currentUser
-          // proxy.readQuery({ query: CurrentUser_QUERY })
           const currentUser = {
             id: login.id,
-            // username: login.username,
-            // email: login.email,
+            username: login.username,
+            email,
             jwt: login.jwt,
           }
-          console.log(currentUser)
-          proxy.writeQuery({ query: CurrentUser_QUERY, data: currentUser })
-          
-          //do something with the token
+
+          proxy.writeQuery({ query: currentUserQUERY, data: { currentUser } })
+
+          // Store the token
           localStorage.setItem('token', login.jwt)
         },
       }),

@@ -12,8 +12,6 @@ class Navbar extends Component {
       return null
     }
 
-    const { username } = this.props.currentUser
-
     const onClick = ({ key }) => {
       if (key === '5') {
         localStorage.removeItem('token')
@@ -26,13 +24,13 @@ class Navbar extends Component {
         <Menu.Item style={{ alignSelf: 'flex-start' }}>
           <Link to="/">DEVBLOG</Link>
         </Menu.Item>
-        {username ? (
+        {this.props.currentUser ? (
           <SubMenu
             style={{ alignSelf: 'flex-end' }}
             title={
               <span>
                 <Icon type="user" />
-                {username}
+                {this.props.currentUser.username}
               </span>
             }
           >
