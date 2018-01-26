@@ -16,6 +16,7 @@ class Navbar extends Component {
       if (key === '5') {
         localStorage.removeItem('token')
         window.location.reload()
+        this.props.history.push('/')
       }
     }
 
@@ -38,7 +39,9 @@ class Navbar extends Component {
               <Menu.Item key="1">
                 <Link to="/new-article">Write new article</Link>
               </Menu.Item>
-              <Menu.Item key="2">Profile</Menu.Item>
+              <Menu.Item key="2">
+                <Link to={`/@${this.props.currentUser.username}`} >Profile</Link>
+              </Menu.Item>
               <Menu.Item key="3">Settings</Menu.Item>
               <Menu.Item key="4">Help</Menu.Item>
               <Menu.Item key="5">Sign Out</Menu.Item>

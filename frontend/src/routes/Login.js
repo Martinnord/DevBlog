@@ -20,7 +20,7 @@ class Login extends Component {
         validationSchema={schema}
         initialValues={{
           email: 'martin.nordstrom99@gmail.com',
-          password: 'test123'
+          password: 'test123',
         }}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)
