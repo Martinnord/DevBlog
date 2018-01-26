@@ -2,6 +2,7 @@ import GraphQLDate from 'graphql-date'
 import Post from '../models/post'
 import yup from 'yup'
 import User from '../models/user'
+import { requireAuth } from '../services/auth';
 
 export default {
   Date: GraphQLDate,
@@ -16,18 +17,38 @@ export default {
     },
     getPost: async (_, { id }) => {
       return await Post.query().findById(id)
-    }
+    },
+    getUserPosts: async (_, args, { user }) => {
+      try {
+        return await Post.query().where('user_id', user.id )
+      } catch (err) {
+      }
+    },
   },
   Mutation: {
     createPost: async (_, { title, content }, { user }) => {
-      const userId = user.id
-      return await Post.query().insert({ title, content, user_id: userId })
+      try {
+        await requireAuth(user)
+        return await Post.query().insert({ title, content, user_id: user.id })
+      } catch (err) {
+        throw err
+      }
     },
-    updatePost: async (_, { id, title, content }) => {
-      return await Post.query().patchAndFetchById(id, { title, content })
+    updatePost: async (_, { id, title, content }, { user }) => {
+      try {
+        await requireAuth(user)
+        return await Post.query().patchAndFetchById(id, { title, content })
+      } catch (err) {
+        throw err
+      }
     },
-    deletePost: async (_, { id }) => {
-      return await Post.query().deleteById(id)
+    deletePost: async (_, { id }, { user }) => {
+      try {
+        await requireAuth(user)
+        return await Post.query().deleteById(id)
+      } catch (err) {
+        throw err
+      }
     }
   }
 }

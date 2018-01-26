@@ -13,6 +13,7 @@ export default `
   type Query {
     getAllPosts: [Post]
     getPost(id: ID!): Post
+    getUserPosts: [Post]
   }
 
   type Mutation {
