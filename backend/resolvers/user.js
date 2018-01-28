@@ -31,7 +31,7 @@ export default {
       }
       return null
     },
-    getUsers: async () => {
+    getAllUsers: async () => {
       return await User.query()
     },
     getUser: async (_, { id }) => {
@@ -49,7 +49,7 @@ export default {
         throw new Error('Invalid email/password')
       }
 
-      // Validating the
+      // Validating the password
       const validPassword = await bcrypt.compare(password, user.password)
 
       if (!validPassword) {

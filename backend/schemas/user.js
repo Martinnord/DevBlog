@@ -14,8 +14,8 @@ export default `
   }
 
   type Query {
-    getUsers: [User]
-    getUser(id: ID!): User
+    getAllUsers: [User]
+    getUser(id: Int!): User
     currentUser: User
   }
 
