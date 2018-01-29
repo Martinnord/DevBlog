@@ -49,17 +49,17 @@ const getUserPostsQuery = gql`
 `
 
 const getUserQuery = gql`
-  query($id: Int!) {
-    getUser(id: $id) {
+  query($username: String!) {
+    getUser(username: $username) {
       username
     }
   }
 `
 
 export default graphql(getUserQuery, {
-  skip: props => !parseInt(props.match.params.id),
+  // skip: props => !parseInt(props.match.params.username),
   options: props => ({
-    variables: { id: props.match.params.id },
+    variables: { username: props.match.params.username },
   }),
 })(Profile)
 

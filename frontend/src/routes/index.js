@@ -5,6 +5,7 @@ import Register from './Register'
 import Login from './Login'
 import NewArticle from './NewArticle'
 import Profile from './Profile'
+import Post from './Post'
 import NotFound from './PageNotFound'
 
 const App = () => (
@@ -14,7 +15,8 @@ const App = () => (
       <Route exact path="/new-article" component={NewArticle} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/profile/:id" component={Profile} />
+      <Route exact path="/@:username" component={Profile} />
+      <Route exact patg="/@:username/post/:id" component={Post} />
       <Route exact path="/404" component={NotFound} />
     </div>
   </Router>
