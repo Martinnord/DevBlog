@@ -8,14 +8,14 @@ export default `
     firstName: String
     lastName: String
     avatar: String
-    articles: [Post!]!
+    posts: [Post!]!
     updatedAt: Date!
     createdAt: Date!
   }
 
   type Query {
     getAllUsers: [User]
-    getUser(id: Int!): User
+    getUser(username: String!): User
     currentUser: User
   }
 

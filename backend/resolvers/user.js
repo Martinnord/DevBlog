@@ -40,8 +40,9 @@ export default {
     getAllUsers: async () => {
       return await User.query()
     },
-    getUser: async (_, { id }) => {
-      return await User.query().findById(id)
+    getUser: async (_, { username }) => {
+      console.log(username)
+      return User.query().where('username', username).first()
     }
   },
   Mutation: {
