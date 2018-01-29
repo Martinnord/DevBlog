@@ -12,7 +12,7 @@ export default `
 
   type Query {
     getAllPosts: [Post]
-    getPost(id: ID!): Post
+    getPost(id: Int!): Post
     getUserPosts: [Post]
   }
 

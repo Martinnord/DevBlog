@@ -27,18 +27,18 @@ export default {
   Date: GraphQLDate,
   User: {
     posts: ({ id }) => {
-      return Post.query().where('user_id', id)
+      return Post.query().where('user_id', id).orderBy('createdAt', 'desc')
     }
   },
   Query: {
     currentUser: async (_, args, { user }) => {
       if (user) {
-        return await User.query().findById(user.id)
+        return User.query().findById(user.id)
       }
       return null
     },
     getAllUsers: async () => {
-      return await User.query()
+      return User.query()
     },
     getUser: async (_, args) => {
       const user = await User.query().where('username', args.username).first()
