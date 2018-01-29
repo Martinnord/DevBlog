@@ -1,11 +1,11 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+import gql from 'graphql-tag'
 import { CurrentUser } from '../util/auth'
 import { compose, graphql } from 'react-apollo'
 import { Layout, Col, Row } from 'antd'
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
-import gql from 'graphql-tag'
 
 const { Content } = Layout
 

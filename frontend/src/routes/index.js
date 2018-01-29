@@ -16,7 +16,7 @@ const App = () => (
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/@:username" component={Profile} />
-      <Route exact patg="/@:username/post/:id" component={Post} />
+      <Route exact patg="/@:username/article/:id" component={Post} />
       <Route exact path="/404" component={NotFound} />
     </div>
   </Router>
