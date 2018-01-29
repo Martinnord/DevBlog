@@ -27,7 +27,7 @@ export default {
   Date: GraphQLDate,
   User: {
     posts: ({ id }) => {
-      return Post.query().where('id', id)
+      return Post.query().where('user_id', id)
     }
   },
   Query: {
@@ -40,9 +40,9 @@ export default {
     getAllUsers: async () => {
       return await User.query()
     },
-    getUser: async (_, { username }) => {
-      console.log(username)
-      return User.query().where('username', username).first()
+    getUser: async (_, args) => {
+      const user = await User.query().where('username', args.username).first()
+      return user
     }
   },
   Mutation: {
