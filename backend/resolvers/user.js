@@ -1,5 +1,6 @@
 import GraphQLDate from 'graphql-date'
 import User from '../models/user'
+import Post from '../models/post'
 import bcrypt from 'bcryptjs'
 import { promisify } from 'util'
 import { knex } from '../config/database'
@@ -24,6 +25,11 @@ const schema = yup.object().shape({
 
 export default {
   Date: GraphQLDate,
+  User: {
+    posts: ({ id }) => {
+      return Post.query().where('id', id)
+    }
+  },
   Query: {
     currentUser: async (_, args, { user }) => {
       if (user) {

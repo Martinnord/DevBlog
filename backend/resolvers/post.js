@@ -1,7 +1,7 @@
 import GraphQLDate from 'graphql-date'
 import Post from '../models/post'
-import yup from 'yup'
 import User from '../models/user'
+import yup from 'yup'
 import { requireAuth } from '../services/auth';
 
 export default {
