@@ -6,9 +6,9 @@ const { Meta } = Card
 
 const PostCard = props => (
   <div>
-    {props.posts.map(u => (
+    {props.posts.map(post => (
       <Card
-        key={u.id}
+        key={post.id}
         hoverable
         cover={
           <img
@@ -17,9 +17,9 @@ const PostCard = props => (
           />
         }
       >
-        <Meta title={u.title} description={u.content} />
-        <p>Written by {u.user.username}</p>
-        <p>{moment(u.createdAt).format('HH:mm D/MM')}</p>
+        <Meta title={post.title} description={post.content} />
+        <p>Written by {post.user.username}</p>
+        <p>{moment(post.createdAt).format('HH:mm D/MM')}</p>
       </Card>
     ))}
   </div>

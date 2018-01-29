@@ -15,9 +15,10 @@ const Profile = ({ data }) => {
   }
 
   const { loading, getUser } = data
+  // const { posts = [] } = getUser || ''
 
   if (loading) {
-    return 'loading...'
+    return null
   }
 
   if (!loading && !getUser) {
@@ -29,35 +30,33 @@ const Profile = ({ data }) => {
       <Navbar />
       <Content>
         <Row gutter={15} style={{ display: 'flex', justifyContent: 'center' }}>
-          {getUser.username}
-          <Col span={9}>{/* <PostCard posts={getUserPosts} /> */}</Col>
+          <h1>{getUser.username}</h1>
+          <Col span={9}>
+            <PostCard posts={getUser.posts} />
+          </Col>
         </Row>
       </Content>
     </Layout>
   )
 }
 
-const getUserPostsQuery = gql`
-  query getUserPostsQuery {
-    getUserPosts {
-      id
-      title
-      content
-      createdAt
-    }
-  }
-`
-
 const getUserQuery = gql`
   query($username: String!) {
     getUser(username: $username) {
       username
+      posts {
+        title
+        content
+        user {
+          username
+        }
+      }
     }
   }
 `
 
 export default graphql(getUserQuery, {
-  // skip: props => !parseInt(props.match.params.username),
+  skip: props => !props.match.params.username,
   options: props => ({
     variables: { username: props.match.params.username },
   }),
