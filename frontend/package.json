@@ -21,6 +21,7 @@
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.12",
     "recompose": "^0.26.0",
+    "superagent": "^3.8.2",
     "yup": "^0.23.0"
   },
   "scripts": {
