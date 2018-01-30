@@ -1,28 +1,24 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
-import { CurrentUser } from '../util/auth'
-import { compose, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import { Layout, Col, Row } from 'antd'
-import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
 
 const { Content } = Layout
 
 const Post = ({ data }) => {
-  console.log('data', data)
   if (!data) {
     return <Redirect to={{ pathname: '/404' }} />
   }
 
-  const { loading, getUser } = data
-  // const { posts = [] } = getUser || ''
+  const { loading, getPost } = data
 
   if (loading) {
     return null
   }
 
-  if (!loading && !getUser) {
+  if (!loading && !getPost) {
     return <Redirect to={{ pathname: '/404' }} />
   }
 
@@ -31,9 +27,9 @@ const Post = ({ data }) => {
       <Navbar />
       <Content>
         <Row gutter={15} style={{ display: 'flex', justifyContent: 'center' }}>
-          <h1>{getUser.username}</h1>
           <Col span={9}>
-
+            <h1>{getPost.title}</h1>
+            <p>{getPost.content}</p>
           </Col>
         </Row>
       </Content>
@@ -44,7 +40,9 @@ const Post = ({ data }) => {
 const getPostQuery = gql`
   query($id: Int!) {
     getPost(id: $id) {
+      id
       title
+      content
     }
   }
 `
@@ -52,57 +50,6 @@ const getPostQuery = gql`
 export default graphql(getPostQuery, {
   skip: props => !parseInt(props.match.params.id),
   options: props => ({
-    variables: { id: props.match.params.id }
-  })
-})(Post)
-
-/*
-
-
-  return (
-    <Layout style={{ background: '#ECECEC' }}>
-      <Navbar />
-      <Content>
-        <Row gutter={15} style={{ display: 'flex', justifyContent: 'center' }}>
-          <h1>{getUser.username}</h1>
-          <Col span={9}>
-            <PostCard posts={getUser.posts} />
-          </Col>
-        </Row>
-      </Content>
-    </Layout>
-  )
-}
-
-const getUserQuery = gql`
-  query($username: String!) {
-    getUser(username: $username) {
-      username
-      posts {
-        title
-        content
-        user {
-          username
-        }
-      }
-    }
-  }
-`
-
-export default graphql(getUserQuery, {
-  skip: props => !props.match.params.username,
-  options: props => ({
-    variables: { username: props.match.params.username },
+    variables: { id: props.match.params.id },
   }),
-})(Profile)
-
-// export default compose(
-//   graphql(CurrentUser, {
-//     name: 'CurrentUser'
-//   }),
-//   graphql(getUserPostsQuery, {
-//     name: 'getUserPostsQuery'
-//   })
-// )(Profile)
-
-*/
+})(Post)

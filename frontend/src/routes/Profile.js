@@ -1,8 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
-import { CurrentUser } from '../util/auth'
-import { compose, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import { Layout, Col, Row } from 'antd'
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
@@ -15,7 +14,6 @@ const Profile = ({ data }) => {
   }
 
   const { loading, getUser } = data
-  // const { posts = [] } = getUser || ''
 
   if (loading) {
     return null
@@ -45,6 +43,7 @@ const getUserQuery = gql`
     getUser(username: $username) {
       username
       posts {
+        id
         title
         content
         user {
@@ -61,12 +60,3 @@ export default graphql(getUserQuery, {
     variables: { username: props.match.params.username },
   }),
 })(Profile)
-
-// export default compose(
-//   graphql(CurrentUser, {
-//     name: 'CurrentUser'
-//   }),
-//   graphql(getUserPostsQuery, {
-//     name: 'getUserPostsQuery'
-//   })
-// )(Profile)

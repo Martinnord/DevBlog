@@ -8,9 +8,8 @@ const { Meta } = Card
 const PostCard = props => (
   <div>
     {props.posts.map(post => (
-      <Link to={`/@${post.user.username}/article/${post.id}`}>
+      <Link to={`/@${post.user.username}/${post.id}`} key={post.id}>
         <Card
-          key={post.id}
           hoverable
           cover={
             <img
