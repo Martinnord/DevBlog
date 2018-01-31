@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import request from 'superagent'
-import GifItem from '../components/GifItem'
+import { Button } from 'antd'
+import { Link } from 'react-router-dom'
+import './index.css'
 
 export default class NotFound extends Component {
   constructor() {
@@ -11,7 +13,9 @@ export default class NotFound extends Component {
   }
 
   componentDidMount() {
-    const randomDigit = Math.floor((Math.random() * 104) + 5)
+    document.title = '404 | Devblog'
+
+    const randomDigit = Math.floor(Math.random() * 104 + 5)
 
     const url = `https://api.giphy.com/v1/gifs/search?api_key=dppowCiYXsJgxcuSgfRf4CGWqx2onwuo&q=fail&limit=1&offset=${randomDigit}&rating=PG&lang=en`
 
@@ -22,7 +26,20 @@ export default class NotFound extends Component {
 
   render() {
     return (
-      <GifItem gif={this.state.gif} />
+      <div
+        className="not-found-layout"
+        style={{ backgroundImage: `url(${this.state.gif})` }}
+      >
+        <div className="not-found-container">
+          <h1 className="not-found-header">404</h1>
+          <p className="not-found-text">
+            Sorry, the page doesn't seem to exist!
+          </p>
+          <Button className="back-button">
+            <Link to="/">Back to Devblog</Link>
+          </Button>
+        </div>
+      </div>
     )
   }
 }

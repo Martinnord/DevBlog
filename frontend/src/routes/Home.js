@@ -1,6 +1,7 @@
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import React, { Component } from 'react'
 import { Layout, Col, Row } from 'antd'
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
@@ -9,13 +10,9 @@ const { Content } = Layout
 
 class Home extends Component {
   render() {
-    const { data: { loading, error, getAllPosts = [] } } = this.props
+    const { data: { loading, getAllPosts = [] } } = this.props
     if (loading) {
-      return <p>loading...</p>
-    }
-
-    if (error) {
-      return <h1>Shit just hit the fan!</h1>
+      return null
     }
 
     return (

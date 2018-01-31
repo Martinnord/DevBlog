@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import { Layout, Col, Row } from 'antd'
+import { Layout, Col, Row, Spin } from 'antd'
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
 
@@ -16,7 +16,7 @@ const Profile = ({ data }) => {
   const { loading, getUser } = data
 
   if (loading) {
-    return null
+    return <Spin size="large" />
   }
 
   if (!loading && !getUser) {
