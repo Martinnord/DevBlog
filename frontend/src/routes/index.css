@@ -33,3 +33,37 @@
 .ant-btn-primary {
   width: 100%;
 }
+
+.not-found-layout {
+  height: 100%;
+  background-size: cover;
+  background-position: 50%;
+  background-position-x: 50%;
+}
+
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%
+}
+
+.not-found-header {
+  font-size: 90px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.not-found-text {
+  font-size: 18px;
+  margin-top: -40px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.back-button:hover {
+  box-shadow: 0 0 0 !important;
+}
