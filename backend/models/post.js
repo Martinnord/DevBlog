@@ -13,7 +13,8 @@ export default class Post extends Model {
       properties: {
         id: { type: 'integer' },
         title: { type: 'string', minLength: 1, maxLength: 255 },
-        content: { type: 'string', minLength: 1, maxLength: 255 },
+        content: { type: 'string', minLength: 1, maxLength: 3000 },
+        imageUrl: { type: 'string', minLength: 1, maxLength: 255 },
       }
     }
   }

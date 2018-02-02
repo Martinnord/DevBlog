@@ -5,6 +5,7 @@ export default `
     id: ID!
     title: String!
     content: String!
+    imageUrl: String
     user: User!
     updatedAt: String
     createdAt: String
@@ -17,7 +18,7 @@ export default `
   }
 
   type Mutation {
-    createPost(title: String!, content: String!): Post
+    createPost(title: String!, content: String!, imageUrl: String): Post
     updatePost(id: ID!, title: String, content: String!): Post
     deletePost(id: ID!): Post
   }

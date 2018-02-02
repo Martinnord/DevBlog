@@ -22,8 +22,11 @@ exports.up = function(knex) {
         .notNullable()
         .defaultTo('')
       table
-        .string('content')
+        .string('content', 100000)
         .notNullable()
+        .defaultTo('')
+      table
+        .string('imageUrl')
         .defaultTo('')
       table
         .integer('user_id')

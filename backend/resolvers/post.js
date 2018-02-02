@@ -26,10 +26,11 @@ export default {
     },
   },
   Mutation: {
-    createPost: async (_, { title, content }, { user }) => {
+    createPost: async (_, {title, content, imageUrl}, { user }) => {
+      // console.log('context', context)
       try {
         await requireAuth(user)
-        return await Post.query().insert({ title, content, user_id: user.id })
+        return await Post.query().insert({ title, content, imageUrl, user_id: user.id })
       } catch (err) {
         throw err
       }
@@ -37,7 +38,7 @@ export default {
     updatePost: async (_, { id, title, content }, { user }) => {
       try {
         await requireAuth(user)
-        return await Post.query().patchAndFetchById(id, { title, content })
+        return await Post.query().patchAndFetchById(id, { title, content, imageUrl })
       } catch (err) {
         throw err
       }
