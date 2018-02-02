@@ -3,8 +3,8 @@ import { compose } from 'react-apollo'
 import yup from 'yup'
 import { Formik, Form } from 'formik'
 import { Col, Row, Input, Icon, Button, Alert } from 'antd'
-import './index.css'
 import { LoginMutation } from '../util/auth'
+import './index.css'
 
 class Login extends Component {
   render() {
@@ -19,8 +19,8 @@ class Login extends Component {
       <Formik
         validationSchema={schema}
         initialValues={{
-          email: 'martin.nordstrom99@gmail.com',
-          password: 'test123',
+          email: '',
+          password: '',
         }}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)

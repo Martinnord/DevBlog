@@ -15,7 +15,7 @@ const currentUserQUERY = gql`
 export const CurrentUser = graphql(currentUserQUERY, {
   alias: 'CurrentUser',
   options: { fetchPolicy: 'cache-first' },
-  props: ({ data: { currentUser, loading } }) => ({ currentUser, loading }),
+  props: ({ data: { currentUser, loading } }) => ({ currentUser, loading })
 })
 
 const LoginMUTATION = gql`
@@ -27,6 +27,40 @@ const LoginMUTATION = gql`
     }
   }
 `
+
+const registerMUTATION = gql`
+  mutation($username: String!, $email: String!, $password: String!) {
+    register(username: $username, email: $email, password: $password) {
+      email
+      username
+      jwt
+    }
+  }
+`
+
+export const RegisterMutation = graphql(registerMUTATION, {
+  alias: 'Register',
+  props: ({ mutate }) => ({
+    register: (email, username, password) =>
+      mutate({
+        variables: { email, username, password },
+        update: (proxy, { data: { register } }) => {
+          // update the cache with the new currentUser
+          const currentUser = {
+            id: register.id,
+            username: register.username,
+            email,
+            jwt: register.jwt,
+          }
+
+          proxy.writeQuery({ query: currentUserQUERY, data: { currentUser } })
+
+          // Store the token
+          localStorage.setItem('token', register.jwt)
+        }
+      })
+  })
+})
 
 export const LoginMutation = graphql(LoginMUTATION, {
   alias: 'Login',
@@ -40,14 +74,14 @@ export const LoginMutation = graphql(LoginMUTATION, {
             id: login.id,
             username: login.username,
             email,
-            jwt: login.jwt,
+            jwt: login.jwt
           }
 
           proxy.writeQuery({ query: currentUserQUERY, data: { currentUser } })
 
           // Store the token
           localStorage.setItem('token', login.jwt)
-        },
-      }),
-  }),
+        }
+      })
+  })
 })

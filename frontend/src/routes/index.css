@@ -6,6 +6,14 @@
   height: 100%;
 }
 
+.ant-layout {
+  background: #FFF !important;
+}
+
+.ant-menu-horizontal {
+  border-bottom: none !important;
+}
+
 .login-form {
   width: 400px;
 }
@@ -66,4 +74,18 @@
 
 .back-button:hover {
   box-shadow: 0 0 0 !important;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  height: 60px;
+  width: 100%;
+}
+
+.ant-card {
+  margin: 15px 0 15px 0 !important;
 }

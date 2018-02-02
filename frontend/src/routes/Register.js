@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import { compose } from 'react-apollo'
 import yup from 'yup'
 import { Formik, Form } from 'formik'
 import { Col, Row, Input, Icon, Button, Alert } from 'antd'
+import { RegisterMutation } from '../util/auth'
 import './index.css'
 
 class Register extends Component {
@@ -28,21 +28,13 @@ class Register extends Component {
         initialValues={{
           email: '',
           username: '',
-          password: ''
+          password: '',
         }}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)
           try {
-            const response = await this.props.mutate({
-              variables: {
-                username: values.username,
-                email: values.email,
-                password: values.password
-              }
-            })
-            const token = response.data.register.jwt
-            localStorage.setItem('token', token)
-            this.props.history.push('/home')
+            await this.props.register(values.email, values.username, values.password)
+            this.props.history.push('/')
           } catch (err) {
             const graphqlError = err.graphQLErrors[0].message
             setStatus(graphqlError)
@@ -169,14 +161,4 @@ class Register extends Component {
   }
 }
 
-const registerMutation = gql`
-  mutation($username: String!, $email: String!, $password: String!) {
-    register(username: $username, email: $email, password: $password) {
-      email
-      username
-      jwt
-    }
-  }
-`
-
-export default graphql(registerMutation)(Register)
+export default compose(RegisterMutation)(Register)

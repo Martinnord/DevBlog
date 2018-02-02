@@ -28,6 +28,7 @@ const Post = ({ data }) => {
       <Content>
         <Row gutter={15} style={{ display: 'flex', justifyContent: 'center' }}>
           <Col span={9}>
+            <img src={getPost.imageUrl} alt="post_image" />
             <h1>{getPost.title}</h1>
             <p>{getPost.content}</p>
           </Col>
@@ -42,6 +43,7 @@ const getPostQuery = gql`
     getPost(id: $id) {
       id
       title
+      imageUrl
       content
     }
   }
@@ -50,6 +52,6 @@ const getPostQuery = gql`
 export default graphql(getPostQuery, {
   skip: props => !parseInt(props.match.params.id),
   options: props => ({
-    variables: { id: props.match.params.id },
-  }),
+    variables: { id: props.match.params.id }
+  })
 })(Post)

@@ -2,6 +2,7 @@ import React from 'react'
 import { Card } from 'antd'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
+import '../routes/index.css'
 
 const { Meta } = Card
 
@@ -10,15 +11,23 @@ const PostCard = props => (
     {props.posts.map(post => (
       <Link to={`/@${post.user.username}/${post.id}`} key={post.id}>
         <Card
+          style={{ margin: '20px 0 20px 0' }}
           hoverable
           cover={
             <img
               alt="example"
-              src="https://www.elegantthemes.com/blog/wp-content/uploads/2017/07/programming-languages-to-learn-for-wordpress-featured-image.png"
+              src={`${post.imageUrl ? `${post.imageUrl}` : ''}`}
             />
           }
         >
-          <Meta title={post.title} description={post.content} />
+          <Meta
+            title={post.title}
+            description={`${
+              post.content.length > 135
+                ? `${post.content.substring(0, 135)}...`
+                : post.content
+            }`}
+          />
           <p>Written by {post.user.username}</p>
           <p>{moment(post.createdAt).format('HH:mm D/MM')}</p>
         </Card>

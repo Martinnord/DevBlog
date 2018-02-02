@@ -39,6 +39,7 @@ const getAllPostsQuery = gql`
       id
       title
       content
+      imageUrl
       createdAt
       user {
         username
