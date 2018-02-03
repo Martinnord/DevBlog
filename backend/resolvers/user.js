@@ -8,6 +8,7 @@ import yup from 'yup'
 import _ from 'lodash'
 import jwt from 'jsonwebtoken'
 import constants from '../config/constants'
+import { requireAuth } from '../services/auth'
 
 const hashAsync = promisify(bcrypt.hash)
 
@@ -27,7 +28,9 @@ export default {
   Date: GraphQLDate,
   User: {
     posts: ({ id }) => {
-      return Post.query().where('user_id', id).orderBy('createdAt', 'desc')
+      return Post.query()
+        .where('user_id', id)
+        .orderBy('createdAt', 'desc')
     }
   },
   Query: {
@@ -41,7 +44,9 @@ export default {
       return User.query()
     },
     getUser: async (_, args) => {
-      const user = await User.query().where('username', args.username).first()
+      const user = await User.query()
+        .where('username', args.username)
+        .first()
       return user
     }
   },
@@ -93,6 +98,28 @@ export default {
         user.jwt = jwt.sign({ id: user.id }, SECRET)
 
         return user
+      }
+    },
+    updateUserInfo: async (_, args, { user }) => {
+      // Should be able to update password later
+      try {
+        await requireAuth(user)
+        return User.query().patchAndFetchById(user.id, {
+          username: args.username,
+          email: args.email,
+          name: args.name,
+          profileImage: args.profileImage,
+          websiteUrl: args.websiteUrl,
+          bio: args.bio,
+          location: args.location,
+          education: args.education,
+          employerName: args.employerName,
+          employerTitle: args.employerTitle,
+          twitterUsername: args.twitterUsername,
+          githubUsername: args.githubUsername
+        })
+      } catch (err) {
+        throw err
       }
     }
   }

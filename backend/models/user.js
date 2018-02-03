@@ -15,8 +15,17 @@ export default class User extends Model {
         id: { type: 'integer' },
         username: { type: 'string', minLength: 1, maxLength: 16 },
         email: { type: 'string', minLength: 1, maxLength: 62 },
+        name: { type: 'string', minLength: 1, maxLength: 50 },
         password: { type: 'string', minLength: 6, maxLength: 60 },
-        firstname: { type: 'string', minLength: 1, maxLength: 50 }
+        profileImage: { type: 'string', minLength: 1 },
+        websiteUrl: { type: 'string', minLength: 1, maxLength: 100 },
+        bio: { type: 'string', minLength: 1, maxLength: 400 },
+        location: { type: 'string', minLength: 1, maxLength: 50 },
+        education: { type: 'string', minLength: 1, maxLength: 50 },
+        employerName: { type: 'string', minLength: 1, maxLength: 50 },
+        employerTitle: { type: 'string', minLength: 1, maxLength: 50 },
+        twitterUsername: { type: 'string', minLength: 1, maxLength: 50 },
+        githubUsername: { type: 'string', minLength: 1, maxLength: 50 },
       }
     }
   }
