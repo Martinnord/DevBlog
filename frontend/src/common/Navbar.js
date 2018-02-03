@@ -23,11 +23,12 @@ class Navbar extends Component {
 
     return (
       <Menu className="navbar" mode="horizontal" onClick={onClick}>
-        <Menu.Item>
+        <Menu.Item className="navbar-title">
           <Link to="/">DEVBLOG</Link>
         </Menu.Item>
         {this.props.currentUser ? (
           <SubMenu
+            className="navbar-submenu"
             title={
               <span>
                 <Icon type="user" />
@@ -35,7 +36,6 @@ class Navbar extends Component {
               </span>
             }
           >
-            {/* <MenuItemGroup> */}
             <Menu.Item key="1">
               <Link to="/new-article">Write new article</Link>
             </Menu.Item>
@@ -45,10 +45,8 @@ class Navbar extends Component {
             <Menu.Item key="3">Settings</Menu.Item>
             <Menu.Item key="4">Help</Menu.Item>
             <Menu.Item key="5">Sign Out</Menu.Item>
-            {/* </MenuItemGroup> */}
           </SubMenu>
         ) : (
-          // <MenuItemGroup>
           <Menu.Item>
             <Button>
               <Link to="/login">Login!</Link>
@@ -57,8 +55,6 @@ class Navbar extends Component {
               <Link to="/register">Sign up!</Link>
             </Button>
           </Menu.Item>
-
-          // </MenuItemGroup>
         )}
       </Menu>
     )

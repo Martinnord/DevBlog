@@ -86,6 +86,26 @@
   width: 100%;
 }
 
+.navbar-title {
+  margin-right: auto !important;
+}
+
+.navbar-submenu {
+  margin-left: auto !important;
+}
+
+.hr {
+  border: 0;
+  height: 0;
+  width: 38%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3)
+}
+
 .ant-card {
   margin: 15px 0 15px 0 !important;
+}
+
+.post-title {
+  font-size: 47px;
 }

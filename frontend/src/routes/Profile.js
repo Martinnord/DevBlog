@@ -42,10 +42,13 @@ const getUserQuery = gql`
   query($username: String!) {
     getUser(username: $username) {
       username
+      bio
       posts {
         id
         title
         content
+        imageUrl
+        createdAt
         user {
           username
         }

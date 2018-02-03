@@ -23,7 +23,7 @@ class Home extends Component {
             gutter={16}
             style={{ display: 'flex', justifyContent: 'center' }}
           >
-            <Col span={9}>
+            <Col span={6}>
               <PostCard posts={getAllPosts} />
             </Col>
           </Row>

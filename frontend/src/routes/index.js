@@ -5,7 +5,7 @@ import Register from './Register'
 import Login from './Login'
 import NewArticle from './NewArticle'
 import Profile from './Profile'
-import Post from './Post'
+import PostLayout from './PostLayout'
 import NotFound from './PageNotFound'
 
 const App = () => (
@@ -17,7 +17,7 @@ const App = () => (
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/@:username" component={Profile} />
-        <Route exact path="/@:username/:id" component={Post} />
+        <Route exact path="/@:username/:id" component={PostLayout} />
         <Route component={NotFound} />
       </Switch>
     </div>
