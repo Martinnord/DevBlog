@@ -9,6 +9,8 @@ module.exports = {
     "jsx-a11y/anchor-is-valid": 0,
     "arrow-parens": 0,
     "import/prefer-default-export": 0,
+    "no-undef": 0,
+    "prefer-destructuring": 0,
     semi: [2, "never"]
   }
 }

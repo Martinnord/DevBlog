@@ -2,20 +2,19 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import yup from 'yup'
 import { graphql } from 'react-apollo'
-import { Layout, Card, Col, Row, Input, Button, Alert } from 'antd'
+import { Layout, Col, Row, Input, Button, Alert } from 'antd'
 import { Formik, Form } from 'formik'
 import Navbar from '../common/Navbar'
 import { getAllPostsQuery } from '../graphql/newArticle'
 
 const { TextArea } = Input
 const { Content } = Layout
-const { Meta } = Card
 
 class NewArticle extends Component {
   render() {
     const schema = yup.object().shape({
       title: yup.string().required('Please include a title'),
-      content: yup.string().required('Please include some content')
+      content: yup.string().required('Please include some content'),
     })
 
     return (
@@ -29,7 +28,7 @@ class NewArticle extends Component {
                 initialValues={{
                   title: '',
                   content: '',
-                  imageUrl: ''
+                  imageUrl: '',
                 }}
                 onSubmit={async (values, { setSubmitting, setStatus }) => {
                   setSubmitting(true)
@@ -38,15 +37,15 @@ class NewArticle extends Component {
                       variables: {
                         title: values.title,
                         content: values.content,
-                        imageUrl: values.imageUrl
+                        imageUrl: values.imageUrl,
                       },
                       update: (store, { data: { createPost } }) => {
                         const data = store.readQuery({
-                          query: getAllPostsQuery
+                          query: getAllPostsQuery,
                         })
                         data.getAllPosts.push(createPost)
                         store.writeQuery({ query: getAllPostsQuery, data })
-                      }
+                      },
                     })
                     this.props.history.push('/')
                   } catch (err) {
@@ -63,7 +62,7 @@ class NewArticle extends Component {
                   handleChange,
                   handleBlur,
                   handleSubmit,
-                  status
+                  status,
                 }) => (
                   <Form>
                     <Row>

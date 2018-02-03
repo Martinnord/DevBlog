@@ -12,7 +12,7 @@ class Login extends Component {
       email: yup
         .string()
         .email()
-        .required('please enter an email address')
+        .required('please enter an email address'),
     })
 
     return (
@@ -40,7 +40,7 @@ class Login extends Component {
           isSubmitting,
           handleChange,
           handleBlur,
-          status
+          status,
         }) => (
           <div className="container">
             <Form className="login-form">

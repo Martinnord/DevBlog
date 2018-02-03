@@ -5,7 +5,6 @@ import { CurrentUser } from '../util/auth'
 import '../routes/index.css'
 
 const SubMenu = Menu.SubMenu
-const MenuItemGroup = Menu.ItemGroup
 
 class Navbar extends Component {
   render() {

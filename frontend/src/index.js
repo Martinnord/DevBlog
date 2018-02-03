@@ -1,5 +1,4 @@
 import React from 'react'
-import App from './routes'
 import { render } from 'react-dom'
 import { ApolloProvider } from 'react-apollo'
 import { createHttpLink } from 'apollo-link-http'
@@ -8,6 +7,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloClient } from 'apollo-client'
 import 'antd/dist/antd.css'
 import './styles/css/index.css'
+import App from './routes'
+
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('token')
@@ -16,7 +17,7 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       authorization: token ? `Bearer ${token}` : null,
-    }
+    },
   }
 })
 

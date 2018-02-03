@@ -1,10 +1,7 @@
 import React from 'react'
-import { Card, Col } from 'antd'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import '../routes/index.css'
-
-const { Meta } = Card
 
 const Post = ({ post }) => (
   <div>

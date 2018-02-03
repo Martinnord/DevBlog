@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import { Layout, Col, Row } from 'antd'

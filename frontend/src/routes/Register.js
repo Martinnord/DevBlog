@@ -20,7 +20,7 @@ class Register extends Component {
       password: yup
         .string()
         .min(5, 'password needs to be at least 5 characters long')
-        .required('please enter a password')
+        .required('please enter a password'),
     })
     return (
       <Formik
@@ -45,11 +45,10 @@ class Register extends Component {
           values,
           touched,
           errors,
-          dirty,
           isSubmitting,
           handleChange,
           handleBlur,
-          status
+          status,
         }) => (
           <div className="container">
             <Form className="login-form">
