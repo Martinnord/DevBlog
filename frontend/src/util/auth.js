@@ -6,6 +6,15 @@ const currentUserQUERY = gql`
     currentUser {
       id
       username
+      name
+      profileImage
+      websiteUrl
+      bio
+      location
+      education
+      employerName
+      twitterUsername
+      githubUsername
       email
       jwt
     }

@@ -7,6 +7,7 @@ import NewArticle from './NewArticle'
 import Profile from './Profile'
 import PostLayout from './PostLayout'
 import NotFound from './PageNotFound'
+import Settings from './Settings'
 
 const App = () => (
   <Router>
@@ -18,6 +19,7 @@ const App = () => (
         <Route exact path="/login" component={Login} />
         <Route exact path="/@:username" component={Profile} />
         <Route exact path="/@:username/:id" component={PostLayout} />
+        <Route exact path="/settings" component={Settings} />
         <Route component={NotFound} />
       </Switch>
     </div>

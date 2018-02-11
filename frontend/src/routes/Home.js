@@ -18,13 +18,8 @@ class Home extends Component {
       <Layout style={{ background: '#ECECEC' }}>
         <Navbar />
         <Content>
-          <Row
-            gutter={16}
-            style={{ display: 'flex', justifyContent: 'center' }}
-          >
-            <Col span={6}>
-              <PostCard posts={getAllPosts} />
-            </Col>
+          <Row>
+            <PostCard posts={getAllPosts} />
           </Row>
         </Content>
       </Layout>

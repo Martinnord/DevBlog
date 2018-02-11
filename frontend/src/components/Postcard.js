@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'antd'
+import { Card, Col } from 'antd'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import '../routes/index.css'
@@ -7,7 +7,7 @@ import '../routes/index.css'
 const { Meta } = Card
 
 const PostCard = props => (
-  <div>
+  <Col span={12} offset={6}>
     {props.posts.map(post => (
       <Link to={`/@${post.user.username}/${post.id}`} key={post.id}>
         <Card
@@ -33,7 +33,7 @@ const PostCard = props => (
         </Card>
       </Link>
     ))}
-  </div>
+  </Col>
 )
 
 export default PostCard

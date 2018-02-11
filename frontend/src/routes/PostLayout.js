@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import { Layout, Row } from 'antd'
+import { Layout, Row, Col } from 'antd'
 import Navbar from '../common/Navbar'
 import Post from '../components/Post'
 import './index.css'
@@ -29,7 +29,7 @@ const PostLayout = ({ data }) => {
       <Navbar />
       <Content>
         <hr className="hr" />
-        <Row type="flex" justify="center">
+        <Row>
           <Post post={getPost} />
         </Row>
       </Content>
@@ -46,7 +46,12 @@ const getPostQuery = gql`
       imageUrl
       createdAt
       user {
+        name
         username
+        profileImage      
+        bio
+        twitterUsername
+        githubUsername
       }
     }
   }
@@ -55,6 +60,6 @@ const getPostQuery = gql`
 export default graphql(getPostQuery, {
   skip: props => !parseInt(props.match.params.id),
   options: props => ({
-    variables: { id: props.match.params.id },
-  }),
+    variables: { id: props.match.params.id }
+  })
 })(PostLayout)

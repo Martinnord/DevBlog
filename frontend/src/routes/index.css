@@ -107,5 +107,29 @@
 }
 
 .post-title {
-  font-size: 47px;
+  font-size: 42px;
+  line-height: 1.04;
+  letter-spacing: -.015em;
+  font-weight: bold;
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
+}
+
+.profile-name {
+  font-weight: bold;
+}
+
+.post-content {
+  font-size: 21px;
+  line-height: 1.58;
+  letter-spacing: -.003em;
+  font-family: 'Vollkorn', serif;
+}
+
+.profile-image {
+  width: 100%;
+  height: auto;
 }

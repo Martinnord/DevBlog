@@ -41,8 +41,9 @@ class Navbar extends Component {
             <Menu.Item key="2">
               <Link to={`/@${this.props.currentUser.username}`}>Profile</Link>
             </Menu.Item>
-            <Menu.Item key="3">Settings</Menu.Item>
-            <Menu.Item key="4">Help</Menu.Item>
+            <Menu.Item key="3">
+              <Link to="/settings">Settings</Link>
+            </Menu.Item>
             <Menu.Item key="5">Sign Out</Menu.Item>
           </SubMenu>
         ) : (
