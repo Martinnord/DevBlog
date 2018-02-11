@@ -44,8 +44,8 @@ export default `
     login(email: String!, password: String!): User
     updateUserInfo(
       id: Int!
-      username: String!
-      email: String!
+      username: String
+      email: String
       name: String
       profileImage: String
       websiteUrl: String

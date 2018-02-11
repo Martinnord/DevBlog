@@ -103,6 +103,7 @@ export default {
     updateUserInfo: async (_, args, { user }) => {
       // Should be able to update password later
       try {
+        // const user = User.query().findById(user.id)
         await requireAuth(user)
         return User.query().patchAndFetchById(user.id, {
           username: args.username,
