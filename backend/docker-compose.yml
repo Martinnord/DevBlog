@@ -14,15 +14,19 @@ services:
       POSTGRES_DB: devblog
   web:
     image: node:8-alpine
-    command: "node /app/index.js"
+    command: "node /app/dist/index.js"
     volumes:
       - ".:/app"
     working_dir: "/app"
+    depends_on:
+      - "db"
     ports:
       - 3010:3010
     environment:
+      DB_PASSWORD: password
+      DB_USER: martinnord
+      DB_NAME: devblog
       DB_HOST: db
       REDIS_HOST: redis
-    command: ["./wait-for-it.sh", "db:5432", "--", "node", "index.js"]
 networks:
   webnet:
