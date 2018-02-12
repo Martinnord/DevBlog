@@ -92,6 +92,7 @@ app.use('/graphiql', (0, _apolloServerExpress.graphiqlExpress)({
   endpointURL: '/graphql'
 }));
 
+console.log('DB_HOST', process.env.DB_HOST);
 const graphQLServer = (0, _http.createServer)(app);
 
 graphQLServer.listen(3010, err => {
