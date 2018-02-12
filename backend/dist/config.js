@@ -1,4 +1,6 @@
-require('dotenv').config()
+'use strict';
+
+require('dotenv').config();
 
 module.exports = {
   DATABASE: process.env.DATABASE_URL_LOCAL,
@@ -11,4 +13,4 @@ module.exports = {
   define: {
     underscored: true
   }
-}
+};

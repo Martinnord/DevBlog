@@ -1,0 +1,28 @@
+version: "3"
+services:
+  redis:
+    image: redis
+    networks:
+      - webnet
+  db:
+    image: postgres
+    networks:
+      - webnet
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: martinnord
+      POSTGRES_DB: devblog
+  web:
+    image: node:8-alpine
+    command: "node /app/index.js"
+    volumes:
+      - ".:/app"
+    working_dir: "/app"
+    ports:
+      - 3010:3010
+    environment:
+      DB_HOST: db
+      REDIS_HOST: redis
+    command: ["./wait-for-it.sh", "db:5432", "--", "node", "index.js"]
+networks:
+  webnet:

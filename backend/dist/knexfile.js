@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   development: {
     client: 'pg',
@@ -19,4 +21,4 @@ module.exports = {
       directory: __dirname + '/config/seeds'
     }
   }
-}
+};

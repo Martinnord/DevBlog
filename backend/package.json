@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node index.js",
+    "serve": "node dist/index.js",
+    "build": "babel src -d dist",
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/index.js",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "cross-env NODE_ENV=prod nodemon --exec babel-node index.js"
   },
@@ -12,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^1.2.0",
+    "babel-runtime": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
@@ -43,6 +48,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "dotenv": "^4.0.0",
     "nodemon": "^1.12.1",
