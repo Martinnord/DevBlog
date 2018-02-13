@@ -6,12 +6,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
   development: {
     client: 'pg',
-    connection: {
-      host: process.env.DB_HOST || 'localhost',
-      port: process.env.DB_PORT || 5432,
-      user: process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASSWORD || undefined
-    },
+    connection: `postgres://martinnord:password@db/devblog`,
+    // connection: {
+    //   host: 'backend_db_1',
+    //   port: process.env.DB_PORT || 5432,
+    //   user: process.env.DB_USER || 'postgres',
+    //   password: process.env.DB_PASSWORD || undefined,
+    //   database: process.env.DATABASE
+    // },
     migrations: {
       directory: __dirname + '/config/migrations'
     },

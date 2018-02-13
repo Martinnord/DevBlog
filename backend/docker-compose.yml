@@ -6,12 +6,12 @@ services:
       - webnet
   db:
     image: postgres
-    networks:
-      - webnet
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: martinnord
       POSTGRES_DB: devblog
+    ports:
+      - "15432:5432"
   web:
     image: node:8-alpine
     command: "node /app/dist/index.js"
@@ -21,7 +21,10 @@ services:
     depends_on:
       - "db"
     ports:
-      - 3010:3010
+      - "3010:3010"
+    links:
+      - "db"
+      - "redis"
     environment:
       DB_PASSWORD: password
       DB_USER: martinnord
