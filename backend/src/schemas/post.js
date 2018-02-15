@@ -7,6 +7,7 @@ export default `
     content: String!
     imageUrl: String
     user: User!
+    likes: Int!
     updatedAt: String
     createdAt: String
   }
@@ -21,5 +22,6 @@ export default `
     createPost(title: String!, content: String!, imageUrl: String): Post
     updatePost(id: ID!, title: String, content: String!): Post
     deletePost(id: ID!): Post
+    likePost(id: ID!): Post
   }
 `;

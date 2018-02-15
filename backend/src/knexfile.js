@@ -1,7 +1,7 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: `postgres://martinnord:password@db/devblog`,
+    connection: `postgres://localhost/devblog`,
     // connection: {
     //   host: 'backend_db_1',
     //   port: process.env.DB_PORT || 5432,
