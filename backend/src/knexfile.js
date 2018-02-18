@@ -16,14 +16,12 @@ export default {
   },
   production: {
     client: 'pg',
-    connection: `postgres://${process.env.DB_HOST}/devblog`,
-    // connection: {
-    //   port: process.env.PORT,
-    //   host: 'pg',
-    //   database: process.env.DATABASE,
-    //   user: process.env.USERNAME,
-    //   password: process.env.PASSWORD,
-    // },
+    // connection: `postgres://${process.env.DB_HOST}/devblog`,
+    connection: {
+      database: process.env.PROD_DATABASE,
+      user: process.env.PROD_USER,
+      password: process.env.PROD_PASSWORD
+    },
     migrations: {
       directory: __dirname + '/config/migrations'
     },
