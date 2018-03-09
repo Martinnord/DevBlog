@@ -40,7 +40,7 @@ const addUser = async req => {
   req.next()
 }
 
-// app.use(cors())
+app.use(cors())
 app.use(addUser)
 
 app.use(
