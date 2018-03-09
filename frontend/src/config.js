@@ -3,7 +3,7 @@ const devConfig = {
 }
 
 const prodConfig = {
-  GRAPHQL_URI: process.env.GRAPHQL_URI_PROD
+  GRAPHQL_URI: 'http://devblogapi.vyralynn.com/graphql'
 }
 
 function envConfig(env) {
