@@ -40,7 +40,11 @@ const addUser = async req => {
   req.next()
 }
 
-app.use(cors('*'))
+app.use(cors({
+  origin: ['http://devblog.vyralynn.com'],
+  methods: ['GET', 'POST'],
+  credentials: true
+}))
 app.use(addUser)
 
 app.use(
