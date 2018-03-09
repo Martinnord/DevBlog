@@ -11,7 +11,7 @@ class Home extends Component {
   render() {
     const { data: { loading, getAllPosts = [] } } = this.props
     if (loading) {
-      return 'loading'
+      return null
     }
 
     return (

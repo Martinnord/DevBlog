@@ -34,8 +34,8 @@ const Profile = ({ data }) => {
             <p className="profile-bio">{getUser.bio}</p>
           </Col>
           <Col span={12} offset={6}>
-            <Link to={`https://twitter.com/${getUser.twitterUsername}`}><Icon type="twitter" /></Link>
-            <Link to={`https://github.com/${getUser.githubUsername}`}><Icon type="github" /></Link>
+            <Link to={`https://twitter.com/${getUser.twitterUsername}`}>{getUser.twitterUsername}<Icon type="twitter" /></Link>
+            <Link to={`https://github.com/${getUser.githubUsername}`}>{getUser.githubUsername}<Icon type="github" /></Link>
           </Col>
           <PostCard posts={getUser.posts} />
         </Row>
