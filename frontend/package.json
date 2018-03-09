@@ -27,6 +27,7 @@
     "superagent": "^3.8.2",
     "yup": "^0.23.0"
   },
+  "proxy": "http://devblogapi.vyralynn.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
