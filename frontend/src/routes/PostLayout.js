@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import { Layout, Row, Col } from 'antd'
+import { Layout, Row } from 'antd'
 import Navbar from '../common/Navbar'
 import Post from '../components/Post'
 import './index.css'
@@ -58,6 +58,6 @@ const getPostQuery = gql`
 export default graphql(getPostQuery, {
   skip: props => !parseInt(props.match.params.id),
   options: props => ({
-    variables: { id: props.match.params.id }
-  })
+    variables: { id: props.match.params.id },
+  }),
 })(PostLayout)
