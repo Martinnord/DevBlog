@@ -26,14 +26,9 @@ exports.up = function(knex) {
     .createTable('posts', function(table) {
       table.increments('id').primary()
       table
-        .string('title')
-        .notNullable()
-        .defaultTo('')
-      table
         .text('content')
         .notNullable()
         .defaultTo('')
-      table.string('imageUrl').defaultTo('')
       table
         .integer('user_id')
         .references('id')
