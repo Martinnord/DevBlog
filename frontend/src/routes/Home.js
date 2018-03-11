@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import { Layout, Col, Row } from 'antd'
+import { Layout, Row } from 'antd'
+import { EditorState, Editor, convertToRaw, convertFromRaw } from 'draft-js';
+
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
 
@@ -14,6 +16,10 @@ class Home extends Component {
       return null
     }
 
+
+    console.log(getAllPosts)
+    // convertFromRaw(JSON.parse(this.props.blogPost.content))
+    // console.log(convertFromRaw(JSON.parse(getAllPosts)))
     return (
       <Layout style={{ background: '#ECECEC' }}>
         <Navbar />
@@ -31,9 +37,7 @@ const getAllPostsQuery = gql`
   query getAllPostsQuery {
     getAllPosts {
       id
-      title
       content
-      imageUrl
       createdAt
       user {
         username

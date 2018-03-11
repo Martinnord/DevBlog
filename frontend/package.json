@@ -16,7 +16,7 @@
     "graphql": "^0.12.3",
     "graphql-tag": "^2.6.0",
     "jwt-decode": "^2.2.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.5",
     "moment": "^2.18.1",
     "react": "^16.2.0",
     "react-apollo": "^2.0.4",

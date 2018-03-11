@@ -41,9 +41,7 @@ const getPostQuery = gql`
   query($id: Int!) {
     getPost(id: $id) {
       id
-      title
       content
-      imageUrl
       createdAt
       user {
         name
