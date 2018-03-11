@@ -26,11 +26,11 @@ export default {
     },
   },
   Mutation: {
-    createPost: async (_, {title, content, imageUrl}, { user }) => {
+    createPost: async (_, { content }, { user }) => {
       // console.log('context', context)
       try {
         await requireAuth(user)
-        return await Post.query().insert({ title, content, imageUrl, user_id: user.id })
+        return await Post.query().insert({ content, user_id: user.id })
       } catch (err) {
         throw err
       }
