@@ -9,14 +9,13 @@ import { Value } from 'slate'
 import Plain from 'slate-plain-serializer'
 import { Editor } from 'slate-react'
 
-
-
 import './index.css'
 
 const { Content } = Layout
 
 
 class PostLayout extends Component {
+
   render() {
     const { loading, getPost } = this.props.data
 
@@ -34,6 +33,7 @@ class PostLayout extends Component {
 
     const JsonObj = JSON.parse(getPost.content);
     const newSlate = Value.fromJSON(JsonObj);
+    console.log('json', JsonObj)
 
     return (
       <Layout style={{ background: '#ECECEC' }}>
@@ -45,12 +45,30 @@ class PostLayout extends Component {
               readOnly
               value={newSlate}
               onChange={this.onChange}
+              renderMark={this.renderMark}
+
             />
             {/* <Post post={newSlate} /> */}
           </Row>
         </Content>
       </Layout>
     )
+  }
+
+  renderMark = props => {
+    console.log('props', props)
+    //const json = props.data.getPost.content
+    const { children, mark } = props
+    switch (mark.type) {
+      case 'bold':
+        return <strong>{children}</strong>
+      case 'code':
+        return <div style={{ backgroundColor: 'red' }}><code>{children}</code></div>
+      case 'italic':
+        return <em>{children}</em>
+      case 'underlined':
+        return <u>{children}</u>
+    }
   }
 }
 

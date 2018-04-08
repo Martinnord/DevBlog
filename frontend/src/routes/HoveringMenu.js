@@ -142,6 +142,7 @@ class HoveringMenu extends React.Component {
 
   onChange = ({ value }) => {
     console.log(value)
+    this.props.updateValue(value)
     this.setState({ value });
   };
 
@@ -163,7 +164,7 @@ class HoveringMenu extends React.Component {
    */
 
   render() {
-    console.log('state value', this.state.value)
+    console.log('updateValue', this.props.updateValue)
 
     return (
       <div>
@@ -172,7 +173,6 @@ class HoveringMenu extends React.Component {
           value={this.state.value}
           onChange={this.onChange}
         />
-        <p>hejsan</p>
         <div className="editor">
           <Editor
             value={this.state.value}

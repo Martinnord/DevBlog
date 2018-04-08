@@ -42,19 +42,24 @@ const initialValue = Value.fromJSON({
 
 class NewArticle extends Component {
   state = {
-    values: {
-      content: initialValue
-    }
+    content: initialValue
+  }
+
+  updateValue = (values) => {
+    console.log('values', values)
+    this.setState({
+      content: values
+    })
   }
 
   submit = async () => {
-    const { content } = this.state.values
+    const { content } = this.state
 
     let response
     try {
       response = await this.props.mutate({
         variables: {
-          content: JSON.stringify(this.state.values.content.toJSON())
+          content: JSON.stringify(content.toJSON())
         },
         update: (store, { data: { createPost } }) => {
           const data = store.readQuery({
@@ -72,6 +77,7 @@ class NewArticle extends Component {
     }
   }
 
+
   render() {
     return (
       <Layout style={{ background: '#ECECEC' }}>
@@ -80,7 +86,7 @@ class NewArticle extends Component {
           <Row style={{ display: 'flex', justifyContent: 'center' }}>
             <Col span={9}>
             <div>
-            <HoveringMenu value={this.state.values.content} />
+            <HoveringMenu value={this.state.content} updateValue={this.updateValue} />
               <div>
                 <button onClick={this.submit}>Post!</button>
               </div>
