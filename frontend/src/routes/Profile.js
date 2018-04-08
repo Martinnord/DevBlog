@@ -55,9 +55,7 @@ const getUserQuery = gql`
       githubUsername
       posts {
         id
-        title
         content
-        imageUrl
         createdAt
         user {
           username
