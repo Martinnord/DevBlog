@@ -1,40 +1,57 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import { Layout, Row } from 'antd'
 import Navbar from '../common/Navbar'
 import Post from '../components/Post'
+import { Value } from 'slate'
+import Plain from 'slate-plain-serializer'
+import { Editor } from 'slate-react'
+
+
+
 import './index.css'
 
 const { Content } = Layout
 
-const PostLayout = ({ data }) => {
-  if (!data) {
-    return <Redirect to={{ pathname: '/404' }} />
+
+class PostLayout extends Component {
+  render() {
+    const { loading, getPost } = this.props.data
+
+    if (!this.props.data) {
+      return <Redirect to={{ pathname: '/404' }} />
+    }
+
+    if (loading) {
+      return null
+    }
+
+    if (!loading && !getPost) {
+      return <Redirect to={{ pathname: '/404' }} />
+    }
+
+    const JsonObj = JSON.parse(getPost.content);
+    const newSlate = Value.fromJSON(JsonObj);
+
+    return (
+      <Layout style={{ background: '#ECECEC' }}>
+        <Navbar />
+        <Content>
+          <hr className="hr" />
+          <Row>
+            <Editor 
+              readOnly
+              value={newSlate}
+              onChange={this.onChange}
+            />
+            {/* <Post post={newSlate} /> */}
+          </Row>
+        </Content>
+      </Layout>
+    )
   }
-
-  const { loading, getPost } = data
-
-  if (loading) {
-    return null
-  }
-
-  if (!loading && !getPost) {
-    return <Redirect to={{ pathname: '/404' }} />
-  }
-
-  return (
-    <Layout style={{ background: '#ECECEC' }}>
-      <Navbar />
-      <Content>
-        <hr className="hr" />
-        <Row>
-          <Post post={getPost} />
-        </Row>
-      </Content>
-    </Layout>
-  )
 }
 
 const getPostQuery = gql`
@@ -46,7 +63,7 @@ const getPostQuery = gql`
       user {
         name
         username
-        profileImage      
+        profileImage
         bio
         twitterUsername
         githubUsername
@@ -56,7 +73,7 @@ const getPostQuery = gql`
 `
 
 export default graphql(getPostQuery, {
-  skip: props => !parseInt(props.match.params.id),
+  skip: props => !props.match.params.id,
   options: props => ({
     variables: { id: props.match.params.id },
   }),
