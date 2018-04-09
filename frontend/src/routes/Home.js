@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import { Layout, Row } from 'antd'
-import { EditorState, Editor, convertToRaw, convertFromRaw } from 'draft-js';
-
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
 
@@ -12,14 +10,12 @@ const { Content } = Layout
 class Home extends Component {
   render() {
     const { data: { loading, getAllPosts = [] } } = this.props
+    // const text = getAllPosts.content.document.nodes[0].nodes[0].leaves[0].text || ''
+    // console.log(text)
     if (loading) {
       return null
     }
 
-
-    console.log(getAllPosts)
-    // convertFromRaw(JSON.parse(this.props.blogPost.content))
-    // console.log(convertFromRaw(JSON.parse(getAllPosts)))
     return (
       <Layout style={{ background: '#ECECEC' }}>
         <Navbar />
