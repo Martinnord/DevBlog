@@ -10,6 +10,7 @@ const { Content } = Layout
 class Home extends Component {
   render() {
     const { data: { loading, getAllPosts = [] } } = this.props
+    console.log(getAllPosts)
     // const text = getAllPosts.content.document.nodes[0].nodes[0].leaves[0].text || ''
     // console.log(text)
     if (loading) {
@@ -33,7 +34,9 @@ const getAllPostsQuery = gql`
   query getAllPostsQuery {
     getAllPosts {
       id
+      title
       content
+      imageUrl
       createdAt
       user {
         username

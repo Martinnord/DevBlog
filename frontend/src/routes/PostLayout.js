@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import { Layout, Row, Col } from 'antd'
+import { Layout } from 'antd'
 import Navbar from '../common/Navbar'
 import Post from '../components/Post'
 import { Value } from 'slate'
-import Plain from 'slate-plain-serializer'
-import { Editor } from 'slate-react'
 
 import './index.css'
 
@@ -29,46 +27,18 @@ class PostLayout extends Component {
       return <Redirect to={{ pathname: '/404' }} />
     }
 
-    const JsonObj = JSON.parse(getPost.content)
-    const newSlate = Value.fromJSON(JsonObj)
-    console.log('json', JsonObj)
+    const contentObj = JSON.parse(getPost.content)
+    const parsedContent = Value.fromJSON(contentObj)
 
     return (
       <Layout style={{ background: '#ECECEC' }}>
         <Navbar />
         <Content>
           <hr className="hr" />
-          <Row>
-            <Col span={12} offset={6}>
-              <div style={{ display: 'flex' }}>
-                <Editor
-                  className={'post-content'}
-                  readOnly
-                  value={newSlate}
-                  onChange={this.onChange}
-                  renderMark={this.renderMark}
-                />
-              </div>
-            </Col>
-            {/* <Post post={newSlate} /> */}
-          </Row>
+          <Post content={parsedContent} post={getPost} />
         </Content>
       </Layout>
     )
-  }
-
-  renderMark = props => {
-    const { children, mark } = props
-    switch (mark.type) {
-      case 'bold':
-        return <strong>{children}</strong>
-      case 'code':
-        return <code>{children}</code>
-      case 'italic':
-        return <em>{children}</em>
-      case 'underlined':
-        return <u>{children}</u>
-    }
   }
 }
 
@@ -76,7 +46,9 @@ const getPostQuery = gql`
   query($id: Int!) {
     getPost(id: $id) {
       id
+      title
       content
+      imageUrl
       createdAt
       user {
         name
