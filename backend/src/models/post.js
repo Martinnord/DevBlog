@@ -8,11 +8,12 @@ export default class Post extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['content'],
+      required: ['content', 'title'],
 
       properties: {
         id: { type: 'integer' },
         content: { type: 'string', minLength: 1 },
+        title: { type: 'string', minLength: 1 }
       }
     }
   }

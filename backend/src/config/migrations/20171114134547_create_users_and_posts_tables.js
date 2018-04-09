@@ -8,10 +8,10 @@ exports.up = function(knex) {
         .unique()
       table.text('name')
       table
-      .text('email')
-      .notNullable()
-      .unique()
-    table.string('password').notNullable()
+        .text('email')
+        .notNullable()
+        .unique()
+      table.string('password').notNullable()
       table.text('profileImage').unique()
       table.text('websiteUrl').unique()
       table.text('bio')
@@ -25,6 +25,11 @@ exports.up = function(knex) {
     })
     .createTable('posts', function(table) {
       table.increments('id').primary()
+      table
+        .string('title')
+        .notNullable()
+        .defaultTo('')
+      table.string('imageUrl').defaultTo('')
       table
         .text('content')
         .notNullable()
