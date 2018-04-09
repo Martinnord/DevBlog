@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Editor } from 'slate-react'
-import { Value } from 'slate'
 
 import '../routes/index.css'
 
 class Menu extends Component {
   hasMark(type) {
     const { value } = this.props
-    return value.activeMarks.some(mark => mark.type == type)
+    return value.activeMarks.some(mark => mark.type === type)
   }
 
   onClickMark(event, type) {
@@ -80,6 +79,8 @@ class HoveringMenu extends Component {
   }
 
   onChange = ({ value }) => {
+    console.log('value', value
+  )
     this.props.updateValue(value)
     this.setState({ value })
   }
@@ -89,8 +90,6 @@ class HoveringMenu extends Component {
   }
 
   render() {
-    console.log('updateValue', this.props.updateValue)
-
     return (
       <div>
         <Menu
@@ -104,6 +103,7 @@ class HoveringMenu extends Component {
             value={this.state.value}
             onChange={this.onChange}
             renderMark={this.renderMark}
+            placeholder={"Tell your story..."}
           />
         </div>
       </div>

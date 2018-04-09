@@ -13,15 +13,10 @@ const PostCard = props => (
         <Card
           style={{ margin: '20px 0 20px 0' }}
           hoverable
-          // cover={
-          //   <img
-          //     alt="example"
-          //     src={`${post.imageUrl ? `${post.imageUrl}` : ''}`}
-          //   />
-          // }
+          cover={<img src={`${post.imageUrl ? `${post.imageUrl}` : ''}`} />}
         >
           <Meta
-            //  title={post.title}
+            title={post.title}
             description={`${
               post.content.length > 135
                 ? `${post.content.substring(0, 135)}...`
