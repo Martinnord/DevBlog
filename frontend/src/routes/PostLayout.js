@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
-import { Layout, Row } from 'antd'
+import { Layout, Row, Col } from 'antd'
 import Navbar from '../common/Navbar'
 import Post from '../components/Post'
 import { Value } from 'slate'
@@ -13,9 +13,7 @@ import './index.css'
 
 const { Content } = Layout
 
-
 class PostLayout extends Component {
-
   render() {
     const { loading, getPost } = this.props.data
 
@@ -31,8 +29,8 @@ class PostLayout extends Component {
       return <Redirect to={{ pathname: '/404' }} />
     }
 
-    const JsonObj = JSON.parse(getPost.content);
-    const newSlate = Value.fromJSON(JsonObj);
+    const JsonObj = JSON.parse(getPost.content)
+    const newSlate = Value.fromJSON(JsonObj)
     console.log('json', JsonObj)
 
     return (
@@ -41,13 +39,17 @@ class PostLayout extends Component {
         <Content>
           <hr className="hr" />
           <Row>
-            <Editor 
-              readOnly
-              value={newSlate}
-              onChange={this.onChange}
-              renderMark={this.renderMark}
-
-            />
+            <Col span={12} offset={6}>
+              <div style={{ display: 'flex' }}>
+                <Editor
+                  className={'post-content'}
+                  readOnly
+                  value={newSlate}
+                  onChange={this.onChange}
+                  renderMark={this.renderMark}
+                />
+              </div>
+            </Col>
             {/* <Post post={newSlate} /> */}
           </Row>
         </Content>
@@ -56,14 +58,12 @@ class PostLayout extends Component {
   }
 
   renderMark = props => {
-    console.log('props', props)
-    //const json = props.data.getPost.content
     const { children, mark } = props
     switch (mark.type) {
       case 'bold':
         return <strong>{children}</strong>
       case 'code':
-        return <div style={{ backgroundColor: 'red' }}><code>{children}</code></div>
+        return <code>{children}</code>
       case 'italic':
         return <em>{children}</em>
       case 'underlined':
@@ -93,6 +93,6 @@ const getPostQuery = gql`
 export default graphql(getPostQuery, {
   skip: props => !props.match.params.id,
   options: props => ({
-    variables: { id: props.match.params.id },
-  }),
+    variables: { id: props.match.params.id }
+  })
 })(PostLayout)
