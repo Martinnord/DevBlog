@@ -13,7 +13,7 @@ import { EditorState, RichUtils, convertToRaw } from 'draft-js'
 import createEmojiPlugin from 'draft-js-emoji-plugin'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
-import HoveringMenu from './HoveringMenu'
+import HoveringMenu from '../components/HoveringMenu'
 import './index.css'
 
 const { TextArea } = Input
