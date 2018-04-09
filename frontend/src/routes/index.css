@@ -125,6 +125,12 @@
   margin: 0 0 -15px;
 }
 
+.profile-info-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+
 .post-content {
   font-size: 21px;
   line-height: 1.58;
@@ -133,12 +139,40 @@
 }
 
 .profile-image {
-  width: 100%;
-  height: auto;
+  border-radius: 500px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.profile-details {
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.profile-social-icon {
+  color: black;
+  font-size: 20px;
+  margin: 0 5px 0 5px;
+}
+
+.image-cropper {
+  width: 170px;
+  height: 170px;
+  position: relative;
+  overflow: hidden;
+  border: 5px solid #CCC;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
 }
 
 .profile-bio {
   font-size: 16px;
+  margin: 15px 0 15px 0;
 }
 
 .settings-title {
