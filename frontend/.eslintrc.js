@@ -11,6 +11,7 @@ module.exports = {
     "import/prefer-default-export": 0,
     "no-undef": 0,
     "prefer-destructuring": 0,
+    "default-case": 0,
     semi: [2, "never"]
   }
 }
