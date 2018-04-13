@@ -56,11 +56,11 @@ When developing this project I first started with planning. I have always been a
 
   
 
-After the planning I started developing the app and API. I started of with the core features:
+After the planning I started developing the website and API. I started of with the core features:
 
 * Being able to create an account
 
-* Being able to create a product
+* Being able to create a article
 
 * Browse all the articles
 
