@@ -4,7 +4,7 @@ export default `
     username: String
     email: String!
     name: String    
-    password: String!
+    
     profileImage: String
     websiteUrl: String
     bio: String
@@ -20,7 +20,12 @@ export default `
     createdAt: Date!
   }
 
- 
+  type UserLike {
+    id: ID!
+    username: String!
+    profileImage: String!
+  }
+
   type Query {
     getAllUsers: [User]
     getUser(username: String!): User
