@@ -13,7 +13,7 @@ export default class Post extends Model {
       properties: {
         id: { type: 'integer' },
         content: { type: 'string', minLength: 1 },
-        title: { type: 'string', minLength: 1 }
+        title: { type: 'string', minLength: 1 },
       }
     }
   }
