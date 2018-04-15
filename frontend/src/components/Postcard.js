@@ -20,7 +20,7 @@ const PostCard = ({ posts }) => (
           <Card
             style={{ margin: '20px 0 20px 0' }}
             hoverable
-            cover={<img src={`${post.imageUrl ? `${post.imageUrl}` : ''}`} />}
+            cover={<img src={`${post.image_url ? `${post.image_url}` : ''}`} />}
           >
             <Meta
               title={post.title}
@@ -38,8 +38,8 @@ const PostCard = ({ posts }) => (
               // }`}
             />
             <p>Written by {post.user.username}</p>
-            {/* <p>{Value.fromJSON(post.content)}</p> */}
-            <p>{moment(post.createdAt).format('HH:mm D/MM')}</p>
+            <p>{post.likes.length}</p>
+            <p>{moment(post.created_at).format('HH:mm D/MM')}</p>
           </Card>
         </Link>
       )

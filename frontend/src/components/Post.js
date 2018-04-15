@@ -20,11 +20,11 @@ const Post = ({ post, content }) => {
         return <u>{children}</u>
     }
   }
-  console.log(post)
+  
   return (
     <Row>
       <Col span={12} offset={6}>
-        <img className="post-image" src={`${post.imageUrl ? `${post.imageUrl}` : ''}`} />
+        <img className="post-image" src={`${post.image_url ? `${post.image_url}` : ''}`} />
         <h1 className="post-title">{post.title}</h1>
         <div style={{ display: 'flex' }}>
           <h3>Written by </h3>
@@ -33,18 +33,19 @@ const Post = ({ post, content }) => {
           </Link>
           <Link
             target="_blank"
-            to={`https://twitter.com/${post.user.twitterUsername}`}
+            to={`https://twitter.com/${post.user.twitter_username}`}
           >
             <Icon type="twitter" />
           </Link>
           <Link
             target="_blank"
-            to={`https://github.com/${post.user.githubUsername}`}
+            to={`https://github.com/${post.user.github_username}`}
           >
             <Icon type="github" />
           </Link>
         </div>
-        <h3>{moment(post.createdAt).format('MMM. D[,] YYYY')}</h3>
+        <h3>{moment(post.created_at).format('MMM. D[,] YYYY')}</h3>
+        <p>Likes {post.likes.length}</p>
         <Editor
           className={'post-content'}
           readOnly
