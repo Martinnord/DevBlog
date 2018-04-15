@@ -41,8 +41,24 @@ exports.up = function(knex) {
         .onDelete('CASCADE')
       table.timestamp('createdAt').defaultTo(knex.fn.now())
     })
+    .createTable('post-likes', function(table) {
+      table.increments('id').primary()
+      table
+        .integer('user-id')
+        .references('id')
+        .inTable('users')
+        .notNullable()
+      table
+        .integer('post-id')
+        .references('id')
+        .inTable('posts')
+        .notNullable()
+    })
 }
 
 exports.down = function(knex) {
-  return knex.schema.dropTable('posts').dropTable('users')
+  return knex.schema
+    .dropTable('post-likes')
+    .dropTable('posts')
+    .dropTable('users')
 }
