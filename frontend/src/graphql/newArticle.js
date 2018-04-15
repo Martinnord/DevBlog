@@ -6,7 +6,10 @@ export const getAllPostsQuery = gql`
       id
       title
       content
-      createdAt
+      likes {
+        username
+      }
+      created_at
     }
   }
 `
