@@ -30,7 +30,7 @@ export default {
     posts: ({ id }) => {
       return Post.query()
         .where('user_id', id)
-        .orderBy('createdAt', 'desc')
+        .orderBy('created_at', 'desc')
     }
   },
   Query: {
