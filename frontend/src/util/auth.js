@@ -7,14 +7,14 @@ const currentUserQUERY = gql`
       id
       username
       name
-      profileImage
-      websiteUrl
+      profile_image
+      website_url
       bio
       location
       education
-      employerName
-      twitterUsername
-      githubUsername
+      employer_name
+      twitter_username
+      github_username
       email
       jwt
     }
