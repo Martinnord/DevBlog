@@ -12,16 +12,16 @@ exports.up = function(knex) {
         .notNullable()
         .unique()
       table.string('password').notNullable()
-      table.text('profileImage').unique()
-      table.text('websiteUrl').unique()
+      table.text('profile_image').unique()
+      table.text('website_url').unique()
       table.text('bio')
       table.text('location')
       table.text('education')
-      table.text('employerName')
-      table.text('emplyerTitle')
-      table.text('twitterUsername').unique()
-      table.text('githubUsername').unique()
-      table.timestamps(true, true)
+      table.text('employer_name')
+      table.text('emplyer_title')
+      table.text('twitter_username').unique()
+      table.text('github_username').unique()
+      table.timestamp('created_at').defaultTo(knex.fn.now())
     })
     .createTable('posts', function(table) {
       table.increments('id').primary()
@@ -29,7 +29,7 @@ exports.up = function(knex) {
         .string('title')
         .notNullable()
         .defaultTo('')
-      table.string('imageUrl').defaultTo('')
+      table.string('image_url').defaultTo('')
       table
         .text('content')
         .notNullable()
@@ -39,26 +39,27 @@ exports.up = function(knex) {
         .references('id')
         .inTable('users')
         .onDelete('CASCADE')
-      table.timestamp('createdAt').defaultTo(knex.fn.now())
+      table.timestamp('created_at').defaultTo(knex.fn.now())
     })
-    .createTable('post-likes', function(table) {
+    .createTable('post_likes', function(table) {
       table.increments('id').primary()
       table
-        .integer('user-id')
+        .integer('user_id')
         .references('id')
         .inTable('users')
         .notNullable()
       table
-        .integer('post-id')
+        .integer('post_id')
         .references('id')
         .inTable('posts')
         .notNullable()
+      table.timestamp('created_at').defaultTo(knex.fn.now())
     })
 }
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTable('post-likes')
+    .dropTable('post_likes')
     .dropTable('posts')
     .dropTable('users')
 }
