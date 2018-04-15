@@ -21,7 +21,7 @@ class Settings extends Component {
       <Formik
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(true)
-          let response;
+          let response
           try {
             response = await this.props.updateUserInfo({
               variables: {
@@ -29,14 +29,14 @@ class Settings extends Component {
                 email: values.email,
                 username: values.username,
                 name: values.name,
-                profileImage: values.profileImage,
-                websiteUrl: values.websiteUrl,
+                profile_image: values.profile_image,
+                website_url: values.website_url,
                 bio: values.bio,
                 location: values.location,
                 education: values.education,
-                twitterUsername: values.twitterUsername,
-                githubUsername: values.githubUsername,
-              },
+                twitter_username: values.twitter_username,
+                github_username: values.github_username
+              }
             })
             console.log(response)
             alert('Success!')
@@ -51,7 +51,9 @@ class Settings extends Component {
             <Content>
               <Row>
                 <Col span={12} offset={6}>
-                  <h1 className="settings-title">Settings for {currentUser.username}</h1>
+                  <h1 className="settings-title">
+                    Settings for {currentUser.username}
+                  </h1>
                 </Col>
                 <Col span={12} offset={6}>
                   <span>Email</span>
@@ -83,18 +85,18 @@ class Settings extends Component {
                 <Col span={12} offset={6}>
                   <span>Profile image</span>
                   <Input
-                    defaultValue={currentUser.profileImage}
+                    defaultValue={currentUser.profile_image}
                     onChange={handleChange}
-                    name="profileImage"
+                    name="profile_image"
                     type="text"
                   />
                 </Col>
                 <Col span={12} offset={6}>
                   <span>Website</span>
                   <Input
-                    defaultValue={currentUser.websiteUrl}
+                    defaultValue={currentUser.website_url}
                     onChange={handleChange}
-                    name="websiteUrl"
+                    name="website_url"
                     type="text"
                   />
                 </Col>
@@ -128,18 +130,18 @@ class Settings extends Component {
                 <Col span={12} offset={6}>
                   <span>Twitter</span>
                   <Input
-                    defaultValue={currentUser.twitterUsername}
+                    defaultValue={currentUser.twitter_username}
                     onChange={handleChange}
-                    name="twitterUsername"
+                    name="twitter_username"
                     type="text"
                   />
                 </Col>
                 <Col span={12} offset={6}>
                   <span>Github</span>
                   <Input
-                    defaultValue={currentUser.githubUsername}
+                    defaultValue={currentUser.github_username}
                     onChange={handleChange}
-                    name="githubUsername"
+                    name="github_username"
                     type="text"
                   />
                 </Col>
@@ -165,19 +167,43 @@ class Settings extends Component {
 }
 
 const updateUserInfoMutation = gql`
-mutation ($id: Int!, $email: String, $username: String, $name: String, $profileImage: String, $websiteUrl: String, $bio: String, $location: String, $education: String, $twitterUsername: String, $githubUsername: String) {
-  updateUserInfo(id: $id, email: $email, username: $username, profileImage: $profileImage, websiteUrl: $websiteUrl, bio: $bio, location: $location, education: $education, name: $name, twitterUsername: $twitterUsername, githubUsername: $githubUsername) {
-    email
-    username
-    profileImage
-    websiteUrl
-    bio
-    location
-    education
-    twitterUsername
-    githubUsername
+  mutation(
+    $id: Int!
+    $email: String
+    $username: String
+    $name: String
+    $profile_image: String
+    $website_url: String
+    $bio: String
+    $location: String
+    $education: String
+    $twitter_username: String
+    $github_username: String
+  ) {
+    updateUserInfo(
+      id: $id
+      email: $email
+      username: $username
+      profile_image: $profile_image
+      website_url: $website_url
+      bio: $bio
+      location: $location
+      education: $education
+      name: $name
+      twitter_username: $twitter_username
+      github_username: $github_username
+    ) {
+      email
+      username
+      profile_image
+      website_url
+      bio
+      location
+      education
+      twitter_username
+      github_username
+    }
   }
-}
 `
 
 const updateUserInfo = graphql(updateUserInfoMutation, {

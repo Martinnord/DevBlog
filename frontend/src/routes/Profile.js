@@ -28,11 +28,11 @@ const Profile = ({ data }) => {
           <Col span={12} offset={6}>
             <div className="profile-info-wrapper">
               <div className="image-cropper">
-                {getUser.profileImage ? (
+                {getUser.profile_image ? (
                   <img
                     className="profile-image"
-                    src={getUser.profileImage}
-                    alt={getUser.profileImage}
+                    src={getUser.profile_image}
+                    alt={getUser.profile_image}
                   />
                 ) : null}
               </div>
@@ -43,13 +43,13 @@ const Profile = ({ data }) => {
                 <p className="profile-bio">{getUser.bio}</p>
                 <Link
                   target="_blank"
-                  to={`https://twitter.com/${getUser.twitterUsername}`}
+                  to={`https://twitter.com/${getUser.twitter_username}`}
                 >
                   <Icon className="profile-social-icon" type="twitter" />
                 </Link>
                 <Link
                   target="_blank"
-                  to={`https://github.com/${getUser.githubUsername}`}
+                  to={`https://github.com/${getUser.github_username}`}
                 >
                   <Icon className="profile-social-icon" type="github" />
                 </Link>
@@ -75,16 +75,16 @@ const getUserQuery = gql`
     getUser(username: $username) {
       name
       username
-      profileImage
+      profile_image
       bio
-      twitterUsername
-      githubUsername
+      twitter_username
+      github_username
       posts {
         id
         title
         content
-        imageUrl
-        createdAt
+        image_url
+        created_at
         user {
           username
         }

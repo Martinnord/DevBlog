@@ -60,7 +60,7 @@ class NewArticle extends Component {
                 initialValues={{
                   title: '',
                   content: initialValue,
-                  imageUrl: ''
+                  image_url: ''
                 }}
                 onSubmit={async (values, { setSubmitting, setStatus }) => {
                   setSubmitting(true)
@@ -70,7 +70,7 @@ class NewArticle extends Component {
                       variables: {
                         title: values.title,
                         content: JSON.stringify(content.toJSON()),
-                        imageUrl: values.imageUrl
+                        image_url: values.image_url
                       },
                       update: (store, { data: { createPost } }) => {
                         const data = store.readQuery({
@@ -82,8 +82,9 @@ class NewArticle extends Component {
                     })
                     this.props.history.push('/')
                   } catch (err) {
-                    const graphqlError = err.graphQLErrors[0].message
-                    setStatus(graphqlError)
+                    
+                    // const graphqlError = err.graphQLErrors[0].message
+                    // setStatus(graphqlError)
                     setSubmitting(false)
                   }
                 }}
@@ -112,12 +113,12 @@ class NewArticle extends Component {
                       placeholder="Title"
                     />
                     <Input
-                      value={values.imageUrl}
+                      value={values.image_url}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       type="text"
-                      name="imageUrl"
-                      label="imageUrl"
+                      name="image_url"
+                      label="image_url"
                       placeholder="Article cover"
                     />
 
@@ -162,12 +163,12 @@ class NewArticle extends Component {
 }
 
 const newArticleMutation = gql`
-  mutation($title: String!, $content: String!, $imageUrl: String) {
-    createPost(title: $title, content: $content, imageUrl: $imageUrl) {
+  mutation($title: String!, $content: String!, $image_url: String) {
+    createPost(title: $title, content: $content, image_url: $image_url) {
       title
       content
-      createdAt
-      imageUrl
+      created_at
+      image_url
     }
   }
 `

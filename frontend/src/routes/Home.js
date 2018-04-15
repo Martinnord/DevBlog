@@ -26,8 +26,6 @@ class Home extends Component {
       return <Redirect to={{ pathname: '/404' }} />
     }
 
-    // const parsedContent = Value.fromJSON(JSON.parse(getAllPosts[0].content))
-
     return (
       <Layout style={{ background: '#ECECEC' }}>
         <Navbar />
@@ -47,8 +45,11 @@ const getAllPostsQuery = gql`
       id
       title
       content
-      imageUrl
-      createdAt
+      image_url
+      likes {
+        username
+      }
+      created_at
       user {
         username
       }
