@@ -28,7 +28,7 @@ export default class NotFound extends Component {
     return (
       <div
         className="not-found-layout"
-        style={{ backgroundImage: `url(${this.state.gif})` }}
+        style={{ backgroundImage: `url(${this.state.gif})`, height: '100%' }}
       >
         <div className="not-found-container">
           <h1 className="not-found-header">404</h1>

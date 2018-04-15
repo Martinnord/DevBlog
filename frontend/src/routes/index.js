@@ -11,7 +11,7 @@ import Settings from './Settings'
 
 const App = () => (
   <Router>
-    <div>
+    <div style={{ height: '100%' }}>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/new-article" component={NewArticle} />

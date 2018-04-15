@@ -39,7 +39,6 @@ class NewArticle extends Component {
   }
 
   updateValue = values => {
-    console.log('updatevalues', values)
     this.setState({
       content: values
     })
