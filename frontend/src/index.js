@@ -26,7 +26,7 @@ console.log('constants', constants)
 
 const httpLink = createHttpLink({
   // uri: 'http://devblogapi.vyralynn.com/graphql'
-  uri: 'http://192.168.50.147:3010/graphql'
+  uri: 'http://localhost:3010/graphql'
 })
 
 const client = new ApolloClient({
