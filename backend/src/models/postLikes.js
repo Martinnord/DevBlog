@@ -1,19 +1,18 @@
 import { Model } from 'objection'
 
-export default class Post extends Model {
+export default class PostLikes extends Model {
   static get tableName() {
-    return 'posts'
+    return 'post_likes'
   }
 
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['content', 'title'],
+      required: ['user_id', 'post_id'],
 
       properties: {
-        id: { type: 'integer' },
-        content: { type: 'string', minLength: 1 },
-        title: { type: 'string', minLength: 1 },
+        user_id: { type: 'integer' },
+        post_id: { type: 'integer' }
       }
     }
   }

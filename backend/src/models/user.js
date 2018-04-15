@@ -17,15 +17,15 @@ export default class User extends Model {
         email: { type: 'string', minLength: 1, maxLength: 62 },
         name: { type: 'string', maxLength: 50 },
         password: { type: 'string', minLength: 6, maxLength: 60 },
-        profileImage: { type: 'string' },
-        websiteUrl: { type: 'string', maxLength: 100 },
+        profile_image: { type: 'string' },
+        website_url: { type: 'string', maxLength: 100 },
         bio: { type: 'string', maxLength: 400 },
         location: { type: 'string', maxLength: 50 },
         education: { type: 'string', maxLength: 50 },
-        employerName: { type: 'string', maxLength: 50 },
-        employerTitle: { type: 'string', maxLength: 50 },
-        twitterUsername: { type: 'string', maxLength: 50 },
-        githubUsername: { type: 'string', maxLength: 50 },
+        employer_name: { type: 'string', maxLength: 50 },
+        employer_title: { type: 'string', maxLength: 50 },
+        twitter_username: { type: 'string', maxLength: 50 },
+        github_username: { type: 'string', maxLength: 50 },
       }
     }
   }
