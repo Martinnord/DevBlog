@@ -5,11 +5,11 @@ export default `
     id: ID!
     title: String!
     content: String!
-    imageUrl: String!
+    image_url: String!
     user: User!
-    likes: [UserLike]!
-    updatedAt: String
-    createdAt: String
+    likes: [User]
+    updated_at: String
+    created_at: String
   }
 
   type Query {
@@ -19,7 +19,7 @@ export default `
   }
 
   type Mutation {
-    createPost(title: String!, content: String!, imageUrl: String): Post
+    createPost(title: String!, content: String!, image_url: String): Post
     updatePost(id: ID!, title: String, content: String!): Post
     deletePost(id: ID!): Post
     likePost(id: ID!): Post

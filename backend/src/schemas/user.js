@@ -4,26 +4,25 @@ export default `
     username: String
     email: String!
     name: String    
-    
-    profileImage: String
-    websiteUrl: String
+    profile_image: String
+    website_url: String
     bio: String
     location: String
     education: String
-    employerName: String
-    employerTitle: String
-    twitterUsername: String
-    githubUsername: String
+    employer_name: String
+    employer_title: String
+    twitter_username: String
+    github_username: String
     jwt: String
     posts: [Post!]!
-    updatedAt: Date!
-    createdAt: Date!
+    updated_at: Date!
+    created_at: Date!
   }
 
   type UserLike {
     id: ID!
     username: String!
-    profileImage: String!
+    profile_image: String!
   }
 
   type Query {
