@@ -12,6 +12,10 @@ export default `
     created_at: String
   }
 
+  type Subscription {
+    postLiked(id: ID!): Post
+  }
+
   type Query {
     getAllPosts: [Post]
     getPost(id: Int!): Post
@@ -24,4 +28,11 @@ export default `
     deletePost(id: ID!): Post
     likePost(id: ID!): Post
   }
+
+  schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+  }
+
 `;

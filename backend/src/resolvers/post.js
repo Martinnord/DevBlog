@@ -3,9 +3,19 @@ import Post from '../models/post'
 import User from '../models/user'
 import PostLikes from '../models/PostLikes'
 import yup from 'yup'
+import { PubSub, withFilter } from 'graphql-subscriptions'
 import { requireAuth } from '../services/auth'
 
+const pubsub = new PubSub()
+
+const POST_LIKED = 'POST_LIKED'
+
 export default {
+  Subscription: {
+    postLiked: {
+      subscribe: () => pubsub.asyncIterator(POST_LIKED)
+    }
+  },
   Date: GraphQLDate,
   Post: {
     user: ({ user_id }) => {
@@ -71,12 +81,21 @@ export default {
     likePost: async (_, { id }, { user }) => {
       try {
         await requireAuth(user)
-        return await PostLikes.query()
+        const newLike = await PostLikes.query()
           .where('post_id', id)
           .insert({
             user_id: user.id,
             post_id: parseInt(id)
           })
+
+        const pupsubb = pubsub.publish(POST_LIKED, {
+          postLiked: {
+            id: newLike.post_id,
+            newLike
+          }
+        })
+
+        return newLike
       } catch (err) {
         throw err
       }

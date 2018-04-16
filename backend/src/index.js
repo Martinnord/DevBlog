@@ -9,6 +9,8 @@ import knexConfig from './knexfile'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas'
 import { makeExecutableSchema } from 'graphql-tools'
+import { execute, subscribe } from 'graphql'
+import { SubscriptionServer } from 'subscriptions-transport-ws'
 import { createServer } from 'http'
 import { Model } from 'objection'
 import { Post, User } from './models'
@@ -59,17 +61,28 @@ app.use(
 app.use(
   '/graphiql',
   graphiqlExpress({
-    endpointURL: '/graphql'
+    endpointURL: '/graphql',
+    subscriptionsEndpoint: 'ws://localhost:3010/subscriptions'
   })
 )
 
-console.log('DB_HOST',process.env.DB_HOST)
-const graphQLServer = createServer(app)
+const ws = createServer(app)
 
-graphQLServer.listen(3010, err => {
+ws.listen(3010, err => {
   if (err) {
     console.log(`Error: ${err}`)
   } else {
+    new SubscriptionServer(
+      {
+        schema,
+        subscribe,
+        execute
+      },
+      {
+        server: ws,
+        path: '/subscriptions'
+      }
+    )
     console.log(`
       App listening on 3010
       Env: ${process.env.NODE_ENV}
