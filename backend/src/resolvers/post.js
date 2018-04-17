@@ -91,7 +91,7 @@ export default {
         const pupsubb = pubsub.publish(POST_LIKED, {
           postLiked: {
             id: newLike.post_id,
-            newLike
+            user_id: user.id
           }
         })
 
