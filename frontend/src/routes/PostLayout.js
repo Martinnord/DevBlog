@@ -12,7 +12,42 @@ import './index.css'
 
 const { Content } = Layout
 
+const postLikedSubscription = gql`
+subscription ($id: ID!) {
+  postLiked(id: $id) {
+    id
+    likes {
+      username
+    }
+  }
+}
+`
+
+
 class PostLayout extends Component {
+  componentWillMount() {
+    console.log(this.props)
+    this.props.data.subscribeToMore({
+      document: postLikedSubscription,
+      variables: {
+        id: this.props.data.variables.id,
+      },
+      updateQuery: (prev, {subscriptionData}) => {
+        console.log('subscriptionData', subscriptionData)
+        console.log('prev', prev)
+        if (!subscriptionData.data) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          likes: [...prev.likes, subscriptionData.data.postLiked]
+        }    
+       }
+    });
+  }
+  
+
   render() {
     const { loading, getPost } = this.props.data
 
