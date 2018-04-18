@@ -7,6 +7,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloClient } from 'apollo-client'
 import { split } from 'apollo-link'
 import { SubscriptionClient } from 'subscriptions-transport-ws'
+import { getMainDefinition } from 'apollo-utilities'
 import 'antd/dist/antd.css'
 import App from './routes'
 
