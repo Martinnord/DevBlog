@@ -1,10 +1,8 @@
 import React from 'react'
-import { Card, Col } from 'antd'
+import { Card, Col, Icon } from 'antd'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
-import { Value, Text } from 'slate'
-import Plain from 'slate-plain-serializer'
-import { Editor } from 'slate-react'
+import { Value } from 'slate'
 
 import '../routes/index.css'
 
@@ -14,7 +12,6 @@ const PostCard = ({ posts }) => (
   <Col span={12} offset={6}>
     {posts.map(post => {
       const content = Value.fromJSON(JSON.parse(post.content))
-      const lol = JSON.stringify(content)
       return (
         <Link to={`/@${post.user.username}/${post.id}`} key={post.id}>
           <Card
@@ -22,23 +19,16 @@ const PostCard = ({ posts }) => (
             hoverable
             cover={<img src={`${post.image_url ? `${post.image_url}` : ''}`} />}
           >
-            <Meta
-              title={post.title}
-              description={
-                <Editor
-                  readOnly
-                  value={content}
-                />
-              }
-              // description={content}
-              // description={`${
-              //   post.content.length > 135
-              //     ? `${post.content.substring(0, 135)}...`
-              //     : post.content
-              // }`}
-            />
-            <p>Written by {post.user.username}</p>
-            <p>{post.likes.length}</p>
+            <Meta title={post.title} />
+            <p>
+              Written by{' '}
+              <Link to={`/@${post.user.username}`}>
+                {post.user.name || post.user.username}
+              </Link>
+            </p>
+            <p>
+              <Icon type="heart" /> {post.likes.length}
+            </p>
             <p>{moment(post.created_at).format('HH:mm D/MM')}</p>
           </Card>
         </Link>
