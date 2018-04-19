@@ -3,6 +3,7 @@ import Post from '../models/post'
 import User from '../models/user'
 import PostLikes from '../models/PostLikes'
 import yup from 'yup'
+import { knex } from '../config/database'
 import { PubSub, withFilter } from 'graphql-subscriptions'
 import { requireAuth } from '../services/auth'
 
@@ -24,7 +25,7 @@ export default {
     likes: async ({ id, user_id }) => {
       return await PostLikes.query()
         .where('post_id', id)
-        .select('users.username')
+        .select('users.username', 'users.profile_image')
         .from('post_likes')
         .fullOuterJoin('users', 'post_likes.user_id', 'users.id')
     }
@@ -81,6 +82,18 @@ export default {
     likePost: async (_, { id }, { user }) => {
       try {
         await requireAuth(user)
+
+        const alreadyLiked =
+          (await knex('post_likes')
+            .where({ post_id: id })
+            .andWhere({ user_id: user.id })).length === 1
+
+        if (alreadyLiked) {
+          // TODO: If the user already have liked the post, "un-like it!"
+          throw new Error('You have already liked this post ONCE')
+          return
+        }
+
         const newLike = await PostLikes.query()
           .where('post_id', id)
           .insert({
