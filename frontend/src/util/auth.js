@@ -11,8 +11,7 @@ const currentUserQUERY = gql`
       website_url
       bio
       location
-      education
-      employer_name
+      work_status
       twitter_username
       github_username
       email
