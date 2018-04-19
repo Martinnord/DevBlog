@@ -12,16 +12,17 @@ exports.up = function(knex) {
         .notNullable()
         .unique()
       table.string('password').notNullable()
-      table.text('profile_image').unique()
+      table
+        .text('profile_image')
+        .defaultTo('http://www.ecehh.org/wp-content/uploads/2018/02/avatar.jpg')
       table.text('website_url').unique()
       table.text('bio')
       table.text('location')
-      table.text('education')
-      table.text('employer_name')
-      table.text('emplyer_title')
+      table.text('work_status')
       table.text('twitter_username').unique()
       table.text('github_username').unique()
       table.timestamp('created_at').defaultTo(knex.fn.now())
+      table.timestamp('updated_at').defaultTo(knex.fn.now())
     })
     .createTable('posts', function(table) {
       table.increments('id').primary()
@@ -40,6 +41,7 @@ exports.up = function(knex) {
         .inTable('users')
         .onDelete('CASCADE')
       table.timestamp('created_at').defaultTo(knex.fn.now())
+      table.timestamp('updated_at').defaultTo(knex.fn.now())
     })
     .createTable('post_likes', function(table) {
       table.increments('id').primary()
@@ -54,6 +56,7 @@ exports.up = function(knex) {
         .inTable('posts')
         .notNullable()
       table.timestamp('created_at').defaultTo(knex.fn.now())
+      table.timestamp('updated_at').defaultTo(knex.fn.now())
     })
 }
 
