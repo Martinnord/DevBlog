@@ -5,8 +5,6 @@ import { graphql } from 'react-apollo'
 import { Layout, Row, Spin } from 'antd'
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
-import { Value, Text } from 'slate'
-
 
 const { Content } = Layout
 
@@ -27,9 +25,9 @@ class Home extends Component {
     }
 
     return (
-      <Layout style={{ background: '#ECECEC' }}>
+      <Layout>
         <Navbar />
-        <Content>
+        <Content className="content">
           <Row>
             <PostCard posts={getAllPosts} />
           </Row>
@@ -48,6 +46,7 @@ const getAllPostsQuery = gql`
       image_url
       likes {
         username
+        profile_image
       }
       created_at
       user {

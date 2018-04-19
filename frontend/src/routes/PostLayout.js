@@ -22,24 +22,26 @@ const postLikedSubscription = gql`
     }
   }
 `
-
 class PostLayout extends Component {
   componentWillMount() {
     this.props.data.subscribeToMore({
       document: postLikedSubscription,
       variables: {
-        id: this.props.data.variables.id,
+        id: this.props.data.variables.id
       },
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) {
           return prev
         }
 
+        console.log('prev.likes', ...prev.likes)
+        console.log('subscriptionData', subscriptionData.data.postLikeds)
+
         return {
           ...prev,
-          likes: [...prev.likes, subscriptionData.data.postLiked],
+          likes: [...prev.likes, subscriptionData.data.postLiked]
         }
-      },
+      }
     })
   }
 
@@ -65,9 +67,9 @@ class PostLayout extends Component {
       <Layout style={{ background: '#ECECEC' }}>
         <Navbar />
         <Content>
-          <hr className="hr" />
-          <Post content={parsedContent} post={getPost} />
-          <button onClick={this.props.likePost}>Like this post!</button>
+          <div style={{ margin: '0 250px 0 250px' }}>
+            <Post content={parsedContent} post={getPost} likePost={this.props.likePost} />
+          </div>
         </Content>
       </Layout>
     )
@@ -84,6 +86,7 @@ const getPostQuery = gql`
       created_at
       likes {
         username
+        profile_image
       }
       user {
         name
@@ -101,6 +104,10 @@ const likePostMutation = gql`
   mutation($id: ID!) {
     likePost(id: $id) {
       id
+      likes {
+        username
+        profile_image
+      }
     }
   }
 `
@@ -109,8 +116,8 @@ export default compose(
   graphql(getPostQuery, {
     skip: props => !props.match.params.id,
     options: props => ({
-      variables: { id: props.match.params.id },
-    }),
+      variables: { id: props.match.params.id }
+    })
   }),
   graphql(likePostMutation, {
     alias: 'likePost',
@@ -118,17 +125,20 @@ export default compose(
       likePost: () => {
         mutate({
           variables: {
-            id: ownProps.data.getPost.id,
+            id: ownProps.data.getPost.id
           },
           update: (store, { data: likePost }) => {
+            console.log('store', store)
             const data = store.readQuery({
-              query: getAllPostsQuery,
+              query: getAllPostsQuery
             })
+            console.log('data', data)
+            console.log('getAllPostQuery', getAllPostsQuery)
             data.getAllPostsQuery.push(likePost)
             store.writeQuery({ query: getAllPostsQuery, data })
-          },
+          }
         })
-      },
-    }),
-  }),
+      }
+    })
+  })
 )(PostLayout)
