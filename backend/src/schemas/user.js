@@ -8,9 +8,7 @@ export default `
     website_url: String
     bio: String
     location: String
-    education: String
-    employer_name: String
-    employer_title: String
+    work_status: String
     twitter_username: String
     github_username: String
     jwt: String
@@ -51,15 +49,13 @@ export default `
       username: String
       email: String
       name: String
-      profileImage: String
-      websiteUrl: String
+      profile_image: String
+      website_url: String
       bio: String
       location: String
-      education: String
-      employerName: String
-      employerTitle: String
-      twitterUsername: String
-      githubUsername: String
+      work_status: String
+      twitter_username: String
+      github_username: String
     ): User
   }
 `

@@ -109,15 +109,13 @@ export default {
           username: args.username,
           email: args.email,
           name: args.name,
-          profileImage: args.profileImage,
-          websiteUrl: args.websiteUrl,
+          profile_image: args.profile_image,
+          website_url: args.website_url,
           bio: args.bio,
           location: args.location,
-          education: args.education,
-          employerName: args.employerName,
-          employerTitle: args.employerTitle,
-          twitterUsername: args.twitterUsername,
-          githubUsername: args.githubUsername
+          work_status: args.work_status,
+          twitter_username: args.twitter_username,
+          github_username: args.github_username
         })
       } catch (err) {
         throw err

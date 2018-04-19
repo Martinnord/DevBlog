@@ -21,9 +21,7 @@ export default class User extends Model {
         website_url: { type: 'string', maxLength: 100 },
         bio: { type: 'string', maxLength: 400 },
         location: { type: 'string', maxLength: 50 },
-        education: { type: 'string', maxLength: 50 },
-        employer_name: { type: 'string', maxLength: 50 },
-        employer_title: { type: 'string', maxLength: 50 },
+        work_status: { type: 'string', maxLength: 50 },
         twitter_username: { type: 'string', maxLength: 50 },
         github_username: { type: 'string', maxLength: 50 },
       }
