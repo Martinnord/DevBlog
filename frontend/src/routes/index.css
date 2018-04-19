@@ -4,10 +4,11 @@
 
 #root {
   height: 100%;
+  background: #F9F9FA !important;
 }
 
 .ant-layout {
-  background: #FFF !important;
+  background: #F9F9FA !important;
 }
 
 .ant-menu-horizontal {
@@ -16,6 +17,8 @@
 
 .login-form {
   width: 400px;
+  background-color: #FFF;
+  border-radius: 2%;
 }
 
 .login-input {
@@ -32,7 +35,7 @@
 }
 
 .ant-row {
-  margin: 0 20px 0 20px;
+  margin: 25px 25px 25px 25px;
 }
 
 .error-message {
@@ -81,9 +84,9 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  max-width: 1000px;
   margin-left: auto !important;
   margin-right: auto !important;
+  box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
   height: 60px;
   width: 100%;
 }
@@ -106,6 +109,18 @@
 
 .ant-card {
   margin: 15px 0 15px 0 !important;
+}
+
+.ant-card-meta-title {
+  font-size: 27px;
+}
+
+.post {
+  background-color: #FFF;
+  margin-top: 2%;
+  padding: 6% 8%  !important;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 4px;
 }
 
 .post-title {
