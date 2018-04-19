@@ -33,15 +33,15 @@ class Settings extends Component {
                 website_url: values.website_url,
                 bio: values.bio,
                 location: values.location,
-                education: values.education,
                 twitter_username: values.twitter_username,
-                github_username: values.github_username
-              }
+                github_username: values.github_username,
+              },
             })
-            console.log(response)
-            alert('Success!')
-            //<Alert message="Success Tips" type="success" showIcon />
+            const { username } = response.data.updateUserInfo
+            this.props.history.push(`/@${username}`)
+            // <Alert message="Success Tips" type="success" showIcon />
           } catch (err) {
+            console.log(err)
             setSubmitting(false)
           }
         }}
@@ -119,15 +119,6 @@ class Settings extends Component {
                   />
                 </Col>
                 <Col span={12} offset={6}>
-                  <span>Education</span>
-                  <Input
-                    defaultValue={currentUser.education}
-                    onChange={handleChange}
-                    name="education"
-                    type="text"
-                  />
-                </Col>
-                <Col span={12} offset={6}>
                   <span>Twitter</span>
                   <Input
                     defaultValue={currentUser.twitter_username}
@@ -176,7 +167,6 @@ const updateUserInfoMutation = gql`
     $website_url: String
     $bio: String
     $location: String
-    $education: String
     $twitter_username: String
     $github_username: String
   ) {
@@ -188,7 +178,6 @@ const updateUserInfoMutation = gql`
       website_url: $website_url
       bio: $bio
       location: $location
-      education: $education
       name: $name
       twitter_username: $twitter_username
       github_username: $github_username
@@ -199,7 +188,6 @@ const updateUserInfoMutation = gql`
       website_url
       bio
       location
-      education
       twitter_username
       github_username
     }
