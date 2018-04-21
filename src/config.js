@@ -1,10 +1,16 @@
-const devConfig = {
-  GRAPHQL_URI: process.env.GRAPHQL_URI_DEV
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+
+const defaultConfig = {
+  GRAPHQL_URL: process.env.REACT_APP_GRAPHQL_URL,
+  GRAPHQL_SUBSCRIPTIONS_URL: process.env.REACT_APP_GRAPHQL_SUBSCRIPTIONS_URL,
 }
 
-const prodConfig = {
-  GRAPHQL_URI: 'http://devblogapi.vyralynn.com/graphql'
-}
+const devConfig = {}
+
+const prodConfig = {}
 
 function envConfig(env) {
   switch (env) {
@@ -17,4 +23,4 @@ function envConfig(env) {
   }
 }
 
-export default envConfig(process.env.NODE_ENV)
+export default Object.assign(defaultConfig, envConfig(process.env.NODE_ENV))

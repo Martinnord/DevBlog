@@ -9,6 +9,7 @@ import { split } from 'apollo-link'
 import { SubscriptionClient } from 'subscriptions-transport-ws'
 import { getMainDefinition } from 'apollo-utilities'
 import 'antd/dist/antd.css'
+import constants from './config';
 import App from './routes'
 
 import './styles/css/index.css'
@@ -24,9 +25,9 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
-const httpLink = createHttpLink({ uri: 'http://localhost:3010/graphql' })
+const httpLink = createHttpLink({ uri: constants.GRAPHQL_URL })
 
-const wsClient = new SubscriptionClient('ws://localhost:3010/subscriptions', {
+const wsClient = new SubscriptionClient(constants.GRAPHQL_SUBSCRIPTIONS_URL, {
   reconnect: true,
 })
 
