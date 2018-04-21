@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
-import { Icon, Modal, Button } from 'antd'
+import { Icon, Modal, Buttonl } from 'antd'
 import { Editor } from 'slate-react'
 
 import '../routes/index.css'
@@ -43,8 +43,6 @@ class Post extends Component {
     const { post, content, likePost } = this.props
 
     return (
-      // <Row>
-      //   <Col span={12} offset={3} style={{ backgroundColor: '#FFF' }}>
       <div className="post">
         <img
           className="post-image"
@@ -92,9 +90,9 @@ class Post extends Component {
             onCancel={this.handleCancel}
             footer={null}
           >
-            {post.likes.map((like, i) => {
+            {post.likes.map(like => {
               return (
-                <div key={i} style={{ display: 'flex', flexDirection: 'row' }}>
+                <div key={like.id} style={{ display: 'flex', flexDirection: 'row' }}>
                   <img
                     src={like.profile_image}
                     style={{ height: '30px', width: '30px' }}

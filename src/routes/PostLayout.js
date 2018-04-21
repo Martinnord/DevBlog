@@ -28,20 +28,18 @@ class PostLayout extends Component {
     this.props.data.subscribeToMore({
       document: postLikedSubscription,
       variables: {
-        id: this.props.data.variables.id
+        id: this.props.data.variables.id,
       },
       updateQuery: (prev, { subscriptionData }) => {
-        console.log('prev', ...prev)
-        console.log('subscriptionData', subscriptionData)
         if (!subscriptionData.data) {
           return prev
         }
 
         return {
           ...prev,
-          likes: [...prev.likes, subscriptionData.data.postLiked.likes]
+          likes: [...prev, subscriptionData.data.postLiked.likes],
         }
-      }
+      },
     })
   }
 
@@ -69,7 +67,6 @@ class PostLayout extends Component {
         <Content>
           <Row>
             <Post content={parsedContent} post={getPost} likePost={this.props.likePost} />
-            {getPost.user.name}
           </Row>
         </Content>
       </div>
