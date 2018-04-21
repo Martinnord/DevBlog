@@ -7,13 +7,60 @@
   background: #F9F9FA !important;
 }
 
-.ant-layout {
+.ant-layout-content {
   background: #F9F9FA !important;
 }
 
 .ant-menu-horizontal {
   border-bottom: none !important;
 }
+
+.ant-row {
+  margin: 0 22% 0 22% !important;
+}
+
+@media only screen and (max-width: 880px) {
+  .ant-col-offset-6 {
+      margin-left: 3%;
+  }
+  .ant-col-12 {
+    width: 94%;
+  }
+
+  .ant-row {
+    margin: 0 0 0 0 !important;
+  }
+  
+  .post {
+    border-radius: none;
+    box-shadow: none;
+    margin: 0 0 0 0 !important;
+    background-color: #FFF;
+  }
+
+  .post-text {
+    padding: 6% 3% !important;
+  }
+
+  .post-content {
+    font-size: 17px !important;
+    line-height: 26px !important;
+  }
+
+  .post-title {
+    font-size: calc(1.85vw + 25px);
+  }
+
+  .profile-info-wrapper {
+    margin: 4% 10% 0 3% !important;
+  }
+
+  .profile-name {
+    font-size: 25px !important;
+    font-weight: bold !important;
+  }
+}
+
 
 .login-form {
   width: 400px;
@@ -86,7 +133,8 @@
   justify-content: space-between;
   margin-left: auto !important;
   margin-right: auto !important;
-  box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 0 8px 0 rgba(0,0,0,.2);
+  position: relative;
   width: 100%;
 }
 
@@ -96,14 +144,6 @@
 
 .navbar-submenu {
   margin-left: auto !important;
-}
-
-.hr {
-  border: 0;
-  height: 0;
-  width: 38%;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3)
 }
 
 .ant-card {
@@ -123,7 +163,6 @@
 
 .post-author {
   color: #666666;
-  margin-left: 5px;
 }
 
 .post-likes {
@@ -135,6 +174,8 @@
 .post-profile-image {
   width: 20px;
   border-radius: 50%;
+
+  margin-right: 5px;
 }
 
 .post-social {
@@ -145,7 +186,7 @@
 
 .post-text {
   background-color: #FFF;
-  padding: 6% 8%  !important;
+  padding: 6% 8%;
   border-radius: 0 0 4px 4px;
 }
 
@@ -176,7 +217,7 @@
 .profile-info-wrapper {
   display: flex;
   flex-direction: row;
-  margin-left: 20px;
+  margin: 1% 12% 0 12%;
 }
 
 .post-content {
@@ -188,9 +229,10 @@
 
 .profile-image {
   border-radius: 500px;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  border: 5px solid #CCC;
+  width: calc(12.2vw + 50px);
+  height: calc(12.2vw + 50px);
+  max-width: 100%;
   display: block;
 }
 
@@ -203,19 +245,6 @@
   color: black;
   font-size: 20px;
   margin: 0 5px 0 5px;
-}
-
-.image-cropper {
-  width: 170px;
-  height: 170px;
-  position: relative;
-  overflow: hidden;
-  border: 5px solid #CCC;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
 }
 
 .profile-bio {

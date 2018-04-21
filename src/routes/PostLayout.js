@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { graphql, compose } from 'react-apollo'
-import { Layout } from 'antd'
+import { Layout, Row } from 'antd'
 import { Value } from 'slate'
 import Navbar from '../common/Navbar'
 import Post from '../components/Post'
@@ -64,15 +64,15 @@ class PostLayout extends Component {
     const parsedContent = Value.fromJSON(contentObj)
 
     return (
-      <Layout style={{ background: '#ECECEC' }}>
+      <div style={{ background: '#ECECEC' }}>
         <Navbar />
         <Content>
-          <div style={{ margin: '0 250px 0 250px' }}>
+          <Row>
             <Post content={parsedContent} post={getPost} likePost={this.props.likePost} />
             {getPost.user.name}
-          </div>
+          </Row>
         </Content>
-      </Layout>
+      </div>
     )
   }
 }

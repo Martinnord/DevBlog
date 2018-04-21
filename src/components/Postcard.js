@@ -2,7 +2,6 @@ import React from 'react'
 import { Card, Col, Icon } from 'antd'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
-import { Value } from 'slate'
 
 import '../routes/index.css'
 
@@ -14,7 +13,6 @@ const PostCard = ({ posts }) => (
       return (
         <Link to={`/@${post.user.username}/${post.id}`} key={post.id}>
           <Card
-            style={{ margin: '20px 0 20px 0' }}
             hoverable
             cover={<img src={`${post.image_url ? `${post.image_url}` : ''}`} />}
           >

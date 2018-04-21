@@ -56,7 +56,6 @@ class Post extends Component {
           <div className="post-social">
             <span style={{ margin: '0 5px 0 0' }}>
               <h3 className="post-author">
-                Written by{' '}
                 <Link to={`/@${post.user.username}`} className="post-author">
                   <img
                     src={post.user.profile_image}

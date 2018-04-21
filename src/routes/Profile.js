@@ -21,13 +21,11 @@ const Profile = ({ data }) => {
   }
 
   return (
-    <Layout style={{ background: '#ECECEC' }}>
+    <div>
       <Navbar />
       <Content>
-        <Row>
-          <Col span={12} offset={6}>
+
             <div className="profile-info-wrapper">
-              <div className="image-cropper">
                 {getUser.profile_image ? (
                   <img
                     className="profile-image"
@@ -35,7 +33,6 @@ const Profile = ({ data }) => {
                     alt={getUser.profile_image}
                   />
                 ) : null}
-              </div>
               <div className="profile-details">
                 <h1 className="profile-name">
                   {`${getUser.name ? getUser.name : getUser.username}`}{' '}
@@ -55,11 +52,9 @@ const Profile = ({ data }) => {
                 </Link>
               </div>
             </div>
-          </Col>
           <PostCard posts={getUser.posts} />
-        </Row>
       </Content>
-    </Layout>
+    </div>
   )
 }
 

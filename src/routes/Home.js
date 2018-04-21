@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import { Redirect } from 'react-router-dom'
 import { graphql } from 'react-apollo'
-import { Layout, Row, Spin } from 'antd'
+import { Layout, Row } from 'antd'
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
 
@@ -10,7 +10,9 @@ const { Content } = Layout
 
 class Home extends Component {
   render() {
-    const { data: { loading, getAllPosts = [] } } = this.props
+    const {
+      data: { loading, getAllPosts = [] }
+    } = this.props
 
     if (!this.props.data) {
       return <Redirect to={{ pathname: '/404' }} />
@@ -25,14 +27,14 @@ class Home extends Component {
     }
 
     return (
-      <Layout>
+      <div>
         <Navbar />
         <Content className="content">
           <Row>
             <PostCard posts={getAllPosts} />
           </Row>
         </Content>
-      </Layout>
+      </div>
     )
   }
 }
