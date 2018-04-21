@@ -79,8 +79,6 @@ class HoveringMenu extends Component {
   }
 
   onChange = ({ value }) => {
-    console.log('value', value
-  )
     this.props.updateValue(value)
     this.setState({ value })
   }
@@ -103,7 +101,7 @@ class HoveringMenu extends Component {
             value={this.state.value}
             onChange={this.onChange}
             renderMark={this.renderMark}
-            placeholder={"Tell your story..."}
+            placeholder={'Tell your story...'}
           />
         </div>
       </div>

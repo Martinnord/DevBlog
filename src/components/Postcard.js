@@ -11,7 +11,6 @@ const { Meta } = Card
 const PostCard = ({ posts }) => (
   <Col span={12} offset={6}>
     {posts.map(post => {
-      const content = Value.fromJSON(JSON.parse(post.content))
       return (
         <Link to={`/@${post.user.username}/${post.id}`} key={post.id}>
           <Card
@@ -23,16 +22,17 @@ const PostCard = ({ posts }) => (
             <p>
               Written by{' '}
               <Link to={`/@${post.user.username}`}>
+                {/* <img style={{ height: '30px', width: '30px' }} src={post.likes.profile_image} /> */}
                 {post.user.name || post.user.username}
               </Link>
             </p>
             <p>
-              <Icon type="heart" /> {post.likes.length}
+              <Icon type="heart" style={{ color: '#f5222d' }} /> {post.likes.length}
             </p>
             <p>{moment(post.created_at).format('HH:mm D/MM')}</p>
           </Card>
         </Link>
-      )
+        )
     })}
   </Col>
 )

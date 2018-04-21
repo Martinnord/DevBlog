@@ -87,7 +87,6 @@
   margin-left: auto !important;
   margin-right: auto !important;
   box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
-  height: 60px;
   width: 100%;
 }
 
@@ -116,11 +115,43 @@
 }
 
 .post {
-  background-color: #FFF;
   margin-top: 2%;
-  padding: 6% 8%  !important;
+  border-radius: 4px 4px 0 0;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  border-radius: 4px;
+  background-color: #FFF;
+}
+
+.post-author {
+  color: #666666;
+  margin-left: 5px;
+}
+
+.post-likes {
+  margin: 30px 0 30px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.post-profile-image {
+  width: 20px;
+  border-radius: 50%;
+}
+
+.post-social {
+  display: flex;
+  margin-top: 15px;
+  color: #666666;
+}
+
+.post-text {
+  background-color: #FFF;
+  padding: 6% 8%  !important;
+  border-radius: 0 0 4px 4px;
+}
+
+.post-date {
+  margin-bottom: 15px;
+  color: #666666;
 }
 
 .post-title {
@@ -128,7 +159,7 @@
   line-height: 1.04;
   letter-spacing: -.015em;
   font-weight: bold;
-  margin: 20px 0 20px 0;
+  margin: 0;
 }
 
 .post-image {
@@ -294,4 +325,8 @@
 
 .hover-menu .button[data-active='true'] {
   color: #fff;
+}
+
+code {
+  font-size: 0.8em;
 }

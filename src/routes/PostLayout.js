@@ -18,6 +18,7 @@ const postLikedSubscription = gql`
       id
       likes {
         username
+        profile_image
       }
     }
   }
@@ -30,16 +31,15 @@ class PostLayout extends Component {
         id: this.props.data.variables.id
       },
       updateQuery: (prev, { subscriptionData }) => {
+        console.log('prev', ...prev)
+        console.log('subscriptionData', subscriptionData)
         if (!subscriptionData.data) {
           return prev
         }
 
-        console.log('prev.likes', ...prev.likes)
-        console.log('subscriptionData', subscriptionData.data.postLikeds)
-
         return {
           ...prev,
-          likes: [...prev.likes, subscriptionData.data.postLiked]
+          likes: [...prev.likes, subscriptionData.data.postLiked.likes]
         }
       }
     })
@@ -69,6 +69,7 @@ class PostLayout extends Component {
         <Content>
           <div style={{ margin: '0 250px 0 250px' }}>
             <Post content={parsedContent} post={getPost} likePost={this.props.likePost} />
+            {getPost.user.name}
           </div>
         </Content>
       </Layout>
@@ -128,13 +129,10 @@ export default compose(
             id: ownProps.data.getPost.id
           },
           update: (store, { data: likePost }) => {
-            console.log('store', store)
             const data = store.readQuery({
               query: getAllPostsQuery
             })
-            console.log('data', data)
-            console.log('getAllPostQuery', getAllPostsQuery)
-            data.getAllPostsQuery.push(likePost)
+            data.getAllPosts.push(likePost)
             store.writeQuery({ query: getAllPostsQuery, data })
           }
         })
