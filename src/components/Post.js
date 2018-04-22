@@ -3,6 +3,7 @@ import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { Icon, Modal, Buttonl } from 'antd'
 import { Editor } from 'slate-react'
+import MetaTags from 'react-meta-tags'
 
 import '../routes/index.css'
 
@@ -30,17 +31,17 @@ class Post extends Component {
       const { children, mark } = props
       switch (mark.type) {
         case 'title':
-        return <h3>{children}</h3>
-      case 'sub.title':
-        return <h4>{children}</h4>
-      case 'bold':
-        return <strong>{children}</strong>
-      case 'code':
-        return <code>{children}</code>
-      case 'italic':
-        return <em>{children}</em>
-      case 'underlined':
-        return <u>{children}</u>
+          return <h3>{children}</h3>
+        case 'sub.title':
+          return <h4>{children}</h4>
+        case 'bold':
+          return <strong>{children}</strong>
+        case 'code':
+          return <code>{children}</code>
+        case 'italic':
+          return <em>{children}</em>
+        case 'underlined':
+          return <u>{children}</u>
       }
     }
 
@@ -48,6 +49,12 @@ class Post extends Component {
 
     return (
       <div className="post">
+        <MetaTags>
+          <title>{post.title}</title>
+          <meta name="description" content={post.content.substring(0, 20)} />
+          <meta property="og:title" content={post.title} />
+          <meta property="og:image" content={post.image_url} />
+        </MetaTags>
         <img
           className="post-image"
           src={`${post.image_url ? `${post.image_url}` : ''}`}
@@ -96,7 +103,10 @@ class Post extends Component {
           >
             {post.likes.map(like => {
               return (
-                <div key={like.id} style={{ display: 'flex', flexDirection: 'row' }}>
+                <div
+                  key={like.id}
+                  style={{ display: 'flex', flexDirection: 'row' }}
+                >
                   <img
                     src={like.profile_image}
                     style={{ height: '30px', width: '30px' }}

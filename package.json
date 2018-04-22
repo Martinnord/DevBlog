@@ -26,6 +26,7 @@
     "react": "^16.2.0",
     "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",
+    "react-meta-tags": "^0.3.0",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.12",
     "recompose": "^0.26.0",
