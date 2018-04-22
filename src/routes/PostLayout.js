@@ -65,7 +65,7 @@ class PostLayout extends Component {
       <div style={{ background: '#ECECEC' }}>
         <Navbar />
         <Content>
-          <Row>
+          <Row className="post-row">
             <Post content={parsedContent} post={getPost} likePost={this.props.likePost} />
           </Row>
         </Content>
