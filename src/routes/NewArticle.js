@@ -53,7 +53,7 @@ class NewArticle extends Component {
       <Layout style={{ background: '#ECECEC' }}>
         <Navbar currentUser={this.props.currentUser} />
         <Content>
-          <Row>
+          <Row className="new-post-row">
             <Col span={12} offset={6}>
               <Formik
                 validationSchema={schema}
@@ -98,12 +98,9 @@ class NewArticle extends Component {
                   handleSubmit,
                   status
                 }) => (
-                  <Form>
-                    {touched.title &&
-                      errors.title && (
-                        <p className="error-message">{errors.title}</p>
-                      )}
+                  <Form className="new-article-form">
                     <Input
+                      className="new-article-input new-article-title"
                       value={values.title}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -113,13 +110,14 @@ class NewArticle extends Component {
                       placeholder="Title"
                     />
                     <Input
+                      className="new-article-input new-article-image-url"
                       value={values.image_url}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       type="text"
                       name="image_url"
                       label="image_url"
-                      placeholder="Article cover"
+                      placeholder="Image cover (only accept link atm)"
                     />
 
                     <HoveringMenu
@@ -150,6 +148,10 @@ class NewArticle extends Component {
   renderMark = props => {
     const { children, mark } = props
     switch (mark.type) {
+      case 'title':
+        return <h3>{children}</h3>
+      case 'sub.title':
+        return <h4>{children}</h4>
       case 'bold':
         return <strong>{children}</strong>
       case 'code':

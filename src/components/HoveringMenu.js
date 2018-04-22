@@ -37,6 +37,8 @@ class Menu extends Component {
         {this.renderMarkButton('bold', 'Bold')}
         {this.renderMarkButton('italic', 'Italic')}
         {this.renderMarkButton('underlined', 'Underlined')}
+        {this.renderMarkButton('title', '</h1>')}
+        {this.renderMarkButton('sub-title', '</h3>')}
         {this.renderMarkButton('code', 'Code')}
       </div>,
       root
@@ -111,6 +113,10 @@ class HoveringMenu extends Component {
   renderMark = props => {
     const { children, mark } = props
     switch (mark.type) {
+      case 'title':
+        return <h3>{children}</h3>
+      case 'sub-title':
+        return <h4>{children}</h4>
       case 'bold':
         return <strong>{children}</strong>
       case 'code':
