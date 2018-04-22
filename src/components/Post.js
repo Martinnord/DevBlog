@@ -29,14 +29,18 @@ class Post extends Component {
     const renderMark = props => {
       const { children, mark } = props
       switch (mark.type) {
-        case 'bold':
-          return <strong>{children}</strong>
-        case 'code':
-          return <code>{children}</code>
-        case 'italic':
-          return <em>{children}</em>
-        case 'underlined':
-          return <u>{children}</u>
+        case 'title':
+        return <h3>{children}</h3>
+      case 'sub.title':
+        return <h4>{children}</h4>
+      case 'bold':
+        return <strong>{children}</strong>
+      case 'code':
+        return <code>{children}</code>
+      case 'italic':
+        return <em>{children}</em>
+      case 'underlined':
+        return <u>{children}</u>
       }
     }
 

@@ -50,9 +50,9 @@ class NewArticle extends Component {
     })
 
     return (
-      <Layout style={{ background: '#ECECEC' }}>
+      <div>
         <Navbar currentUser={this.props.currentUser} />
-        <Content>
+        <div className="new-post-layout">
           <Row className="new-post-row">
             <Col span={12} offset={6}>
               <Formik
@@ -82,7 +82,6 @@ class NewArticle extends Component {
                     })
                     this.props.history.push('/')
                   } catch (err) {
-                    
                     // const graphqlError = err.graphQLErrors[0].message
                     // setStatus(graphqlError)
                     setSubmitting(false)
@@ -119,13 +118,13 @@ class NewArticle extends Component {
                       label="image_url"
                       placeholder="Image cover (only accept link atm)"
                     />
-
                     <HoveringMenu
+                      className="new-post-editor"
                       value={this.state.content}
                       updateValue={this.updateValue}
                     />
                     <Row>
-                      <Col span={9} offset={12}>
+                      <Col span={6} offset={6}>
                         <Button
                           type="primary"
                           htmlType="submit"
@@ -141,8 +140,8 @@ class NewArticle extends Component {
               />
             </Col>
           </Row>
-        </Content>
-      </Layout>
+        </div>
+      </div>
     )
   }
   renderMark = props => {

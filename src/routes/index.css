@@ -9,11 +9,14 @@ h3, h4 {
 
 #root {
   height: 100%;
-  background: #F9F9FA !important;
 }
 
 .ant-layout-content {
-  background: #F9F9FA !important;
+  background: #F9F9FA;
+}
+
+.new-post-layout {
+  background-color: #FFF !important;
 }
 
 .ant-menu-horizontal {
@@ -25,7 +28,11 @@ h3, h4 {
 }
 
 .new-post-row {
+  margin-top: 0 !important;
+}
 
+.new-article-form {
+  margin-top: 40px;
 }
 
 @media only screen and (max-width: 880px) {
@@ -373,9 +380,6 @@ code {
   font-size: 0.8em;
 }
 
-.new-article-form {
-}
-
 .new-article-input {
   border: transparent;
   margin-top: 2%;
@@ -389,8 +393,12 @@ code {
 }
 
 .new-article-image-url {
-  margin-top: none !important;
+  margin-top: 0 !important;
   font-size: 20px;
+}
+
+.editor {
+  margin-top: 20px !important;
 }
 
 .new-article-title {
