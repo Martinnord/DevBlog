@@ -423,3 +423,20 @@ code {
   outline:none !important;
   box-shadow:none !important;
 }
+
+.create-login-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.login-link {
+  margin: 0 15px 0 15px;
+  width: 250px;
+}
+
+.introduction {
+  text-align: center;
+  font-weight: 500;
+  color: #808080;
+  font-size: 1.1em;
+}

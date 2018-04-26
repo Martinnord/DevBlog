@@ -4,8 +4,6 @@ import yup from 'yup'
 import { graphql, compose } from 'react-apollo'
 import { Layout, Col, Row, Input, Button } from 'antd'
 import { Formik, Form } from 'formik'
-import { CurrentUser } from '../util/auth'
-import { Redirect } from 'react-router-dom'
 import Navbar from '../common/Navbar'
 import { getAllPostsQuery } from '../graphql/newArticle'
 import { Value } from 'slate'
@@ -35,7 +33,7 @@ const initialValue = Value.fromJSON({
   }
 })
 
-class NewArticle extends Component {
+class EditPost extends Component {
   state = {
     content: initialValue
   }
@@ -47,29 +45,44 @@ class NewArticle extends Component {
   }
 
   render() {
+    const {
+      data: { loading, getPost }
+    } = this.props
+
+    if (!this.props.data) {
+     // return <Redirect to={{ pathname: '/404' }} />
+    }
+
+    if (loading) {
+      return null
+    }
+
+    if (!loading && !getPost) {
+      //return <Redirect to={{ pathname: '/404' }} />
+    }
+
+
     const schema = yup.object().shape({
       title: yup.string().required('Please include a title')
     })
 
-    const { loading, currentUser } = this.props
+    console.log(getPost.content)
 
-    if (loading) return true
+    const contentObj = JSON.parse(getPost.content)
+    const parsedContent = Value.fromJSON(contentObj)
 
-    if (!currentUser) {
-      return <Redirect to={{ pathname: '/new' }} />
-    }
 
     return (
       <div>
-        <Navbar />
+        <Navbar currentUser={this.props.currentUser} />
         <div className="new-post-layout">
           <Row className="new-post-row">
             <Col span={12} offset={6}>
               <Formik
                 validationSchema={schema}
                 initialValues={{
-                  title: '',
-                  content: initialValue,
+                  title: getPost.title,
+                  content: getPost.content,
                   image_url: ''
                 }}
                 onSubmit={async (values, { setSubmitting, setStatus }) => {
@@ -130,7 +143,7 @@ class NewArticle extends Component {
                     />
                     <HoveringMenu
                       className="new-post-editor"
-                      value={this.state.content}
+                      value={parsedContent}
                       updateValue={this.updateValue}
                     />
                     <Row>
@@ -173,6 +186,31 @@ class NewArticle extends Component {
   }
 }
 
+const getPostQuery = gql`
+  query($id: Int!) {
+    getPost(id: $id) {
+      id
+      title
+      content
+      image_url
+      created_at
+      likes {
+        username
+        profile_image
+      }
+      user {
+        name
+        username
+        profile_image
+        bio
+        twitter_username
+        github_username
+      }
+    }
+  }
+`
+
+
 const newArticleMutation = gql`
   mutation($title: String!, $content: String!, $image_url: String) {
     createPost(title: $title, content: $content, image_url: $image_url) {
@@ -184,4 +222,13 @@ const newArticleMutation = gql`
   }
 `
 
-export default CurrentUser(graphql(newArticleMutation)(NewArticle))
+// export default graphql(newArticleMutation)(EditPost)
+
+export default compose(
+  graphql(getPostQuery, {
+    skip: props => !props.match.params.id,
+    options: props => ({
+      variables: { id: props.match.params.id }
+    })
+  }),
+)(EditPost)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
-import { Icon, Modal, Buttonl } from 'antd'
+import { Icon, Modal, Button } from 'antd'
 import { Editor } from 'slate-react'
 import MetaTags from 'react-meta-tags'
 
@@ -74,6 +74,9 @@ class Post extends Component {
                 </Link>
               </h3>
             </span>
+            <Link to={`/@${post.user.username}/${post.id}/edit`}>
+            <Button>Edit</Button>
+            </Link>
             <span style={{ margin: '0 5px 0 0' }}>
               <Link
                 target="_blank"

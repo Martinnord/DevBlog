@@ -12,6 +12,7 @@ module.exports = {
     "no-undef": 0,
     "prefer-destructuring": 0,
     "default-case": 0,
+    "comma-dangle": 0,
     semi: [2, "never"]
   }
 }
