@@ -23,7 +23,7 @@ const currentUserQUERY = gql`
 export const CurrentUser = graphql(currentUserQUERY, {
   alias: 'CurrentUser',
   options: { fetchPolicy: 'cache-first' },
-  props: ({ data: { currentUser, loading } }) => ({ currentUser, loading }),
+  props: ({ data: { currentUser, loading } }) => ({ currentUser, loading })
 })
 
 const LoginMUTATION = gql`
@@ -58,16 +58,16 @@ export const RegisterMutation = graphql(registerMUTATION, {
             id: register.id,
             username: register.username,
             email,
-            jwt: register.jwt,
+            jwt: register.jwt
           }
 
           proxy.writeQuery({ query: currentUserQUERY, data: { currentUser } })
 
           // Store the token
           localStorage.setItem('token', register.jwt)
-        },
-      }),
-  }),
+        }
+      })
+  })
 })
 
 export const LoginMutation = graphql(LoginMUTATION, {
@@ -82,14 +82,14 @@ export const LoginMutation = graphql(LoginMUTATION, {
             id: login.id,
             username: login.username,
             email,
-            jwt: login.jwt,
+            jwt: login.jwt
           }
 
           proxy.writeQuery({ query: currentUserQUERY, data: { currentUser } })
 
           // Store the token
           localStorage.setItem('token', login.jwt)
-        },
-      }),
-  }),
+        }
+      })
+  })
 })
