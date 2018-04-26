@@ -12,8 +12,6 @@ import 'antd/dist/antd.css'
 import constants from './config';
 import App from './routes'
 
-import './styles/css/index.css'
-
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('token')
 
