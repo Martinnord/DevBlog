@@ -407,7 +407,6 @@ code {
   font-weight: 700;
 }
 
-
 .new-article-title::placeholder {
   font-size: 36px !important;
   font-weight: 700;
@@ -419,24 +418,31 @@ code {
 }
 
 .ant-input {
-  border:0 !important;
-  outline:none !important;
-  box-shadow:none !important;
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-.create-login-row {
+.auth-wrapper {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
 }
 
-.login-link {
-  margin: 0 15px 0 15px;
-  width: 250px;
+.auth-link {
+  margin: 0 2% 2% 2%;
+  width: 200px;
+  display: inline-block;
 }
 
 .introduction {
   text-align: center;
   font-weight: 500;
   color: #808080;
-  font-size: 1.1em;
+  font-size: 1.2em;
+  max-width: 24em;
+  margin: 0 auto;
+}
+
+.test + .test {
+  margin-left: 10px;
 }
