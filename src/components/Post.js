@@ -3,7 +3,7 @@ import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { Icon, Modal, Button } from 'antd'
 import { Editor } from 'slate-react'
-import MetaTags from 'react-meta-tags'
+import { CurrentUser } from '../util/auth'
 
 import '../routes/index.css'
 
@@ -27,6 +27,13 @@ class Post extends Component {
   }
 
   render() {
+    const { post, content, likePost, currentUser, loading } = this.props
+
+    if (loading) {
+      return null
+    }
+
+
     const renderMark = props => {
       const { children, mark } = props
       switch (mark.type) {
@@ -45,16 +52,8 @@ class Post extends Component {
       }
     }
 
-    const { post, content, likePost } = this.props
-
     return (
       <div className="post">
-        <MetaTags>
-          <title>{post.title}</title>
-          <meta name="description" content={post.content.substring(0, 20)} />
-          <meta property="og:title" content={post.title} />
-          <meta property="og:image" content={post.image_url} />
-        </MetaTags>
         <img
           className="post-image"
           src={`${post.image_url ? `${post.image_url}` : ''}`}
@@ -74,9 +73,11 @@ class Post extends Component {
                 </Link>
               </h3>
             </span>
-            <Link to={`/@${post.user.username}/${post.id}/edit`}>
-            <Button>Edit</Button>
-            </Link>
+            {currentUser && currentUser.id === post.user.id ? (
+              <Link to={`/@${post.user.username}/${post.id}/edit`}>
+                <Button>Edit</Button>
+              </Link>
+            ) : null}
             <span style={{ margin: '0 5px 0 0' }}>
               <Link
                 target="_blank"
@@ -139,4 +140,4 @@ class Post extends Component {
   }
 }
 
-export default Post
+export default CurrentUser(Post)

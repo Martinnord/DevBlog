@@ -22,15 +22,15 @@ class NewUser extends Component {
               </h1>
             </Col>
           </Row>
-          <Row className="create-login-row">
+          <Row className="auth-wrapper">
             <Col span={12} offset={6}>
-              <Link to="/register">
-                <Button className="login-link" size="large">
+              <Link to="/register" className="test">
+                <Button className="auth-link" size="large">
                   Create an account
                 </Button>
               </Link>
-              <Link to="/login">
-                <Button className="login-link" size="large">
+              <Link to="/login" className="test">
+                <Button className="auth-link" size="large">
                   Log in
                 </Button>
               </Link>
@@ -39,8 +39,8 @@ class NewUser extends Component {
           <Row>
             <Col span={12} offset={6}>
               <h3 className="introduction">
-                Devblog is a great community for people interested in code
-                people who want's to get into it
+                Devblog is a great community for people who are interested in
+                code or people who want's to get into it
               </h3>
             </Col>
           </Row>

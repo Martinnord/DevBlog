@@ -87,6 +87,7 @@ const getPostQuery = gql`
         profile_image
       }
       user {
+        id
         name
         username
         profile_image
