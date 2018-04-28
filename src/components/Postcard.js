@@ -4,7 +4,6 @@ import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 
-
 import '../routes/index.css'
 
 const { Meta } = Card
@@ -15,10 +14,9 @@ class PostCard extends Component {
     console.log('history', history)
     this.props.history.push(`/@${post.user.username}/${post.id}`)
   }
-
   render() {
-    const { posts, history } = this.props
 
+    const { posts, history } = this.props
 
     return (
       <Col span={12} offset={6}>

@@ -33,7 +33,6 @@ class Post extends Component {
       return null
     }
 
-
     const renderMark = props => {
       const { children, mark } = props
       switch (mark.type) {

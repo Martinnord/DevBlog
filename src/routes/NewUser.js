@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { Row, Col, Button } from 'antd'
+import { Layout, Row, Col, Button } from 'antd'
 import { Link } from 'react-router-dom'
 import Navbar from '../common/Navbar'
+import FooterComponent from '../common/Footer'
 
+const { Content } = Layout
 class NewUser extends Component {
   render() {
     return (
-      <div>
+      <Layout style={{ backgroundColor: '#f9f9fa' }}>
         <Navbar />
-        <div style={{ marginTop: '10%' }}>
+        <Content style={{ marginTop: '5%' }}>
           <Row>
             <Col span={12} offset={6}>
               <h1
@@ -44,8 +46,9 @@ class NewUser extends Component {
               </h3>
             </Col>
           </Row>
-        </div>
-      </div>
+          <FooterComponent />
+        </Content>
+      </Layout>
     )
   }
 }

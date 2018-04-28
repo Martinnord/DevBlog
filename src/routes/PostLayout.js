@@ -6,6 +6,7 @@ import { Layout, Row } from 'antd'
 import { Value } from 'slate'
 import Navbar from '../common/Navbar'
 import Post from '../components/Post'
+import FooterComponent from '../common/Footer'
 import { getAllPostsQuery } from '../graphql/newArticle'
 
 import './index.css'
@@ -28,7 +29,7 @@ class PostLayout extends Component {
     this.props.data.subscribeToMore({
       document: postLikedSubscription,
       variables: {
-        id: this.props.data.variables.id,
+        id: this.props.data.variables.id
       },
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) {
@@ -37,13 +38,15 @@ class PostLayout extends Component {
 
         return {
           ...prev,
-          likes: [...prev, subscriptionData.data.postLiked.likes],
+          likes: [...prev, subscriptionData.data.postLiked.likes]
         }
-      },
+      }
     })
   }
 
   render() {
+    document.body.style.background = '#F9F9FA'
+
     const { loading, getPost } = this.props.data
 
     if (!this.props.data) {
@@ -62,14 +65,19 @@ class PostLayout extends Component {
     const parsedContent = Value.fromJSON(contentObj)
 
     return (
-      <div style={{ background: '#ECECEC' }}>
+      <Layout style={{ background: '#ECECEC' }}>
         <Navbar />
         <Content>
           <Row className="post-row">
-            <Post content={parsedContent} post={getPost} likePost={this.props.likePost} />
+            <Post
+              content={parsedContent}
+              post={getPost}
+              likePost={this.props.likePost}
+            />
           </Row>
         </Content>
-      </div>
+        <FooterComponent />
+      </Layout>
     )
   }
 }

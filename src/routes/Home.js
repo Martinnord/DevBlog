@@ -5,6 +5,8 @@ import { graphql } from 'react-apollo'
 import { Layout, Row } from 'antd'
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
+import FooterComponent from '../common/Footer'
+import './index.css'
 
 const { Content } = Layout
 
@@ -27,14 +29,15 @@ class Home extends Component {
     }
 
     return (
-      <div>
+      <Layout>
         <Navbar />
         <Content className="content">
-          <Row>
+          <Row className="no-margin-uptop-row">
             <PostCard posts={getAllPosts} />
           </Row>
         </Content>
-      </div>
+        <FooterComponent />
+      </Layout>
     )
   }
 }

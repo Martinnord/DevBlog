@@ -2,7 +2,8 @@
   height: 100%;
 } */
 
-h3, h4 {
+h3,
+h4 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
 }
@@ -12,11 +13,12 @@ h3, h4 {
 }
 
 .ant-layout-content {
-  background: #F9F9FA;
+  background: #f9f9fa;
+  min-height: calc(83vh - 70px);
 }
 
 .new-post-layout {
-  background-color: #FFF !important;
+  background-color: #fff !important;
 }
 
 .ant-menu-horizontal {
@@ -37,7 +39,7 @@ h3, h4 {
 
 @media only screen and (max-width: 880px) {
   .ant-col-offset-6 {
-      margin-left: 3%;
+    margin-left: 3%;
   }
   .ant-col-12 {
     width: 94%;
@@ -46,16 +48,16 @@ h3, h4 {
   .post-row {
     margin: 0 0 0 0 !important;
   }
-  
+
   .ant-card-meta-title {
     white-space: normal !important;
   }
-  
+
   .post {
     border-radius: none;
     box-shadow: none;
     margin: 0 0 0 0 !important;
-    background-color: #FFF;
+    background-color: #fff;
   }
 
   .post-text {
@@ -81,10 +83,9 @@ h3, h4 {
   }
 }
 
-
 .login-form {
   width: 400px;
-  background-color: #FFF;
+  background-color: #fff;
   border-radius: 2%;
 }
 
@@ -126,14 +127,15 @@ h3, h4 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100%
+  height: 100%;
 }
 
 .not-found-header {
   font-size: 90px;
   font-weight: bold;
   color: #fff;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 .not-found-text {
@@ -141,7 +143,8 @@ h3, h4 {
   margin-top: -40px;
   font-weight: bold;
   color: #fff;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 .back-button:hover {
@@ -153,7 +156,7 @@ h3, h4 {
   justify-content: space-between;
   margin-left: auto !important;
   margin-right: auto !important;
-  box-shadow: 0 0 8px 0 rgba(0,0,0,.2);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
   position: relative;
   width: 100%;
 }
@@ -177,8 +180,8 @@ h3, h4 {
 .post {
   margin-top: 2%;
   border-radius: 4px 4px 0 0;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  background-color: #FFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
 }
 
 .post-author {
@@ -205,7 +208,7 @@ h3, h4 {
 }
 
 .post-text {
-  background-color: #FFF;
+  background-color: #fff;
   padding: 6% 8%;
   border-radius: 0 0 4px 4px;
 }
@@ -218,7 +221,7 @@ h3, h4 {
 .post-title {
   font-size: 42px;
   line-height: 1.04;
-  letter-spacing: -.015em;
+  letter-spacing: -0.015em;
   font-weight: bold;
   margin: 0;
 }
@@ -243,13 +246,13 @@ h3, h4 {
 .post-content {
   font-size: 21px;
   line-height: 1.58;
-  letter-spacing: -.003em;
+  letter-spacing: -0.003em;
   font-family: 'Vollkorn', serif;
 }
 
 .profile-image {
   border-radius: 500px;
-  border: 5px solid #CCC;
+  border: 5px solid #ccc;
   width: calc(12.2vw + 50px);
   height: calc(12.2vw + 50px);
   max-width: 100%;
@@ -281,7 +284,6 @@ h3, h4 {
   margin: 30px 0 30px 0;
   height: 50px;
 }
-
 
 /* NEW STYLING FOR HOVERING MENU*/
 
@@ -384,7 +386,7 @@ code {
   border: transparent;
   margin-top: 2%;
   height: 50px;
-  color: #BFBFBF;
+  color: #bfbfbf;
   padding: 0;
 }
 
@@ -445,4 +447,46 @@ code {
 
 .test + .test {
   margin-left: 10px;
+}
+
+.no-margin-uptop-row {
+  margin: 0 25px 0 25px;
+}
+
+.footer {
+  padding: 45px 0 45px;
+  background-color: #fff;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.footer-container {
+  margin: 3% 0 5% 0;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.footer-copyright {
+  font-size: 1.2em;
+  font-weight: 500;
+  text-align: center;
+  margin-top: -30px;
+}
+
+.about-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #FFF;
+  transition: 0.3s;
+  padding: 2% 10% 2% 10%;
+  margin-bottom: 2%;
+}
+
+.about-row {
+  margin: 1% 17% 3% 17%;
+}
+
+.about-title {
+  font-size: 2.7em;
+  font-size: 500;
 }
