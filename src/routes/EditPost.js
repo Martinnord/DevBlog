@@ -2,15 +2,15 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import yup from 'yup'
 import { graphql, compose } from 'react-apollo'
-import { Layout, Col, Row, Input, Button } from 'antd'
+import { Col, Row, Input, Button } from 'antd'
+import { Redirect } from 'react-router-dom'
 import { Formik, Form } from 'formik'
 import Navbar from '../common/Navbar'
 import { getAllPostsQuery } from '../graphql/newArticle'
 import { Value } from 'slate'
 import HoveringMenu from '../components/HoveringMenu'
+import { CurrentUser } from '../util/auth'
 import './index.css'
-
-const { Content } = Layout
 
 const initialValue = Value.fromJSON({
   document: {
@@ -46,31 +46,28 @@ class EditPost extends Component {
 
   render() {
     const {
-      data: { loading, getPost }
+      data: { loading, getPost },
+      currentUser
     } = this.props
-
-    if (!this.props.data) {
-     // return <Redirect to={{ pathname: '/404' }} />
-    }
 
     if (loading) {
       return null
     }
 
-    if (!loading && !getPost) {
-      //return <Redirect to={{ pathname: '/404' }} />
+    if (!currentUser || currentUser.id !== getPost.user.id) {
+      return <Redirect to="/new" />
     }
 
+    if (!loading && !getPost) {
+      return <Redirect to="/404" />
+    }
 
     const schema = yup.object().shape({
       title: yup.string().required('Please include a title')
     })
 
-    console.log(getPost.content)
-
     const contentObj = JSON.parse(getPost.content)
     const parsedContent = Value.fromJSON(contentObj)
-
 
     return (
       <div>
@@ -105,8 +102,6 @@ class EditPost extends Component {
                     })
                     this.props.history.push('/')
                   } catch (err) {
-                    // const graphqlError = err.graphQLErrors[0].message
-                    // setStatus(graphqlError)
                     setSubmitting(false)
                   }
                 }}
@@ -199,6 +194,7 @@ const getPostQuery = gql`
         profile_image
       }
       user {
+        id
         name
         username
         profile_image
@@ -210,25 +206,23 @@ const getPostQuery = gql`
   }
 `
 
-
-const newArticleMutation = gql`
-  mutation($title: String!, $content: String!, $image_url: String) {
-    createPost(title: $title, content: $content, image_url: $image_url) {
-      title
-      content
-      created_at
-      image_url
-    }
-  }
-`
-
-// export default graphql(newArticleMutation)(EditPost)
+// const newArticleMutation = gql`
+//   mutation($title: String!, $content: String!, $image_url: String) {
+//     createPost(title: $title, content: $content, image_url: $image_url) {
+//       title
+//       content
+//       created_at
+//       image_url
+//     }
+//   }
+// `
 
 export default compose(
+  CurrentUser,
   graphql(getPostQuery, {
     skip: props => !props.match.params.id,
     options: props => ({
       variables: { id: props.match.params.id }
     })
-  }),
+  })
 )(EditPost)
