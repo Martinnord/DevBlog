@@ -81,6 +81,22 @@ h4 {
     font-size: 25px !important;
     font-weight: bold !important;
   }
+
+  .about-card {
+    box-shadow: none !important;
+  }
+
+  .about-row {
+    margin: 1% 0 0 0 !important;
+  }
+
+  .about-title {
+    font-size: 1.7em !important;
+  }
+
+  .footer-copyright {
+    margin-top: -10px !important;
+  }
 }
 
 .login-form {
@@ -111,9 +127,9 @@ h4 {
   margin: 0;
 }
 
-.ant-btn-primary {
+/* .ant-btn-primary {
   width: 100%;
-}
+} */
 
 .not-found-layout {
   height: 100%;
@@ -476,7 +492,7 @@ code {
 
 .about-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  background-color: #FFF;
+  background-color: #fff;
   transition: 0.3s;
   padding: 2% 10% 2% 10%;
   margin-bottom: 2%;

@@ -5,6 +5,7 @@ import { graphql } from 'react-apollo'
 import { Layout, Col, Row, Spin, Icon } from 'antd'
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
+import GET_USER_QUERY from '../graphql/queries/getUser'
 import './index.css'
 
 const { Content } = Layout
@@ -57,33 +58,7 @@ const Profile = ({ data }) => {
   )
 }
 
-const getUserQuery = gql`
-  query($username: String!) {
-    getUser(username: $username) {
-      name
-      username
-      profile_image
-      bio
-      twitter_username
-      github_username
-      posts {
-        id
-        title
-        content
-        image_url
-        created_at
-        user {
-          username
-        }
-        likes {
-          username
-        }
-      }
-    }
-  }
-`
-
-export default graphql(getUserQuery, {
+export default graphql(GET_USER_QUERY, {
   skip: props => !props.match.params.username,
   options: props => ({
     variables: { username: props.match.params.username }

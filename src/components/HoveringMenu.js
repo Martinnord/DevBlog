@@ -61,7 +61,6 @@ class HoveringMenu extends Component {
 
   updateMenu = () => {
     const { value } = this.state
-    console.log('value', value)
     const menu = this.menu
     if (!menu) return
 

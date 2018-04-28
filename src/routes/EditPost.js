@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import gql from 'graphql-tag'
 import yup from 'yup'
 import { graphql, compose } from 'react-apollo'
 import { Col, Row, Input, Button } from 'antd'
@@ -10,6 +9,8 @@ import { getAllPostsQuery } from '../graphql/newArticle'
 import { Value } from 'slate'
 import HoveringMenu from '../components/HoveringMenu'
 import { CurrentUser } from '../util/auth'
+import UPDATE_POST_MUTATION from '../graphql/mutations/updatePost'
+import GET_POST_QUERY from '../graphql/queries/getPost'
 import './index.css'
 
 const initialValue = Value.fromJSON({
@@ -71,7 +72,7 @@ class EditPost extends Component {
 
     return (
       <div>
-        <Navbar currentUser={this.props.currentUser} />
+        <Navbar />
         <div className="new-post-layout">
           <Row className="new-post-row">
             <Col span={12} offset={6}>
@@ -88,15 +89,16 @@ class EditPost extends Component {
                   try {
                     await this.props.mutate({
                       variables: {
+                        id: getPost.id,
                         title: values.title,
                         content: JSON.stringify(content.toJSON()),
                         image_url: values.image_url
                       },
-                      update: (store, { data: { createPost } }) => {
+                      update: (store, { data: { updatePost } }) => {
                         const data = store.readQuery({
                           query: getAllPostsQuery
                         })
-                        data.getAllPosts.push(createPost)
+                        data.getAllPosts.push(updatePost)
                         store.writeQuery({ query: getAllPostsQuery, data })
                       }
                     })
@@ -181,46 +183,16 @@ class EditPost extends Component {
   }
 }
 
-const getPostQuery = gql`
-  query($id: Int!) {
-    getPost(id: $id) {
-      id
-      title
-      content
-      image_url
-      created_at
-      likes {
-        username
-        profile_image
-      }
-      user {
-        id
-        name
-        username
-        profile_image
-        bio
-        twitter_username
-        github_username
-      }
-    }
-  }
-`
-
-// const newArticleMutation = gql`
-//   mutation($title: String!, $content: String!, $image_url: String) {
-//     createPost(title: $title, content: $content, image_url: $image_url) {
-//       title
-//       content
-//       created_at
-//       image_url
-//     }
-//   }
-// `
-
 export default compose(
   CurrentUser,
-  graphql(getPostQuery, {
+  graphql(GET_POST_QUERY, {
     skip: props => !props.match.params.id,
+    options: props => ({
+      variables: { id: props.match.params.id }
+    })
+  }),
+  graphql(UPDATE_POST_MUTATION, {
+    skip: props => props.match.params.id,
     options: props => ({
       variables: { id: props.match.params.id }
     })

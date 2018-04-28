@@ -5,6 +5,7 @@ import { Formik } from 'formik'
 import { Layout, Col, Row, Input, Button } from 'antd'
 import { CurrentUser } from '../util/auth'
 import Navbar from '../common/Navbar'
+import UPDATE_USER_INFO_MUTATION from '../graphql/mutations/updateUserInfo'
 import '../routes/index.css'
 
 const { Content } = Layout
@@ -157,44 +158,7 @@ class Settings extends Component {
   }
 }
 
-const updateUserInfoMutation = gql`
-  mutation(
-    $id: Int!
-    $email: String
-    $username: String
-    $name: String
-    $profile_image: String
-    $website_url: String
-    $bio: String
-    $location: String
-    $twitter_username: String
-    $github_username: String
-  ) {
-    updateUserInfo(
-      id: $id
-      email: $email
-      username: $username
-      profile_image: $profile_image
-      website_url: $website_url
-      bio: $bio
-      location: $location
-      name: $name
-      twitter_username: $twitter_username
-      github_username: $github_username
-    ) {
-      email
-      username
-      profile_image
-      website_url
-      bio
-      location
-      twitter_username
-      github_username
-    }
-  }
-`
-
-const updateUserInfo = graphql(updateUserInfoMutation, {
+const updateUserInfo = graphql(UPDATE_USER_INFO_MUTATION, {
   name: 'updateUserInfo',
   options: props => {
     return {

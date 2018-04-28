@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import gql from 'graphql-tag'
 import { Redirect } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { Layout, Row } from 'antd'
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
 import FooterComponent from '../common/Footer'
+import GET_ALL_POSTS_QUERY from '../graphql/queries/getAllPosts'
 import './index.css'
 
 const { Content } = Layout
@@ -42,22 +42,4 @@ class Home extends Component {
   }
 }
 
-const getAllPostsQuery = gql`
-  query getAllPostsQuery {
-    getAllPosts {
-      id
-      title
-      content
-      image_url
-      likes {
-        username
-        profile_image
-      }
-      created_at
-      user {
-        username
-      }
-    }
-  }
-`
-export default graphql(getAllPostsQuery)(Home)
+export default graphql(GET_ALL_POSTS_QUERY)(Home)

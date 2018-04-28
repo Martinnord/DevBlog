@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import gql from 'graphql-tag'
 import yup from 'yup'
 import { graphql, compose } from 'react-apollo'
 import { Layout, Col, Row, Input, Button } from 'antd'
@@ -10,6 +9,7 @@ import Navbar from '../common/Navbar'
 import { getAllPostsQuery } from '../graphql/newArticle'
 import { Value } from 'slate'
 import HoveringMenu from '../components/HoveringMenu'
+import NEW_POST_MUTATION from '../graphql/mutations/newPost'
 import './index.css'
 
 const { Content } = Layout
@@ -35,7 +35,7 @@ const initialValue = Value.fromJSON({
   }
 })
 
-class NewArticle extends Component {
+class NewPost extends Component {
   state = {
     content: initialValue
   }
@@ -173,15 +173,4 @@ class NewArticle extends Component {
   }
 }
 
-const newArticleMutation = gql`
-  mutation($title: String!, $content: String!, $image_url: String) {
-    createPost(title: $title, content: $content, image_url: $image_url) {
-      title
-      content
-      created_at
-      image_url
-    }
-  }
-`
-
-export default CurrentUser(graphql(newArticleMutation)(NewArticle))
+export default CurrentUser(graphql(NEW_POST_MUTATION)(NewPost))

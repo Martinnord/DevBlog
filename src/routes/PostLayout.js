@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import gql from 'graphql-tag'
 import { graphql, compose } from 'react-apollo'
 import { Layout, Row } from 'antd'
 import { Value } from 'slate'
@@ -8,26 +7,17 @@ import Navbar from '../common/Navbar'
 import Post from '../components/Post'
 import FooterComponent from '../common/Footer'
 import { getAllPostsQuery } from '../graphql/newArticle'
-
+import POST_LIKED_SUBSCRIPTION from '../graphql/subscriptions/postLiked'
+import GET_POST_QUERY from '../graphql/queries/getPost'
+import LIKE_POST_MUTATION from '../graphql/mutations/likePost' 
 import './index.css'
 
 const { Content } = Layout
 
-const postLikedSubscription = gql`
-  subscription($id: ID!) {
-    postLiked(id: $id) {
-      id
-      likes {
-        username
-        profile_image
-      }
-    }
-  }
-`
 class PostLayout extends Component {
   componentWillMount() {
     this.props.data.subscribeToMore({
-      document: postLikedSubscription,
+      document: POST_LIKED_SUBSCRIPTION,
       variables: {
         id: this.props.data.variables.id
       },
@@ -82,51 +72,14 @@ class PostLayout extends Component {
   }
 }
 
-const getPostQuery = gql`
-  query($id: Int!) {
-    getPost(id: $id) {
-      id
-      title
-      content
-      image_url
-      created_at
-      likes {
-        username
-        profile_image
-      }
-      user {
-        id
-        name
-        username
-        profile_image
-        bio
-        twitter_username
-        github_username
-      }
-    }
-  }
-`
-
-const likePostMutation = gql`
-  mutation($id: ID!) {
-    likePost(id: $id) {
-      id
-      likes {
-        username
-        profile_image
-      }
-    }
-  }
-`
-
 export default compose(
-  graphql(getPostQuery, {
+  graphql(GET_POST_QUERY, {
     skip: props => !props.match.params.id,
     options: props => ({
       variables: { id: props.match.params.id }
     })
   }),
-  graphql(likePostMutation, {
+  graphql(LIKE_POST_MUTATION, {
     alias: 'likePost',
     props: ({ mutate, ownProps }) => ({
       likePost: () => {
