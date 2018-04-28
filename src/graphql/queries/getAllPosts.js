@@ -1,16 +1,21 @@
 import gql from 'graphql-tag'
 
-export const getAllPostsQuery = gql`
-  {
+export default gql`
+  query getAllPostsQuery {
     getAllPosts {
       id
       title
       content
+      image_url
       likes {
         id
         username
+        profile_image
       }
       created_at
+      user {
+        username
+      }
     }
   }
 `

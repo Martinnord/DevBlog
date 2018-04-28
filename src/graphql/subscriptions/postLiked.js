@@ -1,16 +1,14 @@
 import gql from 'graphql-tag'
 
-export const getAllPostsQuery = gql`
-  {
-    getAllPosts {
+export default gql`
+  subscription($id: ID!) {
+    postLiked(id: $id) {
       id
-      title
-      content
       likes {
         id
         username
+        profile_image
       }
-      created_at
     }
   }
 `

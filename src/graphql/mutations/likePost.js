@@ -1,16 +1,14 @@
 import gql from 'graphql-tag'
 
-export const getAllPostsQuery = gql`
-  {
-    getAllPosts {
+export default gql`
+  mutation($id: ID!) {
+    likePost(id: $id) {
       id
-      title
-      content
       likes {
         id
         username
+        profile_image
       }
-      created_at
     }
   }
 `
