@@ -1,6 +1,5 @@
 import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import { Layout, Col, Row, Spin, Icon } from 'antd'
 import PostCard from '../components/Postcard'
@@ -10,16 +9,19 @@ import './index.css'
 
 const { Content } = Layout
 
-const Profile = ({ data }) => {
-  const { loading, getUser } = data
+const Profile = () => {
+  const { loading, getUser } = this.props.data
 
   if (loading) {
     return <Spin size="large" />
   }
 
-  if (!loading && !getUser) {
-    return <Redirect to={{ pathname: '/404' }} />
-  }
+  console.log(this.props)
+
+  debugger;
+  // if (!loading && !getUser) {
+  //   return <Redirect to={{ pathname: '/404' }} />
+  // }
 
   return (
     <div>

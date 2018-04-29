@@ -93,13 +93,6 @@ class EditPost extends Component {
                         title: values.title,
                         content: JSON.stringify(content.toJSON()),
                         image_url: values.image_url
-                      },
-                      update: (store, { data: { updatePost } }) => {
-                        const data = store.readQuery({
-                          query: getAllPostsQuery
-                        })
-                        data.getAllPosts.push(updatePost)
-                        store.writeQuery({ query: getAllPostsQuery, data })
                       }
                     })
                     this.props.history.push('/')
