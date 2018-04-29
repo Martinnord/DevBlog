@@ -28,7 +28,7 @@ const App = () => (
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/settings" component={Settings} />
-        <Route component={NotFound} />
+        {/* <Route component={NotFound} /> */}
       </Switch>
     </div>
   </Router>

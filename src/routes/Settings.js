@@ -35,8 +35,8 @@ class Settings extends Component {
                 bio: values.bio,
                 location: values.location,
                 twitter_username: values.twitter_username,
-                github_username: values.github_username,
-              },
+                github_username: values.github_username
+              }
             })
             const { username } = response.data.updateUserInfo
             this.props.history.push(`/@${username}`)

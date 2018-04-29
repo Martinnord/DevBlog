@@ -6,10 +6,10 @@ import { Value } from 'slate'
 import Navbar from '../common/Navbar'
 import Post from '../components/Post'
 import FooterComponent from '../common/Footer'
-import { getAllPostsQuery } from '../graphql/newArticle'
 import POST_LIKED_SUBSCRIPTION from '../graphql/subscriptions/postLiked'
 import GET_POST_QUERY from '../graphql/queries/getPost'
 import LIKE_POST_MUTATION from '../graphql/mutations/likePost' 
+import GET_ALL_POSTS_QUERY from '../graphql/queries/getAllPosts'
 import './index.css'
 
 const { Content } = Layout
@@ -89,10 +89,10 @@ export default compose(
           },
           update: (store, { data: likePost }) => {
             const data = store.readQuery({
-              query: getAllPostsQuery
+              query: GET_ALL_POSTS_QUERY
             })
             data.getAllPosts.push(likePost)
-            store.writeQuery({ query: getAllPostsQuery, data })
+            store.writeQuery({ query: GET_ALL_POSTS_QUERY, data })
           }
         })
       }

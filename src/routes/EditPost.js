@@ -5,7 +5,6 @@ import { Col, Row, Input, Button } from 'antd'
 import { Redirect } from 'react-router-dom'
 import { Formik, Form } from 'formik'
 import Navbar from '../common/Navbar'
-import { getAllPostsQuery } from '../graphql/newArticle'
 import { Value } from 'slate'
 import HoveringMenu from '../components/HoveringMenu'
 import { CurrentUser } from '../util/auth'
@@ -81,7 +80,7 @@ class EditPost extends Component {
                 initialValues={{
                   title: getPost.title,
                   content: getPost.content,
-                  image_url: ''
+                  image_url: getPost.image_url
                 }}
                 onSubmit={async (values, { setSubmitting, setStatus }) => {
                   setSubmitting(true)

@@ -6,10 +6,10 @@ import { Formik, Form } from 'formik'
 import { CurrentUser } from '../util/auth'
 import { Redirect } from 'react-router-dom'
 import Navbar from '../common/Navbar'
-import { getAllPostsQuery } from '../graphql/newArticle'
 import { Value } from 'slate'
 import HoveringMenu from '../components/HoveringMenu'
 import NEW_POST_MUTATION from '../graphql/mutations/newPost'
+import GET_ALL_POSTS_QUERY from '../graphql/queries/getAllPosts'
 import './index.css'
 
 const { Content } = Layout
@@ -84,10 +84,10 @@ class NewPost extends Component {
                       },
                       update: (store, { data: { createPost } }) => {
                         const data = store.readQuery({
-                          query: getAllPostsQuery
+                          query: GET_ALL_POSTS_QUERY
                         })
                         data.getAllPosts.push(createPost)
-                        store.writeQuery({ query: getAllPostsQuery, data })
+                        store.writeQuery({ query: GET_ALL_POSTS_QUERY, data })
                       }
                     })
                     this.props.history.push('/')
