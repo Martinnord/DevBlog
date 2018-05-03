@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  query($username: String!) {
-    getUser(username: $username) {
+  query($username: String!, $id: ID) {
+    getUser(username: $username id: $id) {
       name
       username
       profile_image
@@ -16,6 +16,7 @@ export default gql`
         image_url
         created_at
         user {
+          id
           username
         }
         likes {
