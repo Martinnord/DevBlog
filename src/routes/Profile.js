@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import { graphql } from 'react-apollo'
-import { Layout, Col, Row, Spin, Icon } from 'antd'
+import { Layout, Spin, Icon } from 'antd'
 import PostCard from '../components/Postcard'
 import Navbar from '../common/Navbar'
 import GET_USER_QUERY from '../graphql/queries/getUser'
@@ -11,19 +11,17 @@ const { Content } = Layout
 
 class Profile extends Component {
   render() {
-    const { loading, getUser } = this.props.data
+    const {
+      data: { loading, getUser }
+    } = this.props
 
     if (loading) {
       return <Spin size="large" />
     }
 
-    console.log(loading)
-    console.log(getUser)
-
-    //debugger
-    // if (!loading && !getUser) {
-    //   return <Redirect to={{ pathname: '/404' }} />
-    // }
+    if (!loading && !getUser) {
+      return <Redirect to={{ pathname: '/404' }} />
+    }
 
     return (
       <div>
@@ -66,6 +64,8 @@ class Profile extends Component {
 export default graphql(GET_USER_QUERY, {
   skip: props => !props.match.params.username,
   options: props => ({
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'network-only',
     variables: { username: props.match.params.username }
   })
 })(Profile)
