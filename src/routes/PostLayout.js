@@ -8,7 +8,7 @@ import Post from '../components/Post'
 import FooterComponent from '../common/Footer'
 import POST_LIKED_SUBSCRIPTION from '../graphql/subscriptions/postLiked'
 import GET_POST_QUERY from '../graphql/queries/getPost'
-import LIKE_POST_MUTATION from '../graphql/mutations/likePost' 
+import LIKE_POST_MUTATION from '../graphql/mutations/likePost'
 import GET_ALL_POSTS_QUERY from '../graphql/queries/getAllPosts'
 import './index.css'
 
@@ -50,6 +50,8 @@ class PostLayout extends Component {
     if (!loading && !getPost) {
       return <Redirect to={{ pathname: '/404' }} />
     }
+
+    console.log(getPost)
 
     const contentObj = JSON.parse(getPost.content)
     const parsedContent = Value.fromJSON(contentObj)

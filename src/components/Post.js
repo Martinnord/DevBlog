@@ -15,7 +15,6 @@ class Post extends Component {
     })
   }
   handleOk = e => {
-    console.log(e)
     this.setState({
       visible: false
     })
@@ -129,8 +128,13 @@ class Post extends Component {
           />
           <div className="post-likes">
             <span onClick={likePost}>
-              <Icon type="heart" style={{ color: '#f5222d' }} />{' '}
+            {post.is_liked ? (
+              <Icon type="heart" style={{ color: '#f5222d' }} />
+            ) : (
+              <Icon type="heart-o" style={{ color: '#f5222d' }} />
+            )}
             </span>
+            {post.is_liked}
             <span onClick={this.showModal}>{post.likes.length} likes</span>
           </div>
         </div>

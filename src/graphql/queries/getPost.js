@@ -7,6 +7,7 @@ export default gql`
       title
       content
       image_url
+      is_liked
       created_at
       likes {
         id
