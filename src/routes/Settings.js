@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import gql from 'graphql-tag'
 import { compose, graphql } from 'react-apollo'
 import { Formik } from 'formik'
 import { Layout, Col, Row, Input, Button } from 'antd'

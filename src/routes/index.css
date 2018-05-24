@@ -8,6 +8,12 @@ h4 {
   font-weight: 700;
 }
 
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: #000;
+
+}
+
 #root {
   height: 100%;
 }
@@ -19,6 +25,7 @@ h4 {
 
 .new-post-layout {
   background-color: #fff !important;
+  height: 100%;
 }
 
 .ant-menu-horizontal {
@@ -116,6 +123,7 @@ h4 {
   height: 100%;
   width: 100%;
   position: absolute;
+  background-color: #fafafa;
 }
 
 .ant-row {

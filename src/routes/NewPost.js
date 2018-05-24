@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import yup from 'yup'
-import { graphql, compose } from 'react-apollo'
-import { Layout, Col, Row, Input, Button } from 'antd'
+import { graphql } from 'react-apollo'
+import { Col, Row, Input, Button } from 'antd'
 import { Formik, Form } from 'formik'
 import { CurrentUser } from '../util/auth'
 import { Redirect } from 'react-router-dom'
@@ -11,8 +11,6 @@ import HoveringMenu from '../components/HoveringMenu'
 import NEW_POST_MUTATION from '../graphql/mutations/newPost'
 import GET_ALL_POSTS_QUERY from '../graphql/queries/getAllPosts'
 import './index.css'
-
-const { Content } = Layout
 
 const initialValue = Value.fromJSON({
   document: {
