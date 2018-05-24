@@ -1,30 +1,27 @@
 import React, { Component } from 'react'
 import { compose } from 'react-apollo'
-import yup from 'yup'
+import { registerSchema } from '../util/auth-validation'
 import { Formik, Form } from 'formik'
 import { Col, Row, Input, Icon, Button, Alert } from 'antd'
 import { RegisterMutation } from '../util/auth'
 import './index.css'
 
 class Register extends Component {
-  render() {
-    const schema = yup.object().shape({
-      email: yup
-        .string()
-        .email()
-        .required('please enter an email address'),
-      username: yup
-        .string()
-        .matches(/^[a-zA-Z0-9_]*$/, 'please only alphanumeric is allowed')
-        .required('please enter an username'),
-      password: yup
-        .string()
-        .min(5, 'password needs to be at least 5 characters long')
-        .required('please enter a password'),
+  state = {
+      type: 'password',
+  }
+
+  showPassword = e => {
+    e.preventDefault()
+    this.setState({
+      type: this.state.type === 'password' ? 'input' : 'password'
     })
+  }
+
+  render() {
     return (
       <Formik
-        validationSchema={schema}
+        validationSchema={registerSchema}
         initialValues={{
           email: '',
           username: '',
@@ -121,11 +118,12 @@ class Register extends Component {
                           style={{ color: 'rgba(0,0,0,.25)' }}
                         />
                       }
-                      type="password"
+                      type={this.state.type}
                       name="password"
                       label="password"
                       placeholder="Password"
                     />
+                    <span onClick={this.showPassword}>{this.state.type === 'input' ? 'Hide' : 'Show'}</span>
                     {touched.password &&
                     errors.password && (
                       <p className="error-message">{errors.password}</p>
