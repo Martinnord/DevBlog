@@ -1,37 +1,90 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Home from './Home'
-import Register from './Register'
-import Login from './Login'
-import NewPost from './NewPost'
-import EditPost from './EditPost'
-import Profile from './Profile'
-import PostLayout from './PostLayout'
-import NotFound from './PageNotFound'
-import Settings from './Settings'
-import NewUser from './NewUser'
-import About from './About'
-import Contact from './Contact'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import Loadable from 'react-loadable'
+
+const Loading = () => <div>Loading...</div>
+
+const AsyncHome = Loadable({
+  loader: () => import ('./Home'),
+  loading: Loading
+});
+
+const AsyncRegister = Loadable({
+  loader: () => import ('./Register'),
+  loading: Loading
+});
+
+const AsyncLogin = Loadable({
+  loader: () => import ('./Login'),
+  loading: Loading
+});
+
+const AsyncNewPost = Loadable({
+  loader: () => import ('./NewPost'),
+  loading: Loading
+});
+
+const AsyncEditPost = Loadable({
+  loader: () => import ('./EditPost'),
+  loading: Loading
+});
+
+const AsyncProfile = Loadable({
+  loader: () => import ('./Profile'),
+  loading: Loading
+});
+
+const AsyncPostLayout = Loadable({
+  loader: () => import ('./PostLayout'),
+  loading: Loading
+});
+
+const AsyncNotFound = Loadable({
+  loader: () => import ('./PageNotFound'),
+  loading: Loading
+});
+
+const AsyncSettings = Loadable({
+  loader: () => import ('./Settings'),
+  loading: Loading
+});
+
+const AsyncNewUser = Loadable({
+  loader: () => import ('./NewUser'),
+  loading: Loading
+});
+
+const AsyncAbout = Loadable({
+  loader: () => import ('./About'),
+  loading: Loading
+});
+
+const AsyncContact = Loadable({
+  loader: () => import ('./Contact'),
+  loading: Loading
+});
 
 const App = () => (
   <Router>
-    <div style={{ height: '100%' }}>
+    <div style={{
+      height: '100%'
+    }}>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/new-article" component={NewPost} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/@:username" component={Profile} />
-        <Route exact path="/@:username/:id" component={PostLayout} />
-        <Route exact path="/@:username/:id/edit" component={EditPost} />
-        <Route exact path="/new" component={NewUser} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/settings" component={Settings} />
-        <Route component={NotFound} />
+        <Route exact path="/" component={AsyncHome}/>
+        <Route exact path="/new-article" component={AsyncNewPost}/>
+        <Route exact path="/register" component={AsyncRegister}/>
+        <Route exact path="/login" component={AsyncLogin}/>
+        <Route exact path="/@:username" component={AsyncProfile}/>
+        <Route exact path="/@:username/:id" component={AsyncPostLayout}/>
+        <Route exact path="/@:username/:id/edit" component={AsyncEditPost}/>
+        <Route exact path="/new" component={AsyncNewUser}/>
+        <Route exact path="/about" component={AsyncAbout}/>
+        <Route exact path="/contact" component={AsyncContact}/>
+        <Route exact path="/settings" component={AsyncSettings}/>
+        <Route component={AsyncNotFound}/>
       </Switch>
     </div>
   </Router>
 )
 
-export default (App)
+export default(App)
