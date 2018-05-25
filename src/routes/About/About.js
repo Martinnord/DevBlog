@@ -13,11 +13,11 @@ const About = () => {
         <Row className="about-row">
           <Col>
             <div className="about-card">
-              <h1 className="about-title">About Devblog</h1>
+              <h1 className="about-title">About Dvlprblog</h1>
               <div>
                 <p className="post-content">
-                  Devblogs main goal is to let developers share their knowledge
-                  to others. Devblog is for anyone and anyone can write their
+                  Dvlprblog main goal is to let developers share their knowledge
+                  to others. Dvlprblog is for anyone and anyone can write their
                   own articles. We hope that you find this platform as a great
                   place to grow as a developer.
                   <br />
@@ -37,7 +37,7 @@ const About = () => {
                 <div className="profile-details">
                   <h1 className="about-title">Martin Nordström</h1>
                   <p className="post-content">
-                    Martin Nordström is the founder and creator of Devblog. He
+                    Martin Nordström is the founder and creator of Dvlprblog. He
                     started Devblog in early 2018 and coded the website from
                     scratch in his bedroom. He is currently the head of the
                     development team.

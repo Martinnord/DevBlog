@@ -23,7 +23,7 @@ class Navbar extends Component {
     return (
       <Menu className="navbar" mode="horizontal" onClick={onClick}>
         <Menu.Item className="navbar-title">
-          <Link to="/">DVLPR BLOG</Link>
+          <Link to="/">DVLPRBLOG</Link>
         </Menu.Item>
         {this.props.currentUser ? (
           <SubMenu

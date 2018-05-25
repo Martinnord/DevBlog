@@ -30,8 +30,8 @@ const Contact = () => {
                   <p className="post-content" style={{ marginRight: '2px' }}>
                     Instagram:
                   </p>
-                  <Link target="_blank" to="https://www.instagram.com/devblog/">
-                    <p className="post-content">@devblog</p>
+                  <Link target="_blank" to="https://www.instagram.com/Dvlprblog/">
+                    <p className="post-content">@dvlprblog</p>
                   </Link>
                 </div>
               </div>
