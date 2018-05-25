@@ -5,62 +5,62 @@ import Loadable from 'react-loadable'
 const Loading = () => <div>Loading...</div>
 
 const AsyncHome = Loadable({
-  loader: () => import ('./Home'),
+  loader: () => import ('./Home/Home.js'),
   loading: Loading
 });
 
 const AsyncRegister = Loadable({
-  loader: () => import ('./Register'),
+  loader: () => import ('./Register/Register.js'),
   loading: Loading
 });
 
 const AsyncLogin = Loadable({
-  loader: () => import ('./Login'),
+  loader: () => import ('./Login/Login.js'),
   loading: Loading
 });
 
 const AsyncNewPost = Loadable({
-  loader: () => import ('./NewPost'),
+  loader: () => import ('./NewPost/NewPost.js'),
   loading: Loading
 });
 
 const AsyncEditPost = Loadable({
-  loader: () => import ('./EditPost'),
+  loader: () => import ('./EditPost/EditPost.js'),
   loading: Loading
 });
 
 const AsyncProfile = Loadable({
-  loader: () => import ('./Profile'),
+  loader: () => import ('./Profile/Profile.js'),
   loading: Loading
 });
 
 const AsyncPostLayout = Loadable({
-  loader: () => import ('./PostLayout'),
+  loader: () => import ('./PostLayout/PostLayout.js'),
   loading: Loading
 });
 
 const AsyncNotFound = Loadable({
-  loader: () => import ('./PageNotFound'),
+  loader: () => import ('./PageNotFound/PageNotFound.js'),
   loading: Loading
 });
 
 const AsyncSettings = Loadable({
-  loader: () => import ('./Settings'),
+  loader: () => import ('./Settings/Settings.js'),
   loading: Loading
 });
 
 const AsyncNewUser = Loadable({
-  loader: () => import ('./NewUser'),
+  loader: () => import ('./NewUser/NewUser.js'),
   loading: Loading
 });
 
 const AsyncAbout = Loadable({
-  loader: () => import ('./About'),
+  loader: () => import ('./About/About.js'),
   loading: Loading
 });
 
 const AsyncContact = Loadable({
-  loader: () => import ('./Contact'),
+  loader: () => import ('./Contact/Contact.js'),
   loading: Loading
 });
 

@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { Layout, Spin, Icon } from 'antd'
-import PostCard from '../components/Postcard'
-import Navbar from '../common/Navbar'
-import GET_USER_QUERY from '../graphql/queries/getUser'
-import './index.css'
+import PostCard from '../../components/Postcard'
+import Navbar from '../../common/Navbar'
+import GET_USER_QUERY from '../../graphql/queries/getUser'
+import '../index.css'
 
 const { Content } = Layout
 

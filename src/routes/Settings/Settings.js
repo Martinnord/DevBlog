@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { compose, graphql } from 'react-apollo'
 import { Formik } from 'formik'
 import { Layout, Col, Row, Input, Button } from 'antd'
-import { CurrentUser } from '../util/auth'
-import Navbar from '../common/Navbar'
-import UPDATE_USER_INFO_MUTATION from '../graphql/mutations/updateUserInfo'
-import '../routes/index.css'
+import { CurrentUser } from '../../util/auth'
+import Navbar from '../../common/Navbar'
+import UPDATE_USER_INFO_MUTATION from '../../graphql/mutations/updateUserInfo'
+import '../index.css'
 
 const { Content } = Layout
 

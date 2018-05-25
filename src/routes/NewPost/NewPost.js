@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import yup from 'yup'
-import { graphql, compose } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import { Col, Row, Input, Button } from 'antd'
-import { Redirect } from 'react-router-dom'
 import { Formik, Form } from 'formik'
-import Navbar from '../common/Navbar'
 import { Value } from 'slate'
-import HoveringMenu from '../components/HoveringMenu'
-import { CurrentUser } from '../util/auth'
-import UPDATE_POST_MUTATION from '../graphql/mutations/updatePost'
-import GET_POST_QUERY from '../graphql/queries/getPost'
-import './index.css'
+import { CurrentUser } from '../../util/auth'
+import { Redirect } from 'react-router-dom'
+import Navbar from '../../common/Navbar'
+import HoveringMenu from '../../components/HoveringMenu'
+import NEW_POST_MUTATION from '../../graphql/mutations/newPost'
+import GET_ALL_POSTS_QUERY from '../../graphql/queries/getAllPosts'
+import '../index.css'
 
 const initialValue = Value.fromJSON({
   document: {
@@ -33,7 +33,7 @@ const initialValue = Value.fromJSON({
   }
 })
 
-class EditPost extends Component {
+class NewPost extends Component {
   state = {
     content: initialValue
   }
@@ -45,29 +45,17 @@ class EditPost extends Component {
   }
 
   render() {
-    const {
-      data: { loading, getPost },
-      currentUser
-    } = this.props
-
-    if (loading) {
-      return null
-    }
-
-    if (!currentUser || currentUser.id !== getPost.user.id) {
-      return <Redirect to="/new" />
-    }
-
-    if (!loading && !getPost) {
-      return <Redirect to="/404" />
-    }
-
     const schema = yup.object().shape({
       title: yup.string().required('Please include a title')
     })
 
-    const contentObj = JSON.parse(getPost.content)
-    const parsedContent = Value.fromJSON(contentObj)
+    const { loading, currentUser } = this.props
+
+    if (loading) return true
+
+    if (!currentUser) {
+      return <Redirect to={{ pathname: '/new' }} />
+    }
 
     return (
       <div>
@@ -78,9 +66,9 @@ class EditPost extends Component {
               <Formik
                 validationSchema={schema}
                 initialValues={{
-                  title: getPost.title,
-                  content: getPost.content,
-                  image_url: getPost.image_url
+                  title: '',
+                  content: initialValue,
+                  image_url: ''
                 }}
                 onSubmit={async (values, { setSubmitting, setStatus }) => {
                   setSubmitting(true)
@@ -88,14 +76,22 @@ class EditPost extends Component {
                   try {
                     await this.props.mutate({
                       variables: {
-                        id: getPost.id,
                         title: values.title,
                         content: JSON.stringify(content.toJSON()),
                         image_url: values.image_url
+                      },
+                      update: (store, { data: { createPost } }) => {
+                        const data = store.readQuery({
+                          query: GET_ALL_POSTS_QUERY
+                        })
+                        data.getAllPosts.push(createPost)
+                        store.writeQuery({ query: GET_ALL_POSTS_QUERY, data })
                       }
                     })
                     this.props.history.push('/')
                   } catch (err) {
+                    // const graphqlError = err.graphQLErrors[0].message
+                    // setStatus(graphqlError)
                     setSubmitting(false)
                   }
                 }}
@@ -132,7 +128,7 @@ class EditPost extends Component {
                     />
                     <HoveringMenu
                       className="new-post-editor"
-                      value={parsedContent}
+                      value={this.state.content}
                       updateValue={this.updateValue}
                     />
                     <Row>
@@ -175,18 +171,4 @@ class EditPost extends Component {
   }
 }
 
-export default compose(
-  CurrentUser,
-  graphql(GET_POST_QUERY, {
-    skip: props => !props.match.params.id,
-    options: props => ({
-      variables: { id: props.match.params.id }
-    })
-  }),
-  graphql(UPDATE_POST_MUTATION, {
-    skip: props => props.match.params.id,
-    options: props => ({
-      variables: { id: props.match.params.id }
-    })
-  })
-)(EditPost)
+export default CurrentUser(graphql(NEW_POST_MUTATION)(NewPost))

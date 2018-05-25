@@ -1,31 +1,40 @@
 import React, { Component } from 'react'
 import { compose } from 'react-apollo'
-import yup from 'yup'
+import { registerSchema } from '../../util/auth-validation'
 import { Formik, Form } from 'formik'
 import { Col, Row, Input, Icon, Button, Alert } from 'antd'
-import { LoginMutation } from '../util/auth'
-import './index.css'
+import { RegisterMutation } from '../../util/auth'
+import '../index.css'
 
-class Login extends Component {
-  render() {
-    const schema = yup.object().shape({
-      email: yup
-        .string()
-        .email()
-        .required('please enter an email address'),
+class Register extends Component {
+  state = {
+    type: 'password'
+  }
+
+  showPassword = e => {
+    e.preventDefault()
+    this.setState({
+      type: this.state.type === 'password' ? 'input' : 'password'
     })
+  }
 
+  render() {
     return (
       <Formik
-        validationSchema={schema}
+        validationSchema={registerSchema}
         initialValues={{
           email: '',
-          password: '',
+          username: '',
+          password: ''
         }}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)
           try {
-            await this.props.login(values.email, values.password)
+            await this.props.register(
+              values.email,
+              values.username,
+              values.password
+            )
             this.props.history.push('/')
           } catch (err) {
             const graphqlError = err.graphQLErrors[0].message
@@ -40,13 +49,13 @@ class Login extends Component {
           isSubmitting,
           handleChange,
           handleBlur,
-          status,
+          status
         }) => (
           <div className="container">
             <Form className="login-form">
               <Row>
                 <Col span={12} offset={6}>
-                  <h1>Login</h1>
+                  <h1>Register</h1>
                 </Col>
               </Row>
               {status && <Alert type="error" message={status} showIcon />}
@@ -68,10 +77,34 @@ class Login extends Component {
                       label="email"
                       placeholder="Email"
                     />
-
                     {touched.email &&
                       errors.email && (
                         <p className="error-message">{errors.email}</p>
+                      )}
+                  </Col>
+                </Row>
+              </div>
+              <div className="login-input">
+                <Row>
+                  <Col span={12} offset={6}>
+                    <Input
+                      value={values.username}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      prefix={
+                        <Icon
+                          type="user"
+                          style={{ color: 'rgba(0,0,0,.25)' }}
+                        />
+                      }
+                      type="text"
+                      name="username"
+                      label="username"
+                      placeholder="Username"
+                    />
+                    {touched.username &&
+                      errors.username && (
+                        <p className="error-message">{errors.username}</p>
                       )}
                   </Col>
                 </Row>
@@ -89,11 +122,18 @@ class Login extends Component {
                           style={{ color: 'rgba(0,0,0,.25)' }}
                         />
                       }
-                      type="password"
+                      type={this.state.type}
                       name="password"
                       label="password"
                       placeholder="Password"
                     />
+                    <span onClick={this.showPassword}>
+                      {this.state.type === 'input' ? 'Hide' : 'Show'}
+                    </span>
+                    {touched.password &&
+                      errors.password && (
+                        <p className="error-message">{errors.password}</p>
+                      )}
                   </Col>
                 </Row>
               </div>
@@ -106,14 +146,14 @@ class Login extends Component {
                       htmlType="submit"
                       disabled={isSubmitting}
                     >
-                      Login
+                      Register
                     </Button>
                   </Col>
                 </Row>
               </div>
               <Row>
                 <Col span={12} offset={6}>
-                  Don't have an account? <a href="/register">Register here!</a>
+                  Already have an account? <a href="/login">Login here!</a>
                 </Col>
               </Row>
             </Form>
@@ -124,4 +164,4 @@ class Login extends Component {
   }
 }
 
-export default compose(LoginMutation)(Login)
+export default compose(RegisterMutation)(Register)

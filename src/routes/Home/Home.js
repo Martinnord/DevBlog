@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 import { Layout, Row } from 'antd'
-import PostCard from '../components/Postcard'
-import Navbar from '../common/Navbar'
-import FooterComponent from '../common/Footer'
-import GET_ALL_POSTS_QUERY from '../graphql/queries/getAllPosts'
-import './index.css'
+import PostCard from '../../components/Postcard'
+import Navbar from '../../common/Navbar'
+import FooterComponent from '../../common/Footer'
+import GET_ALL_POSTS_QUERY from '../../graphql/queries/getAllPosts'
+import '../index.css'
 
 const { Content } = Layout
 

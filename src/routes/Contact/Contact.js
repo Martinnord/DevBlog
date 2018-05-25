@@ -1,8 +1,8 @@
 import React from 'react'
 import { Layout, Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
-import Navbar from '../common/Navbar'
-import FooterComponent from '../common/Footer'
+import Navbar from '../../common/Navbar'
+import FooterComponent from '../../common/Footer'
 
 const { Content } = Layout
 

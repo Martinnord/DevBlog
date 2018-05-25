@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout, Row, Col } from 'antd'
-import Navbar from '../common/Navbar'
-import FooterComponent from '../common/Footer'
+import Navbar from '../../common/Navbar'
+import FooterComponent from '../../common/Footer'
 
 const { Content } = Layout
 
