@@ -14,6 +14,7 @@ export default gql`
       }
       created_at
       user {
+        id
         username
       }
     }

@@ -85,13 +85,16 @@ class NewPost extends Component {
                           query: GET_ALL_POSTS_QUERY
                         })
                         data.getAllPosts.push(createPost)
-                        store.writeQuery({ query: GET_ALL_POSTS_QUERY, data })
+                        store.writeQuery({
+                          query: GET_ALL_POSTS_QUERY,
+                          data
+                        })
                       }
                     })
                     this.props.history.push('/')
                   } catch (err) {
-                    // const graphqlError = err.graphQLErrors[0].message
-                    // setStatus(graphqlError)
+                    const graphqlError = err.graphQLErrors[0].message
+                    setStatus(graphqlError)
                     setSubmitting(false)
                   }
                 }}

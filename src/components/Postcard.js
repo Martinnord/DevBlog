@@ -10,8 +10,6 @@ const { Meta } = Card
 
 class PostCard extends Component {
   toPost = (post, history) => {
-    console.log('post', post)
-    console.log('history', history)
     this.props.history.push(`/@${post.user.username}/${post.id}`)
   }
   render() {

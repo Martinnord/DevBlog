@@ -1,17 +1,68 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Home from './Home/Home.js'
-import Register from './Register/Register.js'
-import Login from './Login/Login.js'
-import NewPost from './NewPost/NewPost.js'
-import EditPost from './EditPost/EditPost.js'
-import Profile from './Profile/Profile.js'
-import PostLayout from './PostLayout/PostLayout.js'
-import NotFound from './PageNotFound/PageNotFound.js'
-import Settings from './Settings/Settings.js'
-import NewUser from './NewUser/NewUser.js'
-import About from './About/About.js'
-import Contact from './Contact/Contact.js'
+import Spinner from '../common/Spinner'
+import Loadable from 'react-loadable'
+
+
+const AsyncHome = Loadable({
+  loader: () => import('./Home/Home.js'),
+  loading: Spinner
+})
+
+const AsyncRegister = Loadable({
+  loader: () => import('./Register/Register.js'),
+  loading: Spinner
+})
+
+const AsyncLogin = Loadable({
+  loader: () => import('./Login/Login.js'),
+  loading: Spinner
+})
+
+const AsyncNewPost = Loadable({
+  loader: () => import('./NewPost/NewPost.js'),
+  loading: Spinner
+})
+
+const AsyncEditPost = Loadable({
+  loader: () => import('./EditPost/EditPost.js'),
+  loading: Spinner
+})
+
+const AsyncProfile = Loadable({
+  loader: () => import('./Profile/Profile.js'),
+  loading: Spinner
+})
+
+const AsyncPostLayout = Loadable({
+  loader: () => import('./PostLayout/PostLayout.js'),
+  loading: Spinner
+})
+
+const AsyncNotFound = Loadable({
+  loader: () => import('./PageNotFound/PageNotFound.js'),
+  loading: Spinner
+})
+
+const AsyncSettings = Loadable({
+  loader: () => import('./Settings/Settings.js'),
+  loading: Spinner
+})
+
+const AsyncNewUser = Loadable({
+  loader: () => import('./NewUser/NewUser.js'),
+  loading: Spinner
+})
+
+const AsyncAbout = Loadable({
+  loader: () => import('./About/About.js'),
+  loading:Spinner
+})
+
+const AsyncContact = Loadable({
+  loader: () => import('./Contact/Contact.js'),
+  loading: Spinner
+})
 
 const App = () => (
   <Router>
@@ -21,18 +72,18 @@ const App = () => (
       }}
     >
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/new-article" component={NewPost} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/@:username" component={Profile} />
-        <Route exact path="/@:username/:id" component={PostLayout} />
-        <Route exact path="/@:username/:id/edit" component={EditPost} />
-        <Route exact path="/new" component={NewUser} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/settings" component={Settings} />
-        <Route component={NotFound} />
+        <Route exact path="/" component={AsyncHome} />
+        <Route exact path="/new-article" component={AsyncNewPost} />
+        <Route exact path="/register" component={AsyncRegister} />
+        <Route exact path="/login" component={AsyncLogin} />
+        <Route exact path="/@:username" component={AsyncProfile} />
+        <Route exact path="/@:username/:id" component={AsyncPostLayout} />
+        <Route exact path="/@:username/:id/edit" component={AsyncEditPost} />
+        <Route exact path="/new" component={AsyncNewUser} />
+        <Route exact path="/about" component={AsyncAbout} />
+        <Route exact path="/contact" component={AsyncContact} />
+        <Route exact path="/settings" component={AsyncSettings} />
+        <Route component={AsyncNotFound} />
       </Switch>
     </div>
   </Router>

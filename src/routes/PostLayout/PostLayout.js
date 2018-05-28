@@ -53,8 +53,6 @@ class PostLayout extends Component {
       return <Redirect to={{ pathname: '/404' }} />
     }
 
-    console.log(getPost)
-
     const contentObj = JSON.parse(getPost.content)
     const parsedContent = Value.fromJSON(contentObj)
 
@@ -94,7 +92,8 @@ export default compose(
           },
           update: (store, { data: likePost }) => {
             const data = store.readQuery({
-              query: GET_ALL_POSTS_QUERY
+              query: GET_ALL_POSTS_QUERY,
+              variables: { id: likePost.id }
             })
             data.getAllPosts.push(likePost)
             store.writeQuery({ query: GET_ALL_POSTS_QUERY, data })
