@@ -13,7 +13,7 @@ export default class NotFound extends Component {
   }
 
   componentDidMount() {
-    document.title = '404 | Devblog'
+    document.title = '404 | Dvlprblog'
 
     const randomDigit = Math.floor(Math.random() * 104 + 5)
 
@@ -36,7 +36,7 @@ export default class NotFound extends Component {
             Sorry, the page doesn't seem to exist!
           </p>
           <Button className="back-button">
-            <Link to="/">Back to Devblog</Link>
+            <Link to="/">Back to Dvlprblog</Link>
           </Button>
         </div>
       </div>

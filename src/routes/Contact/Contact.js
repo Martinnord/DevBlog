@@ -11,10 +11,10 @@ const Contact = () => {
     <Layout>
       <Navbar />
       <Content>
-        <Row className="about-row">
+        <Row className="page-info-row">
           <Col>
-            <div className="about-card">
-              <h1 className="about-title">Contact</h1>
+            <div className="page-info-card">
+              <h1 className="page-info-title">Contact</h1>
               <div>
                 <p className="post-content">
                   We'd love to hear from you! Shoot us an email or contact us on

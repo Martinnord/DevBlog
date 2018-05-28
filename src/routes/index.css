@@ -10,11 +10,20 @@ h4 {
 
 a:hover {
   text-decoration: underline;
-  text-decoration-color: #000;
 }
 
 .ant-menu-horizontal {
   padding: 0 25% 0 25%;
+}
+
+.ant-menu-item-active {
+  color: transparent !important;
+  border-bottom: none !important;
+}
+
+.ant-menu-item-active:active {
+  color: transparent !important;
+  border-bottom: none !important;
 }
 
 #root {
@@ -206,6 +215,7 @@ a:hover {
 
 .post {
   margin-top: 2%;
+  margin-bottom: 2%;
   border-radius: 4px 4px 0 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: #fff;
@@ -286,7 +296,7 @@ a:hover {
   display: block;
 }
 
-.profile-details {
+.page-info-details {
   flex-direction: column;
   margin-left: 20px;
 }
@@ -501,7 +511,7 @@ code {
   margin-top: -30px;
 }
 
-.about-card {
+.page-info-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: #fff;
   transition: 0.3s;
@@ -509,11 +519,11 @@ code {
   margin-bottom: 2%;
 }
 
-.about-row {
+.page-info-row {
   margin: 1% 17% 3% 17%;
 }
 
-.about-title {
+.page-info-title {
   font-size: 2.7em;
   font-size: 500;
 }

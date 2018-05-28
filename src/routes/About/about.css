@@ -1,0 +1,16 @@
+.about-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  transition: 0.3s;
+  padding: 2% 10% 2% 10%;
+  margin-bottom: 2%;
+}
+
+.about-row {
+  margin: 1% 17% 3% 17%;
+}
+
+.about-title {
+  font-size: 2.7em;
+  font-size: 500;
+}

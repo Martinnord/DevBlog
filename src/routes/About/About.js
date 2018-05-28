@@ -10,10 +10,10 @@ const About = () => {
     <Layout>
       <Navbar />
       <Content>
-        <Row className="about-row">
+        <Row className="page-info-row">
           <Col>
-            <div className="about-card">
-              <h1 className="about-title">About Dvlprblog</h1>
+            <div className="page-info-card">
+              <h1 className="page-info-title">About Dvlprblog</h1>
               <div>
                 <p className="post-content">
                   Dvlprblog main goal is to let developers share their knowledge
@@ -26,16 +26,16 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="about-card">
-              <h1 className="about-title">The Crew</h1>
+            <div className="page-info-card">
+              <h1 className="page-info-title">The Crew</h1>
               <div style={{ display: 'flex' }}>
                 <img
                   className="profile-image"
                   src="https://scontent.farn1-1.fna.fbcdn.net/v/t1.0-9/31086776_1025682474247185_6097003365718294528_n.jpg?_nc_cat=0&oh=fd62406438d07a2384738fb19d481220&oe=5B951407"
                   alt="Martin Nordström"
                 />
-                <div className="profile-details">
-                  <h1 className="about-title">Martin Nordström</h1>
+                <div className="page-info-details">
+                  <h1 className="page-info-title">Martin Nordström</h1>
                   <p className="post-content">
                     Martin Nordström is the founder and creator of Dvlprblog. He
                     started Devblog in early 2018 and coded the website from
