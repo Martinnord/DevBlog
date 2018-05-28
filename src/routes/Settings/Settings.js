@@ -13,7 +13,7 @@ const { Content } = Layout
 class Settings extends Component {
   render() {
     const { currentUser, loading } = this.props
-
+    //remove later
     if (loading) {
       return null
     }
