@@ -37,14 +37,16 @@ class PostLayout extends Component {
   render() {
     document.body.style.background = '#F9F9FA'
 
-    const { loading, getPost } = this.props.data
-
-    if (!this.props.data) {
-      return <Redirect to={{ pathname: '/404' }} />
-    }
+    const {
+      data: { loading, getPost }
+    } = this.props
 
     if (loading) {
       return null
+    }
+
+    if (!this.props.data) {
+      return <Redirect to={{ pathname: '/404' }} />
     }
 
     if (!loading && !getPost) {
@@ -76,6 +78,7 @@ class PostLayout extends Component {
 
 export default compose(
   graphql(GET_POST_QUERY, {
+    alias: 'getPost',
     skip: props => !props.match.params.id,
     options: props => ({
       variables: { id: props.match.params.id }
