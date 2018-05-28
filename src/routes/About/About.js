@@ -1,5 +1,6 @@
 import React from 'react'
 import { Layout, Row, Col } from 'antd'
+import { Helmet } from 'react-helmet'
 import Navbar from '../../common/Navbar'
 import FooterComponent from '../../common/Footer'
 
@@ -8,6 +9,9 @@ const { Content } = Layout
 const About = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>About Dvlprblog</title>
+      </Helmet>
       <Navbar />
       <Content>
         <Row className="page-info-row">

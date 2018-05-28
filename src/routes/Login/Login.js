@@ -3,6 +3,7 @@ import { compose } from 'react-apollo'
 import yup from 'yup'
 import { Formik, Form } from 'formik'
 import { Col, Row, Input, Icon, Button, Alert } from 'antd'
+import { Helmet } from 'react-helmet'
 import { LoginMutation } from '../../util/auth'
 import '../index.css'
 
@@ -12,7 +13,7 @@ class Login extends Component {
       email: yup
         .string()
         .email()
-        .required('please enter an email address'),
+        .required('please enter an email address')
     })
 
     return (
@@ -20,7 +21,7 @@ class Login extends Component {
         validationSchema={schema}
         initialValues={{
           email: '',
-          password: '',
+          password: ''
         }}
         onSubmit={async (values, { setSubmitting, setStatus }) => {
           setSubmitting(true)
@@ -40,9 +41,12 @@ class Login extends Component {
           isSubmitting,
           handleChange,
           handleBlur,
-          status,
+          status
         }) => (
           <div className="container">
+            <Helmet>
+              <title>Login | Dvlprblog</title>
+            </Helmet>
             <Form className="login-form">
               <Row>
                 <Col span={12} offset={6}>

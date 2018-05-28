@@ -6,6 +6,7 @@ import { Formik, Form } from 'formik'
 import { Value } from 'slate'
 import { CurrentUser } from '../../util/auth'
 import { Redirect } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import Navbar from '../../common/Navbar'
 import HoveringMenu from '../../components/HoveringMenu'
 import NEW_POST_MUTATION from '../../graphql/mutations/newPost'
@@ -61,6 +62,9 @@ class NewPost extends Component {
       <div>
         <Navbar />
         <div className="new-post-layout">
+          <Helmet>
+            <title>New Article</title>
+          </Helmet>
           <Row className="new-post-row">
             <Col span={12} offset={6}>
               <Formik

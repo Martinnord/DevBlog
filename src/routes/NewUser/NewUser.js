@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Layout, Row, Col, Button } from 'antd'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import Navbar from '../../common/Navbar'
 import FooterComponent from '../../common/Footer'
 
@@ -9,6 +10,9 @@ class NewUser extends Component {
   render() {
     return (
       <Layout style={{ backgroundColor: '#f9f9fa' }}>
+        <Helmet>
+          <title>Welcome to Dvlprblog!</title>
+        </Helmet>
         <Navbar />
         <Content style={{ marginTop: '5%' }}>
           <Row>

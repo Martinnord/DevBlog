@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { graphql, compose } from 'react-apollo'
 import { Layout, Row } from 'antd'
 import { Value } from 'slate'
+import { Helmet } from 'react-helmet'
 import Navbar from '../../common/Navbar'
 import Post from '../../components/Post'
 import FooterComponent from '../../common/Footer'
@@ -58,6 +59,9 @@ class PostLayout extends Component {
 
     return (
       <Layout style={{ background: '#ECECEC' }}>
+        <Helmet>
+          <title>{getPost.title}</title>
+        </Helmet>
         <Navbar />
         <Content>
           <Row className="post-row">

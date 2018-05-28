@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { compose, graphql } from 'react-apollo'
 import { Formik } from 'formik'
 import { Layout, Col, Row, Input, Button } from 'antd'
+import { Helmet } from 'react-helmet'
 import { CurrentUser } from '../../util/auth'
 import Navbar from '../../common/Navbar'
 import UPDATE_USER_INFO_MUTATION from '../../graphql/mutations/updateUserInfo'
@@ -47,6 +48,9 @@ class Settings extends Component {
         }}
         render={({ isSubmitting, handleChange, handleSubmit }) => (
           <Layout>
+            <Helmet>
+              <title>Settings | Dvlprblog</title>
+            </Helmet>
             <Navbar />
             <Content>
               <Row>

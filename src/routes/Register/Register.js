@@ -3,6 +3,7 @@ import { compose } from 'react-apollo'
 import { registerSchema } from '../../util/auth-validation'
 import { Formik, Form } from 'formik'
 import { Col, Row, Input, Icon, Button, Alert } from 'antd'
+import { Helmet } from 'react-helmet'
 import { RegisterMutation } from '../../util/auth'
 import '../index.css'
 
@@ -52,6 +53,9 @@ class Register extends Component {
           status
         }) => (
           <div className="container">
+            <Helmet>
+              <title>Register | Dvlprblog</title>
+            </Helmet>
             <Form className="login-form">
               <Row>
                 <Col span={12} offset={6}>

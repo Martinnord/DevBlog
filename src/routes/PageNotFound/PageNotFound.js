@@ -2,19 +2,18 @@ import React, { Component } from 'react'
 import request from 'superagent'
 import { Button } from 'antd'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import '../index.css'
 
 export default class NotFound extends Component {
   constructor() {
     super()
     this.state = {
-      gif: {},
+      gif: {}
     }
   }
 
   componentDidMount() {
-    document.title = '404 | Dvlprblog'
-
     const randomDigit = Math.floor(Math.random() * 104 + 5)
 
     const url = `https://api.giphy.com/v1/gifs/search?api_key=dppowCiYXsJgxcuSgfRf4CGWqx2onwuo&q=fail&limit=1&offset=${randomDigit}&rating=PG&lang=en`
@@ -30,6 +29,9 @@ export default class NotFound extends Component {
         className="not-found-layout"
         style={{ backgroundImage: `url(${this.state.gif})`, height: '100%' }}
       >
+        <Helmet>
+          <title>404 | Dvlprblog</title>
+        </Helmet>
         <div className="not-found-container">
           <h1 className="not-found-header">404</h1>
           <p className="not-found-text">

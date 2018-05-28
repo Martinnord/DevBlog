@@ -5,6 +5,7 @@ import { Col, Row, Input, Button } from 'antd'
 import { Redirect } from 'react-router-dom'
 import { Formik, Form } from 'formik'
 import { Value } from 'slate'
+import { Helmet } from 'react-helmet'
 import Navbar from '../../common/Navbar'
 import HoveringMenu from '../../components/HoveringMenu'
 import { CurrentUser } from '../../util/auth'
@@ -73,6 +74,9 @@ class EditPost extends Component {
       <div>
         <Navbar />
         <div className="new-post-layout">
+          <Helmet>
+            <title>Edit {getPost.title}</title>
+          </Helmet>
           <Row className="new-post-row">
             <Col span={12} offset={6}>
               <Formik
