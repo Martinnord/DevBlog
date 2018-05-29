@@ -9,7 +9,7 @@ import { split } from 'apollo-link'
 import { SubscriptionClient } from 'subscriptions-transport-ws'
 import { getMainDefinition } from 'apollo-utilities'
 import 'antd/dist/antd.css'
-import constants from './config';
+import constants from './config'
 import App from './routes'
 
 const authLink = setContext((_, { headers }) => {
@@ -19,14 +19,14 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       authorization: token ? `Bearer ${token}` : null
-    },
+    }
   }
 })
 
 const httpLink = createHttpLink({ uri: constants.GRAPHQL_URL })
 
 const wsClient = new SubscriptionClient(constants.GRAPHQL_SUBSCRIPTIONS_URL, {
-  reconnect: true,
+  reconnect: true
 })
 
 const httpLinkWithMiddleware = authLink.concat(httpLink)
@@ -37,12 +37,12 @@ const link = split(
     return kind === 'OperationDefinition' && operation === 'subscription'
   },
   wsClient,
-  httpLinkWithMiddleware,
+  httpLinkWithMiddleware
 )
 
 const client = new ApolloClient({
   link,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 })
 
 const Application = (

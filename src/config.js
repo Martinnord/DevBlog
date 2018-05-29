@@ -1,11 +1,13 @@
-import dotenv from 'dotenv'
-
-dotenv.config()
-
+import {
+  REACT_APP_GRAPHQL_URL,
+  REACT_APP_GRAPHQL_SUBSCRIPTIONS_URL,
+  NODE_ENV
+} from './util/constants'
 
 const defaultConfig = {
-  GRAPHQL_URL: process.env.REACT_APP_GRAPHQL_URL,
-  GRAPHQL_SUBSCRIPTIONS_URL: process.env.REACT_APP_GRAPHQL_SUBSCRIPTIONS_URL,
+  GRAPHQL_URL: REACT_APP_GRAPHQL_URL,
+  GRAPHQL_SUBSCRIPTIONS_URL: REACT_APP_GRAPHQL_SUBSCRIPTIONS_URL,
+  NODE_ENV
 }
 
 const devConfig = {}
@@ -23,4 +25,4 @@ function envConfig(env) {
   }
 }
 
-export default Object.assign(defaultConfig, envConfig(process.env.NODE_ENV))
+export default Object.assign(defaultConfig, envConfig(NODE_ENV))

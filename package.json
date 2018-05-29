@@ -12,7 +12,6 @@
     "apollo-link-ws": "^1.0.8",
     "apollo-utilities": "^1.0.12",
     "axios": "^0.16.2",
-    "dotenv": "^5.0.1",
     "draft-js": "^0.10.5",
     "draft-js-emoji-plugin": "^2.0.6",
     "draft-js-plugins-editor": "^2.0.8",
