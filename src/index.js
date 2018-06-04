@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { ApolloProvider } from 'react-apollo'
-import { createHttpLink } from 'apollo-link-http'
+// import { createHttpLink } from 'apollo-link-http'
+import createFileLink from './createFileLink'
 import { setContext } from 'apollo-link-context'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloClient } from 'apollo-client'
@@ -23,7 +24,7 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
-const httpLink = createHttpLink({ uri: constants.GRAPHQL_URL })
+const httpLink = createFileLink({ uri: constants.GRAPHQL_URL })
 
 const wsClient = new SubscriptionClient(constants.GRAPHQL_SUBSCRIPTIONS_URL, {
   reconnect: true
