@@ -5,15 +5,35 @@ import { Layout, Col, Row, Input, Button } from 'antd'
 import { Helmet } from 'react-helmet'
 import { CurrentUser } from '../../util/auth'
 import Navbar from '../../common/Navbar'
+import FileUpload from '../../components/FileUpload'
 import UPDATE_USER_INFO_MUTATION from '../../graphql/mutations/updateUserInfo'
 import '../index.css'
 
 const { Content } = Layout
 
 class Settings extends Component {
+  state = {
+    file: null,
+    preview: ''
+  }
+
+  getProfileImage = ([file]) => {
+    console.log('file', file)
+    this.setState(
+      {
+        file
+      },
+      function () {
+        console.log('file in callback', this.state)
+      }
+    )
+    // console.log('state', this.state.file)
+  }
+
   render() {
+
     const { currentUser, loading } = this.props
-    //remove later
+
     if (loading) {
       return null
     }
@@ -21,6 +41,7 @@ class Settings extends Component {
     return (
       <Formik
         onSubmit={async (values, { setSubmitting }) => {
+          console.log('stateee', this.state.file)
           setSubmitting(true)
           let response
           try {
@@ -30,6 +51,7 @@ class Settings extends Component {
                 email: values.email,
                 username: values.username,
                 name: values.name,
+                file: this.state.file,
                 profile_image: values.profile_image,
                 website_url: values.website_url,
                 bio: values.bio,
@@ -38,6 +60,7 @@ class Settings extends Component {
                 github_username: values.github_username
               }
             })
+            console.log(response)
             const { username } = response.data.updateUserInfo
             this.props.history.push(`/@${username}`)
             // <Alert message="Success Tips" type="success" showIcon />
@@ -83,6 +106,18 @@ class Settings extends Component {
                     defaultValue={currentUser.name}
                     onChange={handleChange}
                     name="name"
+                    type="text"
+                  />
+                </Col>
+                <Col span={12} offset={6}>
+                  <span>Profile image</span>
+                  <FileUpload getProfileImage={this.getProfileImage}>
+                    <img src={currentUser.profile_image} />
+                  </FileUpload>
+                  <Input
+                    defaultValue={currentUser.profile_image}
+                    onChange={handleChange}
+                    name="profile_image"
                     type="text"
                   />
                 </Col>
