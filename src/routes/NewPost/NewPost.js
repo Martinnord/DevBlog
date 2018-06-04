@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import yup from 'yup'
 import { graphql } from 'react-apollo'
-import { Col, Row, Input, Button } from 'antd'
+import { Col, Row, Input, Button, Icon } from 'antd'
 import { Formik, Form } from 'formik'
 import { Value } from 'slate'
 import { CurrentUser } from '../../util/auth'
 import { Redirect } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import Navbar from '../../common/Navbar'
+import FileUpload from '../../components/FileUpload'
 import HoveringMenu from '../../components/HoveringMenu'
 import NEW_POST_MUTATION from '../../graphql/mutations/newPost'
 import GET_ALL_POSTS_QUERY from '../../graphql/queries/getAllPosts'
@@ -113,31 +114,39 @@ class NewPost extends Component {
                   status
                 }) => (
                   <Form className="new-article-form">
-                    <Input
-                      className="new-article-input new-article-title"
-                      value={values.title}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      type="text"
-                      name="title"
-                      label="title"
-                      placeholder="Title"
-                    />
-                    <Input
-                      className="new-article-input new-article-image-url"
-                      value={values.image_url}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      type="text"
-                      name="image_url"
-                      label="image_url"
-                      placeholder="Image cover (only accept link atm)"
-                    />
-                    <HoveringMenu
-                      className="new-post-editor"
-                      value={this.state.content}
-                      updateValue={this.updateValue}
-                    />
+                    <FileUpload disableClick>
+                      <Input
+                        className="new-article-input new-article-title"
+                        value={values.title}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        type="text"
+                        name="title"
+                        label="title"
+                        placeholder="Title"
+                      />
+
+                      <Input
+                        className="new-article-input new-article-image-url"
+                        value={values.image_url}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        type="text"
+                        name="image_url"
+                        label="image_url"
+                        placeholder="Image cover (only accept link atm)"
+                      />
+                      <FileUpload>
+                        <Button>
+                          <Icon type="plus" />
+                        </Button>
+                      </FileUpload>
+                      <HoveringMenu
+                        className="new-post-editor"
+                        value={this.state.content}
+                        updateValue={this.updateValue}
+                      />
+                    </FileUpload>
                     <Row>
                       <Col span={6} offset={6}>
                         <Button
