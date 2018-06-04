@@ -7,6 +7,7 @@ export default gql`
     $username: String
     $name: String
     $profile_image: String
+    $file: File
     $website_url: String
     $bio: String
     $location: String
@@ -18,6 +19,7 @@ export default gql`
       email: $email
       username: $username
       profile_image: $profile_image
+      file: $file
       website_url: $website_url
       bio: $bio
       location: $location
@@ -27,6 +29,7 @@ export default gql`
     ) {
       email
       username
+      file
       profile_image
       website_url
       bio
