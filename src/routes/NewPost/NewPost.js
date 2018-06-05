@@ -58,102 +58,97 @@ class NewPost extends Component {
       return <Redirect to={{ pathname: '/new' }} />
     }
 
+    document.body.style.backgroundColor = '#FFF'
+
     return (
       <div>
-        <Navbar />
         <div className="new-post-layout">
           <Helmet>
             <title>New Article</title>
           </Helmet>
           <Row className="new-post-row">
-            <Col span={12} offset={6}>
-              <Formik
-                validationSchema={schema}
-                initialValues={{
-                  title: '',
-                  content: initialValue,
-                  image_url: ''
-                }}
-                onSubmit={async (values, { setSubmitting, setStatus }) => {
-                  setSubmitting(true)
-                  const { content } = this.state
-                  try {
-                    await this.props.mutate({
-                      variables: {
-                        title: values.title,
-                        content: JSON.stringify(content.toJSON()),
-                        image_url: values.image_url
-                      },
-                      update: (store, { data: { createPost } }) => {
-                        const data = store.readQuery({
-                          query: GET_ALL_POSTS_QUERY
-                        })
-                        data.getAllPosts.push(createPost)
-                        store.writeQuery({
-                          query: GET_ALL_POSTS_QUERY,
-                          data
-                        })
-                      }
-                    })
-                    this.props.history.push('/')
-                  } catch (err) {
-                    const graphqlError = err.graphQLErrors[0].message
-                    setStatus(graphqlError)
-                    setSubmitting(false)
-                  }
-                }}
-                render={({
-                  values,
-                  touched,
-                  errors,
-                  isSubmitting,
-                  handleChange,
-                  handleBlur,
-                  handleSubmit,
-                  status
-                }) => (
-                  <Form className="new-article-form">
-                    <Input
-                      className="new-article-input new-article-title"
-                      value={values.title}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      type="text"
-                      name="title"
-                      label="title"
-                      placeholder="Title"
-                    />
-                    <Input
-                      className="new-article-input new-article-image-url"
-                      value={values.image_url}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      type="text"
-                      name="image_url"
-                      label="image_url"
-                      placeholder="Image cover (only accept link atm)"
-                    />
-                    <HoveringMenu
-                      className="new-post-editor"
-                      value={this.state.content}
-                      updateValue={this.updateValue}
-                    />
-                    <Row>
-                      <Col span={6} offset={6}>
-                        <Button
-                          type="primary"
-                          htmlType="submit"
-                          disabled={isSubmitting}
-                          onClick={handleSubmit}
-                        >
-                          Publish Article
-                        </Button>
-                      </Col>
-                    </Row>
-                  </Form>
-                )}
-              />
-            </Col>
+            <Formik
+              validationSchema={schema}
+              initialValues={{
+                title: '',
+                content: initialValue,
+                image_url: ''
+              }}
+              onSubmit={async (values, { setSubmitting, setStatus }) => {
+                setSubmitting(true)
+                const { content } = this.state
+                try {
+                  await this.props.mutate({
+                    variables: {
+                      title: values.title,
+                      content: JSON.stringify(content.toJSON()),
+                      image_url: values.image_url
+                    },
+                    update: (store, { data: { createPost } }) => {
+                      const data = store.readQuery({
+                        query: GET_ALL_POSTS_QUERY
+                      })
+                      data.getAllPosts.push(createPost)
+                      store.writeQuery({
+                        query: GET_ALL_POSTS_QUERY,
+                        data
+                      })
+                    }
+                  })
+                  this.props.history.push('/')
+                } catch (err) {
+                  const graphqlError = err.graphQLErrors[0].message
+                  setStatus(graphqlError)
+                  setSubmitting(false)
+                }
+              }}
+              render={({
+                values,
+                touched,
+                errors,
+                isSubmitting,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                status
+              }) => (
+                <div>
+                  <Navbar
+                    path={this.props.match.path}
+                    handleSubmit={handleSubmit}
+                  />
+                  <Col span={12} offset={6}>
+                    <Form className="new-article-form">
+                      <Input
+                        className="new-article-input new-article-title"
+                        value={values.title}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        type="text"
+                        name="title"
+                        label="title"
+                        placeholder="Title"
+                      />
+                      <Input
+                        className="new-article-input new-article-image-url"
+                        value={values.image_url}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        type="text"
+                        name="image_url"
+                        label="image_url"
+                        placeholder="Image cover (only accept link atm)"
+                      />
+                      <HoveringMenu
+                        className="new-post-editor"
+                        value={this.state.content}
+                        updateValue={this.updateValue}
+                      />
+                    </Form>
+                  </Col>
+                </div>
+              )}
+            />
           </Row>
         </div>
       </div>
@@ -169,7 +164,11 @@ class NewPost extends Component {
       case 'bold':
         return <strong>{children}</strong>
       case 'code':
-        return <code>{children}</code>
+        return (
+          <div style={{ backgroundColor: '#FF0000' }}>
+            <code>{children}</code>
+          </div>
+        )
       case 'italic':
         return <em>{children}</em>
       case 'underlined':

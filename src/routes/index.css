@@ -49,7 +49,7 @@ a:hover {
 }
 
 .new-post-row {
-  margin-top: 0 !important;
+  margin: 0 !important;
 }
 
 .new-article-form {
@@ -202,7 +202,7 @@ a:hover {
 }
 
 .navbar-submenu {
-  margin-left: auto !important;
+  margin-left: auto;
 }
 
 .ant-card {
@@ -532,4 +532,9 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.code-snippet {
+  background-color: #252529;
+  color: #fff;
 }

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Spinner from '../common/Spinner'
 import Loadable from 'react-loadable'
 
-
 const AsyncHome = Loadable({
   loader: () => import('./Home/Home.js'),
   loading: Spinner
@@ -56,7 +55,7 @@ const AsyncNewUser = Loadable({
 
 const AsyncAbout = Loadable({
   loader: () => import('./About/About.js'),
-  loading:Spinner
+  loading: Spinner
 })
 
 const AsyncContact = Loadable({
