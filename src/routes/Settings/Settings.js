@@ -61,6 +61,7 @@ class Settings extends Component {
               }
             })
             console.log(response)
+            debugger
             const { username } = response.data.updateUserInfo
             this.props.history.push(`/@${username}`)
             // <Alert message="Success Tips" type="success" showIcon />

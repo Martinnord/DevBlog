@@ -131,6 +131,7 @@ export default ({ uri, includeExtensions, ...requestOptions } = {}) => {
             return result
           })
           .catch(err => {
+            console.log(err)
             // fetch was cancelled so its already been cleaned up in the unsubscribe
             if (err.name === 'AbortError') return
             observer.error(err)
