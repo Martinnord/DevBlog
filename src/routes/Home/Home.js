@@ -12,9 +12,7 @@ const { Content } = Layout
 
 class Home extends Component {
   render() {
-    const {
-      data: { loading, getAllPosts = [] }
-    } = this.props
+    const { data: { loading, getAllPosts = [] } } = this.props
 
     if (!this.props.data) {
       return <Redirect to={{ pathname: '/404' }} />
@@ -34,6 +32,7 @@ class Home extends Component {
         <Content className="content">
           <Row className="no-margin-uptop-row">
             <PostCard posts={getAllPosts} />
+            {JSON.stringify(getAllPosts.comment)}
           </Row>
         </Content>
         <FooterComponent />

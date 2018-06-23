@@ -38,9 +38,7 @@ class PostLayout extends Component {
   render() {
     document.body.style.background = '#F9F9FA'
 
-    const {
-      data: { loading, getPost }
-    } = this.props
+    const { data: { loading, getPost } } = this.props
 
     if (loading) {
       return null
@@ -65,6 +63,7 @@ class PostLayout extends Component {
         <Navbar />
         <Content>
           <Row className="post-row">
+            {JSON.stringify(getPost.comments)}
             <Post
               content={parsedContent}
               post={getPost}

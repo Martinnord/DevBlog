@@ -12,6 +12,10 @@ export default gql`
         username
         profile_image
       }
+      comments {
+        id
+        comment
+      }
       created_at
       user {
         id

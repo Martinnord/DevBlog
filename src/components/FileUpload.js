@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Dropzone from 'react-dropzone'
+import DropZone from 'react-dropzone'
 
 class FileUpload extends Component {
   handleFileChange = file => {
@@ -25,14 +25,14 @@ class FileUpload extends Component {
     return (
       <div>
         <div>{preview && <img src={preview} alt="image preview" />}</div>
-        <Dropzone
+        <DropZone
           className="ignore"
           multiple={false}
           onDrop={this.handleFileChange}
           disableClick={disableClick}
         >
           {children}
-        </Dropzone>
+        </DropZone>
       </div>
     )
   }
